@@ -1,0 +1,5 @@
+/mizu-api/target/
+/mizu-api/.idea/
+/mizu-app/node_modules/
+/.idea/
+/mizu-app/dist
