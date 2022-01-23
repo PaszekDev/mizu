@@ -15,7 +15,7 @@ public class UserMapper {
                 .username(userEntity.getUsername())
                 .password(userEntity.getPassword())
                 .email(userEntity.getEmail())
-                .session(sessionMapper.toDto(userEntity.getSession()))
+                .session(userEntity.getSession() != null ? sessionMapper.toDto(userEntity.getSession()) : null)
                 .build();
     }
 

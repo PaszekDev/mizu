@@ -2,17 +2,18 @@ package com.mizu.mizuapi.controller;
 
 import com.mizu.mizuapi.dto.SessionDTO;
 import com.mizu.mizuapi.dto.UserDTO;
-import com.mizu.mizuapi.repository.SessionRepository;
 import com.mizu.mizuapi.request.LoginRequest;
 import com.mizu.mizuapi.service.authentication.AuthenticationService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-@RestController(value = "/api/auth")
+@RestController
+@RequestMapping("/api/auth")
 @CrossOrigin(originPatterns = "*", maxAge = 3600)
+@AllArgsConstructor
 public class AuthenticationController {
-    @Autowired
-    private AuthenticationService authenticationService;
+
+    private final AuthenticationService authenticationService;
 
     @PostMapping("/register")
     @ResponseBody

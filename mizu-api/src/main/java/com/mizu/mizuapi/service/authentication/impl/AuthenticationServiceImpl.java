@@ -12,31 +12,25 @@ import com.mizu.mizuapi.request.LoginRequest;
 import com.mizu.mizuapi.service.authentication.AuthenticationService;
 import com.mizu.mizuapi.service.session.mapper.SessionMapper;
 import com.mizu.mizuapi.service.user.mapper.UserMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Service
+@RequiredArgsConstructor
 public class AuthenticationServiceImpl implements AuthenticationService {
 
     @Value("${plus-minutes-expiration-time}")
     private Integer extraMinutes;
 
-    @Autowired
-    AuthenticationRepository authenticationRepository;
 
-    @Autowired
-    UserRepository userRepository;
-
-    @Autowired
-    SessionRepository sessionRepository;
-
+    private final AuthenticationRepository authenticationRepository;
+    private final UserRepository userRepository;
+    private final SessionRepository sessionRepository;
     private final UserMapper userMapper = new UserMapper();
-
     private final SessionMapper sessionMapper = new SessionMapper();
 
     @Override
