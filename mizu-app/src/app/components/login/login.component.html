@@ -18,7 +18,11 @@
                           <input type="text"  name="uname" formControlName="username" required>
                       
                           <label for="psw">password</label>
-                          <input type="password"  name="psw" formControlName="password" required>    
+                          <input type="password"  name="psw" formControlName="password" required><br>
+                        <div class="rememberLog">
+                          <input type="checkbox" id="rememberLog" name="nlogout" formControlName="notlogout">
+                          <label for="rememberLog">Remember login</label>
+                        </div>
                           <button class="btn btn-primary submit-button" (click)="onSubmit()">Submit</button>                          
                         </div>                                        
                       </form>

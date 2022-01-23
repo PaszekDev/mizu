@@ -83,23 +83,32 @@
           font-weight: bold;
           margin-right: auto;
         }
+
         input {
           border: 0px;
           border-radius: 8px;
           width: 20em;
           background-color: rgba(36, 16, 73, 0.4);
         }
+        
       }
     }
   }
 }
 
 .container {
-  display: flex;
+  // display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+  .rememberLog {
+    flex-wrap:wrap;
+    justify-content: left;
+    align-items: left;
+    margin-left: -10%;
+  }
+
 
 .sign-in {
   display: flex;
@@ -114,6 +123,14 @@
   form {
     .submit-button {
       align-self: center;
+    }
+    .rememberLog {
+      input {
+        margin-left: -25%;
+      }
+      label {
+        margin-left: -37%;
+      }
     }
   }
 }
