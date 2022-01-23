@@ -1,10 +1,8 @@
 
 <div class="global">
     <section class="background">
-        <div class="overlay-blue"></div>
     </section>
     <div class="main-container">
-        <div class="overlay-dark"></div>
         <div class="row">
             <div class="col-4">
                 <h1>Welcome!</h1>
@@ -15,14 +13,14 @@
                 <div class="sign-in">
                     <h1>Sign In</h1>
 
-                    <form action="#" method="#">                              
+                    <form [formGroup]="loginForm">                              
                         <div class="container">
                           <label for="uname">username</label>
-                          <input type="text"  name="uname" required>
+                          <input type="text"  name="uname" formControlName="username" required>
                       
                           <label for="psw">password</label>
-                          <input type="password"  name="psw" required>                            
-                          <button class="btn btn-primary" type="submit">Submit</button>
+                          <input type="password"  name="psw" formControlName="password" required>                            
+                          <button class="btn btn-primary" (click)="onSubmit()">Submit</button>
                         </div>                                           
                       </form>
                 </div>

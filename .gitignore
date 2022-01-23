@@ -3,3 +3,4 @@
 /mizu-app/node_modules/
 /.idea/
 /mizu-app/dist
+.mizu-api/mizu-api.iml
