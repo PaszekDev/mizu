@@ -1,5 +1,5 @@
-export interface LoginRequest{
-    username:string; 
-    password:string;
-    notlogout:string
+export interface LoginRequest {
+    username: string; 
+    password: string;
+    hasDoNotLogout: string;
 }

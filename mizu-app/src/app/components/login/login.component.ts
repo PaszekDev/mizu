@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
         Validators.min(5),
         Validators.max(40),
       ]),
-      notlogout: new FormControl(null)
+      hasDoNotLogout: new FormControl(null)
     });
   }
 
@@ -40,11 +40,11 @@ export class LoginComponent implements OnInit {
     const loginRequest = {} as LoginRequest;
     loginRequest.username = this.loginForm.get("username")?.value;
     loginRequest.password = this.loginForm.get("password")?.value;
-    loginRequest.notlogout = this.loginForm.get("logout")?.value;
+    loginRequest.hasDoNotLogout = this.loginForm.get("logout")?.value;
     this.authService.login(loginRequest).subscribe((res:SessionDTO)=>{
       console.log(res);
     },error=>{
-      console.log(error)
+      console.log(error);
     })
   }
 

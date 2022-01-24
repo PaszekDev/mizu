@@ -1,3 +1,3 @@
-export interface SessionDTO{
-    sessionKey: string
+export interface SessionDTO {
+    sessionKey: string;
 }
