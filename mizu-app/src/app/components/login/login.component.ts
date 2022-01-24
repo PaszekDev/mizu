@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { LoginRequest } from 'src/app/models/loginRequeast.model';
+import { LoginRequest } from 'src/app/models/loginRequest.model';
 import { SessionDTO } from 'src/app/models/sessionDTO.model';
 import { AuthService } from 'src/app/services/auth.service';
 
