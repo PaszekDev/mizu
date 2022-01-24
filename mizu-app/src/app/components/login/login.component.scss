@@ -99,6 +99,28 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  label {
+    display: table;
+    table-layout: fixed;
+
+    .rememberLog {     
+      label {
+        display: table-cell;
+        overflow: hidden;
+      }
+    }
+  }
+}
+
+.rememberLog {
+  input {
+  margin-left: -45%;
+  }
+  label {  
+    margin-top:-7.5%;
+    margin-left: 10%;
+  }
 }
 
 .sign-in {
