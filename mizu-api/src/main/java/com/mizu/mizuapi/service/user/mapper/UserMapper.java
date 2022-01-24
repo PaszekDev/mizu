@@ -3,9 +3,13 @@ package com.mizu.mizuapi.service.user.mapper;
 
 import com.mizu.mizuapi.domain.user.UserEntity;
 import com.mizu.mizuapi.dto.UserDTO;
+import com.mizu.mizuapi.generic.crud.GenericMapper;
 import com.mizu.mizuapi.service.session.mapper.SessionMapper;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
-public class UserMapper {
+@Component
+public class UserMapper implements GenericMapper<UserEntity,UserDTO> {
 
     private final SessionMapper sessionMapper = new SessionMapper();
 
