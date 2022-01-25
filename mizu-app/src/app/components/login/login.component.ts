@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LocalStorageKey } from 'src/app/models/LocalStorageKey.model';
-import { LoginRequest } from 'src/app/models/loginRequeast.model';
 import { SessionDTO } from 'src/app/models/sessionDTO.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { LocalStorageService } from 'src/app/services/local-data-storage.service';
+import {LoginRequest} from "../../models/loginRequest.model";
 
 @Component({
   selector: 'app-login',

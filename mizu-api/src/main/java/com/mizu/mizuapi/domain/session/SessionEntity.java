@@ -1,6 +1,5 @@
 package com.mizu.mizuapi.domain.session;
 
-import com.mizu.mizuapi.domain.BaseEntityWithId;
 import com.mizu.mizuapi.domain.user.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,7 +15,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Data
 @Builder
-public class SessionEntity extends BaseEntityWithId {
+public class SessionEntity  {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "session_key")
     private String sessionKey;

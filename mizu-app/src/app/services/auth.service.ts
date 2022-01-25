@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { LoginRequest } from '../models/loginRequeast.model';
+import { LoginRequest } from '../models/loginRequest.model';
 import { SessionDTO } from '../models/sessionDTO.model';
 
 @Injectable({

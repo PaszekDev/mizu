@@ -1,6 +1,5 @@
 package com.mizu.mizuapi.domain.permission;
 
-import com.mizu.mizuapi.domain.BaseEntityWithId;
 import com.mizu.mizuapi.domain.user.UserEntity;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,7 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @Table(name = "permissions")
-public class PermissionsEntity extends BaseEntityWithId {
+public class PermissionsEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;

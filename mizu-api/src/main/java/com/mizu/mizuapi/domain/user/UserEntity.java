@@ -1,14 +1,13 @@
 package com.mizu.mizuapi.domain.user;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.mizu.mizuapi.domain.BaseEntityWithId;
+
 import com.mizu.mizuapi.domain.permission.PermissionsEntity;
 import com.mizu.mizuapi.domain.session.SessionEntity;
+import com.mizu.mizuapi.dto.UserDTO;
+import com.mizu.mizuapi.generic.crud.GenericCRUDEntity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -18,7 +17,11 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserEntity extends BaseEntityWithId {
+public class UserEntity implements GenericCRUDEntity<UserEntity,UserDTO> {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "username")
     private String username;
@@ -35,7 +38,7 @@ public class UserEntity extends BaseEntityWithId {
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "user_permissions_relation",
-    joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "permission_id"))
+            joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "permission_id"))
     private Set<PermissionsEntity> permissions;
 
 
