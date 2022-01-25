@@ -22,23 +22,22 @@ public abstract class GenericCRUDService<T,V extends GenericCRUDEntity<T,V>> {
     }
 
     public V get(Long id){
-        T dbEntity = genericCRUDRepository.findById(id).orElseThrow(()->new EntityNotFound());
+        T dbEntity = genericCRUDRepository.findById(id).orElseThrow(EntityNotFound::new);
         return genericMapper.toDto(dbEntity);
     }
 
     @Transactional
     public V create(V newEntity){
+        newEntity.setId(null);
         T dbEntity = genericMapper.fromDto(newEntity);
-        genericCRUDRepository.save(dbEntity);
-        return newEntity;
+        return genericMapper.toDto(genericCRUDRepository.save(dbEntity));
     }
 
     @Transactional
     public V update(V updated){
         get(updated.getId());//check if exists
         T dbEntity = genericMapper.fromDto(updated);
-        genericCRUDRepository.save(dbEntity);
-        return updated;
+        return genericMapper.toDto(genericCRUDRepository.save(dbEntity));
     }
 
     @Transactional

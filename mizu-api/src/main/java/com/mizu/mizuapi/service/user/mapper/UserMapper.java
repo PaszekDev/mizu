@@ -25,6 +25,7 @@ public class UserMapper implements GenericMapper<UserEntity,UserDTO> {
 
     public UserEntity fromDto(UserDTO userDTO) {
         return UserEntity.builder()
+                .id(userDTO.getId())
                 .username(userDTO.getUsername())
                 .password(userDTO.getPassword())
                 .email(userDTO.getEmail())

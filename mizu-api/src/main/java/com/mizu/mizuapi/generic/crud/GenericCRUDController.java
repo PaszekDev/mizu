@@ -14,13 +14,15 @@ public class GenericCRUDController<T,V extends GenericCRUDEntity<T,V>> {
     }
 
     @GetMapping("")
-    public ResponseEntity<Page<V>> getPage(Pageable pageable){
-        return ResponseEntity.ok(genericCRUDService.getPage(pageable));
+    @ResponseBody
+    public Page<V> getPage(Pageable pageable){
+        return genericCRUDService.getPage(pageable);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<V> getOne(@PathVariable Long id){
-        return ResponseEntity.ok(genericCRUDService.get(id));
+    @ResponseBody
+    public V getOne(@PathVariable Long id){
+        return genericCRUDService.get(id);
     }
 
     @PostMapping("")
