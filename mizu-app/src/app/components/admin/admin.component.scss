@@ -1,0 +1,49 @@
+a{
+    .menu-img{
+        width: 2vw;
+        margin: 0.5em;
+    }
+}
+
+.admin-sidebar{
+    background-color: rgba(108, 106, 106, 0.3);
+    width: 16vw;
+    height: 100vh;
+
+    input{
+        background-image: url('/assets/images/admin_panel/search.svg');
+        background-position: 4px 4px;
+        background-repeat: no-repeat;
+        background-size: 1.5vw;
+        width: 100%;
+        font-size: 1vw;
+        border-radius: 1em;
+        padding: 0 0 0 2vw;
+        border: 1px solid #ddd;
+        margin-bottom: 5vh;
+    }
+
+    h1{
+        font-size: 3vw;
+        text-align: center;
+    }
+
+    ul{    
+        margin: 0;
+        padding: 0.7em;  
+        li{ 
+            margin-bottom: 2.5em; 
+            list-style-type: none;
+            img{
+                width: 2.3vw;
+                margin-right: 1em;
+            }
+            a{
+                text-decoration: none;
+                color: black;
+                font-size: 1.5vw;
+            }
+        }
+    }
+
+}
