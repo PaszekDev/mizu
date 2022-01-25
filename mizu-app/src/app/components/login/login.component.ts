@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { LocalStorageKey } from 'src/app/models/LocalStorageKey.model';
 import { LoginRequest } from 'src/app/models/loginRequeast.model';
 import { SessionDTO } from 'src/app/models/sessionDTO.model';
 import { AuthService } from 'src/app/services/auth.service';
+import { LocalStorageService } from 'src/app/services/local-data-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -10,10 +12,9 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-
   public loginForm!: FormGroup;
 
-  constructor(private authService:AuthService) {}
+  constructor(private authService: AuthService, private localStorageService: LocalStorageService) {}
 
   ngOnInit(): void {
     this.initFormGroup();
@@ -31,22 +32,22 @@ export class LoginComponent implements OnInit {
         Validators.min(5),
         Validators.max(40),
       ]),
-      hasDoNotLogout: new FormControl(null)
+      hasDoNotLogout: new FormControl(null),
     });
   }
 
   onSubmit() {
-    console.log(this.loginForm);
     const loginRequest = {} as LoginRequest;
-    loginRequest.username = this.loginForm.get("username")?.value;
-    loginRequest.password = this.loginForm.get("password")?.value;
-    loginRequest.hasDoNotLogout = this.loginForm.get("logout")?.value;
-    this.authService.login(loginRequest).subscribe((res:SessionDTO)=>{
-      console.log(res);
-    },error=>{
-      console.log(error);
-    })
+    loginRequest.username = this.loginForm.get('username')?.value;
+    loginRequest.password = this.loginForm.get('password')?.value;
+    loginRequest.hasDoNotLogout = this.loginForm.get('logout')?.value;
+    this.authService.login(loginRequest).subscribe(
+      (res: SessionDTO) => {
+        this.localStorageService.set(LocalStorageKey.SESSION_KEY,res.sessionKey,localStorage);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
-
-
 }
