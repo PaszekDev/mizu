@@ -1,7 +1,8 @@
 package com.mizu.mizuapi.domain.user;
 
-import com.mizu.mizuapi.domain.BaseEntityWithId;
 import com.mizu.mizuapi.domain.session.SessionEntity;
+import com.mizu.mizuapi.dto.UserDTO;
+import com.mizu.mizuapi.generic.crud.GenericCRUDEntity;
 import lombok.*;
 
 import javax.persistence.*;
@@ -13,7 +14,11 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserEntity extends BaseEntityWithId {
+public class UserEntity implements GenericCRUDEntity<UserEntity,UserDTO> {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "username")
     private String username;
