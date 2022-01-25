@@ -8,5 +8,6 @@
     <include file="changelogs/001-init-test.xml" relativeToChangelogFile="true"/>
     <include file="changelogs/002-create-user.xml" relativeToChangelogFile="true"/>
     <include file="changelogs/003-create-session.xml" relativeToChangelogFile="true"/>
+    <include file="changelogs/004-create-permission.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

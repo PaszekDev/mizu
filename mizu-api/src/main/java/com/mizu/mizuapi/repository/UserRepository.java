@@ -11,4 +11,9 @@ public interface UserRepository extends GenericCRUDRepository<UserEntity, UserDT
 
     @Query("select s from UserEntity s where s.username = :username AND s.password = :password")
     UserEntity getUserByUsernameAndPassword(String username, String password);
+
+    @Query("select s from UserEntity s where s.id = :userId")
+    UserEntity getById(Long userId);
+
 }
+
