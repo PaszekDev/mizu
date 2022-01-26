@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
-
 
 @Component({
   selector: 'app-admin',
@@ -9,16 +7,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 })
 export class AdminComponent implements OnInit {
 
-  searchText:String="";
+  navbarTitle:String = "Panel Administracyjny";
+  avatarUrl:String = "/assets/images/user_avatar_example.svg";
+  searchText:String = "";
   isVisible:boolean = true;
 
   constructor() { }
 
-  ngOnInit(): void {
-    
+  ngOnInit(): void {  
   }
 
-  public onClick():void{   
+  public onClick(): void {   
     this.isVisible = !this.isVisible;
     this.ngOnInit();
   }
