@@ -1,5 +1,6 @@
 package com.mizu.mizuapi.domain.permission;
 
+import com.mizu.mizuapi.domain.user.UserGroup;
 import com.mizu.mizuapi.repository.PermissionsRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,9 +18,9 @@ public class PermissionInit implements ApplicationRunner {
     private final PermissionsRepository permissionGroupRepository;
 
     @Override
-    public void run(ApplicationArguments args) throws Exception {
+    public void run(ApplicationArguments args) {
         Set<PermissionsEntity> permissionsEntities = permissionGroupRepository.getAll();
-        for (PermissionGroup group : PermissionGroup.values()) {
+        for (UserGroup group : UserGroup.values()) {
             for (Permission permission : Permission.values()) {
                 if(permissionsEntities.stream().noneMatch(e-> e.getGroupName().equals(group.name()) && e.getPermission().equals(permission.name()))) {
                     PermissionsEntity permissions = new PermissionsEntity();
