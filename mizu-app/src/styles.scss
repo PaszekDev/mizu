@@ -1,4 +1,67 @@
-@font-face {
-    font-family: 'NotoSansTC';
-    src: url(assets/fonts/NotoSansTC-Regular.otf) format('opentype');
+@import url('https://fonts.googleapis.com/css2?family=Spline+Sans:wght@500&display=swap');
+
+* {
+  font-family: 'Spline Sans', sans-serif !important;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Spline Sans', sans-serif;
+}
+
+.mizu-label {
+  color: white;
+  font-weight: bold;
+  margin-right: auto;
+}
+
+.mizu-input {
+  border: 0px;
+  border-radius: 8px;
+  width: 20em;
+  background-color: rgba(36, 16, 73, 0.4);
+}
+
+.mizu-datepicker {
+  .mat-form-field-underline {
+    /*change color of underline*/
+    background-color: #19254e !important;
   }
+
+  .mat-form-field-ripple {
+    /*change color of underline when focused*/
+    background-color: white !important;
+  }
+
+  .mat-form-field-label {
+    /*change color of label*/
+    color: white !important;
+  }
+
+  .mat-datepicker-toggle {
+    color: #19254e !important;
+  }
+}
+
+.mizu-selector {
+  .mat-select-content {
+    color: #19254e;
+  }
+
+  .mat-form-field-appearance-fill .mat-form-field-flex {
+    background-color: rgba(36, 16, 73, 0.4);
+  }
+
+  mat-form-field span.mat-form-field-label-wrapper label {
+    color: white;
+  }
+
+  mat-form-field.mat-focused span.mat-form-field-label-wrapper label {
+    color: white;
+  }
+}

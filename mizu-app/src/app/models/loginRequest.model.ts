@@ -1,5 +1,5 @@
 export interface LoginRequest {
-    username: string; 
-    password: string;
-    hasDoNotLogout: string;
+  email: string;
+  password: string;
+  hasDoNotLogout: string;
 }

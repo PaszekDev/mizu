@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Data
 @Builder
-public class SessionEntity  {
+public class SessionEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +30,10 @@ public class SessionEntity  {
     @Column(name = "has_do_not_logout")
     private Boolean hasDoNotLogout;
 
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @Column(name = "user_remote_address")
+    private String userRemoteAddress;
+
+    @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, orphanRemoval = false)
     @JoinColumn(name = "user_id")
     private UserEntity user;
 
