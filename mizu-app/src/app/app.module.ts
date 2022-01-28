@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PermissionDirective } from './helpers/permission.directive';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { StudentListComponent } from './components/student/studentList.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { AdminComponent } from './components/admin/admin.component';
     LoginComponent,
     NavbarComponent,
     AdminComponent,
-    PermissionDirective
+    PermissionDirective,
+    StudentListComponent
   ],
   imports: [
     BrowserModule,

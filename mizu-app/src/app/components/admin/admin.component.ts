@@ -10,16 +10,9 @@ export class AdminComponent implements OnInit {
   navbarTitle:String = "Panel Administracyjny";
   avatarUrl:String = "/assets/images/user_avatar_example.svg";
   searchText:String = "";
-  isVisible:boolean = true;
 
   constructor() { }
 
   ngOnInit(): void {  
   }
-
-  public onClick(): void {   
-    this.isVisible = !this.isVisible;
-    this.ngOnInit();
-  }
-
 }

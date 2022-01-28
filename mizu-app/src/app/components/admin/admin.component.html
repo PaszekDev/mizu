@@ -1,15 +1,19 @@
 <app-navbar title={{navbarTitle}} avatarUrl={{avatarUrl}}></app-navbar>
 
-<a *ngIf="isVisible ==false" href="#"><img class="menu-img" src="/assets/images/admin_panel/menu.svg" (click)="onClick()" ></a>
-
-<div *ngIf="isVisible ==true" class="admin-sidebar">
-    <a href="#"><img class="menu-img" src="/assets/images/admin_panel/menu.svg" (click)="onClick()" ></a>
-        <h1>Mizu</h1>   
-    <ul>
-        <input [(ngModel)]="searchText" type="text" placeholder="Search" id="search">
-        <li><a routerLink=""><img src="/assets/images/admin_panel/school.svg" >Schools</a></li>
-        <li><a routerLink=""><img src="/assets/images/admin_panel/student.svg" >Students</a></li>
-        <li><a routerLink=""><img src="/assets/images/admin_panel/employee.svg" >Employees</a></li>
-        <li><a routerLink=""><img src="/assets/images/admin_panel/chart.svg" >Analyses</a></li>
-    </ul>
+<div class="container-fluid p-0">
+    <div class="row g-0">
+        <div class="col-2 min-vh-100 .px-0">
+                <h1>Mizu</h1>   
+            <ul>
+                <input [(ngModel)]="searchText" type="text" placeholder="Search" id="search">
+                <li><a routerLink=""><img src="/assets/images/admin_panel/school.svg" >Schools</a></li>
+                <li><a routerLink="students"><img src="/assets/images/admin_panel/student.svg" >Students</a></li>
+                <li><a routerLink=""><img src="/assets/images/admin_panel/employee.svg" >Employees</a></li>
+                <li><a routerLink=""><img src="/assets/images/admin_panel/chart.svg" >Analyses</a></li>
+            </ul>
+        </div>
+        <div class="col-10 min-vh-100">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
 </div>
