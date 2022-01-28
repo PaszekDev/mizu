@@ -22,7 +22,6 @@ public class UserMapper implements GenericMapper<UserEntity, UserDTO> {
                 .session(userEntity.getSession() != null ? sessionMapper.toDto(userEntity.getSession()) : null)
                 .birthdate(userEntity.getBirthdate())
                 .index(userEntity.getIndex())
-                .userGroup(userEntity.getUserGroup())
                 .build();
     }
 
@@ -32,7 +31,6 @@ public class UserMapper implements GenericMapper<UserEntity, UserDTO> {
                 .email(userDTO.getEmail())
                 .firstName(userDTO.getFirstName())
                 .lastName(userDTO.getLastName())
-                .userGroup(userDTO.getUserGroup())
                 .password(userDTO.getPassword())
                 .birthdate(userDTO.getBirthdate())
                 .index(userDTO.getIndex())
