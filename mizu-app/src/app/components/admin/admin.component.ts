@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
 
 
 @Component({
@@ -15,12 +14,11 @@ export class AdminComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    
+
   }
 
-  public onClick():void{   
+  public onClick(): void {
     this.isVisible = !this.isVisible;
-    this.ngOnInit();
   }
 
 }

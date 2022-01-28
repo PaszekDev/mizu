@@ -16,4 +16,5 @@ public class SessionDTO {
     private String sessionKey;
     private LocalDateTime expirationDate;
     private boolean hasDoNotLogout;
+    private String userRemoteAddress;
 }
