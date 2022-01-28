@@ -1,3 +1,4 @@
+import {SessionDTO} from "./sessionDTO.model";
 
 export interface UserDTO {
   id: number;
@@ -8,5 +9,5 @@ export interface UserDTO {
   birthdate: Date;
   index: number;
   userGroup: string;
+  session: SessionDTO;
 }
-

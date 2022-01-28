@@ -1,13 +1,13 @@
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
-    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
 
     <include file="changelogs/001-init-test.xml" relativeToChangelogFile="true"/>
     <include file="changelogs/002-create-user.xml" relativeToChangelogFile="true"/>
     <include file="changelogs/003-create-session.xml" relativeToChangelogFile="true"/>
     <include file="changelogs/004-create-permission.xml" relativeToChangelogFile="true"/>
+    <include file="changelogs/005-update-user-table.xml" relativeToChangelogFile="true"/>
+    <include file="changelogs/006-update-session-table.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>

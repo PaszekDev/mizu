@@ -8,4 +8,6 @@ import org.springframework.data.domain.Pageable;
 public interface UserService {
 
     Page<UserDTO> getAllByUserGroup(Pageable pageable, String userGroup);
+
+    UserDTO getLastUserByIndex();
 }

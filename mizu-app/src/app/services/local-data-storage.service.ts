@@ -1,12 +1,14 @@
-import { Injectable } from '@angular/core';
-import { LocalStorageKey } from '../models/LocalStorageKey.model';
-import { UserPermission } from '../models/permission/permission.model';
+import {Injectable} from '@angular/core';
+import {Router} from '@angular/router';
+import {LocalStorageKey} from '../models/LocalStorageKey.model';
+import {UserPermission} from '../models/permission/permission.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LocalStorageService {
-  constructor() {}
+  constructor(private router: Router) {
+  }
 
   set(key: LocalStorageKey | string, data: string, type: Storage) {
     type.setItem(key, data);
@@ -21,6 +23,21 @@ export class LocalStorageService {
       LocalStorageKey.USER_PERMISSIONS,
       JSON.stringify(data)
     );
+  }
+
+  getSessionKey(): string {
+    const sessionKey = localStorage.getItem(LocalStorageKey.SESSION_KEY);
+    if (sessionKey != null) {
+      return sessionKey;
+    }
+    this.router.navigate(['login'])
+    throw console.error("no session key");
+
+
+  }
+
+  clearSessionKey(): void {
+    localStorage.removeItem(LocalStorageKey.SESSION_KEY);
   }
 
   getUserPermission(): UserPermission[] {
