@@ -1,5 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-admin',
@@ -8,17 +7,12 @@ import {Component, OnInit} from '@angular/core';
 })
 export class AdminComponent implements OnInit {
 
-  searchText:String="";
-  isVisible:boolean = true;
+  navbarTitle:String = "Panel Administracyjny";
+  avatarUrl:String = "/assets/images/user_avatar_example.svg";
+  searchText:String = "";
 
   constructor() { }
 
-  ngOnInit(): void {
-
+  ngOnInit(): void {  
   }
-
-  public onClick(): void {
-    this.isVisible = !this.isVisible;
-  }
-
 }
