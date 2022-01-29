@@ -88,6 +88,24 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  onSubmit() {
+    console.log(this.loginForm);
+
+    const loginRequest = {} as LoginRequest;
+    loginRequest.username = this.loginForm.get("username")?.value;
+    loginRequest.password = this.loginForm.get("password")?.value;
+    loginRequest.hasDoNotLogout = this.loginForm.get("logout")?.value;
+    
+    this.authService.login(loginRequest).subscribe(
+      (res: SessionDTO) => {
+      console.log(res);
+    },error=>{
+      console.log(error);
+    })
+
+    this.router.navigate(['home'])
+  }
+
   private same_values(value1: string, value2: string): ValidationErrors | null {
     let value = this.registerForm.get(value1)?.value;
     let confirmValue = this.registerForm.get(value2)?.value;
