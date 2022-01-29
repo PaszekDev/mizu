@@ -40,10 +40,6 @@ public class UserEntity implements GenericCRUDEntity<UserEntity, UserDTO> {
     @Column(name = "birthdate")
     private LocalDate birthdate;
 
-    @Column(name = "user_group")
-    @Enumerated(EnumType.STRING)
-    private UserGroup userGroup;
-
     @Column(name = "index")
     private Long index;
 

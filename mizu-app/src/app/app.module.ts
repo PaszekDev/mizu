@@ -14,9 +14,10 @@ import {MatNativeDateModule} from '@angular/material/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
-import {InjectableRxStompConfig, RxStompService, rxStompServiceFactory} from '@stomp/ng2-stompjs';
+// import {InjectableRxStompConfig, RxStompService, rxStompServiceFactory} from '@stomp/ng2-stompjs';
 import {myRxStompConfig} from './my-rx-stomp.config';
 import {HomeComponent} from './components/home/home.component';
+import { StudentListComponent } from './components/student/studentList.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import {HomeComponent} from './components/home/home.component';
     NavbarComponent,
     AdminComponent,
     PermissionDirective,
+    StudentListComponent,
     HomeComponent,
   ],
   imports: [
@@ -40,17 +42,17 @@ import {HomeComponent} from './components/home/home.component';
     MatInputModule,
     MatSelectModule,
   ],
-  providers: [
-    {
-      provide: InjectableRxStompConfig,
-      useValue: myRxStompConfig,
-    },
-    {
-      provide: RxStompService,
-      useFactory: rxStompServiceFactory,
-      deps: [InjectableRxStompConfig]
-    }
-  ],
+  // providers: [
+  //   {
+  //     provide: InjectableRxStompConfig,
+  //     useValue: myRxStompConfig,
+  //   },
+  //   {
+  //     provide: RxStompService,
+  //     useFactory: rxStompServiceFactory,
+  //     deps: [InjectableRxStompConfig]
+  //   }
+  // ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

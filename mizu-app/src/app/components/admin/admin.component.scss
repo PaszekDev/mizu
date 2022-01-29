@@ -1,16 +1,11 @@
-a{
-    .menu-img{
-        width: 2vw;
-        margin: 0.5em;
+
+.container-fluid {
+
+    .col-2 {
+        background-color: rgba(59, 59, 59, 0.66);
     }
-}
 
-.admin-sidebar{
-    background-color: rgba(108, 106, 106, 0.3);
-    width: 16vw;
-    height: 100vh;
-
-    input{
+    input {
         background-image: url('/assets/images/admin_panel/search.svg');
         background-position: 4px 4px;
         background-repeat: no-repeat;
@@ -23,25 +18,28 @@ a{
         margin-bottom: 5vh;
     }
 
-    h1{
+    h1 {
         font-size: 3vw;
         text-align: center;
     }
 
-    ul{    
+    ul {    
         margin: 0;
         padding: 0.7em;  
-        li{ 
+        li { 
             margin-bottom: 2.5em; 
             list-style-type: none;
-            img{
+            img {
                 width: 2.3vw;
                 margin-right: 1em;
             }
-            a{
+            a {
                 text-decoration: none;
                 color: black;
                 font-size: 1.5vw;
+            }
+            a:hover, a:focus {
+                color:rgb(82, 77, 77)
             }
         }
     }
