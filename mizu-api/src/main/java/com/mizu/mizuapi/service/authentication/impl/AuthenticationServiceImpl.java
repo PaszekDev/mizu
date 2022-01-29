@@ -15,6 +15,7 @@ import com.mizu.mizuapi.service.session.mapper.SessionMapper;
 import com.mizu.mizuapi.service.user.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -37,19 +38,21 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final SessionService sessionService;
     private final UserMapper userMapper = new UserMapper();
     private final SessionMapper sessionMapper = new SessionMapper();
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public UserDTO register(UserDTO userDTO) {
         userDTO.setId(null);
+        userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         userDTO.setIndex(generateIndex());
         UserEntity user = userMapper.fromDto(userDTO);
         return userMapper.toDto(authenticationRepository.save(user));
     }
 
     @Override
-    public com.mizu.mizuapi.dto.SessionDTO login(LoginRequest loginRequest) {
-        UserEntity user = userRepository.getUserByUsernameAndPassword(loginRequest.getEmail(), loginRequest.getPassword());
-        if (user != null) {
+    public SessionDTO login(LoginRequest loginRequest) {
+        UserEntity user = userRepository.getUserByEmail(loginRequest.getEmail());
+        if (user != null && passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
             SessionEntity session = SessionEntity.builder()
                     .sessionKey(UUID.randomUUID().toString())
                     .expirationDate(LocalDateTime.now().plusMinutes(extraMinutes))

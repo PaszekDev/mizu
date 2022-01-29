@@ -12,8 +12,8 @@ import java.util.List;
 @Repository
 public interface UserRepository extends GenericCRUDRepository<UserEntity, UserDTO> {
 
-    @Query("select s from UserEntity s where s.email = :email AND s.password = :password")
-    UserEntity getUserByUsernameAndPassword(String email, String password);
+    @Query("select s from UserEntity s where s.email = :email")
+    UserEntity getUserByEmail(String email);
 
     @Query("select s from UserEntity s where s.id = :userId")
     UserEntity getById(Long userId);

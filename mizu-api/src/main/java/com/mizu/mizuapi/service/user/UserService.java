@@ -6,4 +6,6 @@ public interface UserService {
 
     UserDTO getLastUserByIndex();
 
+    UserDTO getUserBySessionKey(String sessionKey);
+
 }

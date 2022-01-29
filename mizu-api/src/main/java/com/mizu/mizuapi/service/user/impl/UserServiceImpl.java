@@ -21,4 +21,9 @@ public class UserServiceImpl implements UserService {
     public UserDTO getLastUserByIndex() {
         return userMapper.toDto(userRepository.getUsersDSC());
     }
+
+    @Override
+    public UserDTO getUserBySessionKey(String sessionKey) {
+        return userMapper.toDto(userRepository.getUserBySessionKey(sessionKey));
+    }
 }
