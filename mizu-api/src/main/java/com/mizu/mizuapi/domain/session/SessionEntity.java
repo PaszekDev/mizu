@@ -1,6 +1,5 @@
 package com.mizu.mizuapi.domain.session;
 
-import com.mizu.mizuapi.domain.BaseEntityWithId;
 import com.mizu.mizuapi.domain.user.UserEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,7 +15,11 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Data
 @Builder
-public class SessionEntity extends BaseEntityWithId {
+public class SessionEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "session_key")
     private String sessionKey;
@@ -27,7 +30,10 @@ public class SessionEntity extends BaseEntityWithId {
     @Column(name = "has_do_not_logout")
     private Boolean hasDoNotLogout;
 
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @Column(name = "user_remote_address")
+    private String userRemoteAddress;
+
+    @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.LAZY, orphanRemoval = false)
     @JoinColumn(name = "user_id")
     private UserEntity user;
 

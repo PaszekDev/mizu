@@ -1,0 +1,15 @@
+<app-navbar></app-navbar>
+
+<a *ngIf="isVisible ==false" href="#"><img class="menu-img" src="/assets/images/admin_panel/menu.svg" (click)="onClick()" ></a>
+
+<div *ngIf="isVisible ==true" class="admin-sidebar">
+    <a href="#"><img class="menu-img" src="/assets/images/admin_panel/menu.svg" (click)="onClick()" ></a>
+        <h1>Mizu</h1>   
+    <ul>
+        <input [(ngModel)]="searchText" type="text" placeholder="Search" id="search">
+        <li><a routerLink=""><img src="/assets/images/admin_panel/school.svg" >Schools</a></li>
+        <li><a routerLink=""><img src="/assets/images/admin_panel/student.svg" >Students</a></li>
+        <li><a routerLink=""><img src="/assets/images/admin_panel/employee.svg" >Employees</a></li>
+        <li><a routerLink=""><img src="/assets/images/admin_panel/chart.svg" >Analyses</a></li>
+    </ul>
+</div>

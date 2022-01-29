@@ -1,0 +1,17 @@
+.navbar{
+    background-color: rgba(3, 3, 3, 0.66);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    height: 10vh;
+
+    img{
+        height:8vh;
+    }
+
+    .navbar-logo{
+        color: white;
+        font-weight: bold;
+    }
+}

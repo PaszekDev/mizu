@@ -2,22 +2,27 @@ package com.mizu.mizuapi.service.session.mapper;
 
 import com.mizu.mizuapi.domain.session.SessionEntity;
 import com.mizu.mizuapi.dto.SessionDTO;
+import com.mizu.mizuapi.generic.crud.GenericMapper;
 
-public class SessionMapper {
-    public SessionDTO toDto(SessionEntity session) {
+public class SessionMapper implements GenericMapper<SessionEntity, SessionDTO> {
+
+    public SessionDTO toDto(SessionEntity source) {
         return SessionDTO.builder()
-                .id(session.getId())
-                .sessionKey(session.getSessionKey())
-                .expirationDate(session.getExpirationDate())
-                .hasDoNotLogout(session.getHasDoNotLogout())
+                .id(source.getId())
+                .sessionKey(source.getSessionKey())
+                .expirationDate(source.getExpirationDate())
+                .hasDoNotLogout(source.getHasDoNotLogout())
+                .userRemoteAddress(source.getUserRemoteAddress())
                 .build();
     }
 
-    public SessionEntity fromDto(SessionDTO sessionDTO) {
+    public SessionEntity fromDto(SessionDTO dto) {
         return SessionEntity.builder()
-                .sessionKey(sessionDTO.getSessionKey())
-                .hasDoNotLogout(sessionDTO.isHasDoNotLogout())
-                .expirationDate(sessionDTO.getExpirationDate())
+                .sessionKey(dto.getSessionKey())
+                .hasDoNotLogout(dto.isHasDoNotLogout())
+                .expirationDate(dto.getExpirationDate())
+                .userRemoteAddress(dto.getUserRemoteAddress())
                 .build();
     }
+
 }

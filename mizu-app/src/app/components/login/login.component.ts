@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { LoginRequest } from 'src/app/models/loginRequeast.model';
-import { SessionDTO } from 'src/app/models/sessionDTO.model';
-import { AuthService } from 'src/app/services/auth.service';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, ValidationErrors, Validators,} from '@angular/forms';
+import {Router} from '@angular/router';
+import {LocalStorageKey} from 'src/app/models/LocalStorageKey.model';
+import {SessionDTO} from 'src/app/models/sessionDTO.model';
+import {UserDTO} from 'src/app/models/user-dto.model';
+import {UserGroups} from 'src/app/models/user-groups.enum';
+import {AuthService} from 'src/app/services/auth.service';
+import {LocalStorageService} from 'src/app/services/local-data-storage.service';
+import {LoginRequest} from '../../models/loginRequest.model';
 
 @Component({
   selector: 'app-login',
@@ -11,18 +15,47 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-
   public loginForm!: FormGroup;
+  public registerForm!: FormGroup;
+  public isLoginOpen = true;
+  public groups = [
+    {
+      value: UserGroups.STUDENT,
+    },
+    {
+      value: UserGroups.TEACHER,
+    },
+  ];
 
-  constructor(private authService:AuthService, private router: Router) {}
-
-  ngOnInit(): void {
-    this.initFormGroup();
+  constructor(
+    private authService: AuthService,
+    private localStorageService: LocalStorageService,
+    private router: Router,
+    private fb: FormBuilder
+  ) {
   }
 
-  initFormGroup() {
+  ngOnInit(): void {
+    this.checkAuth();
+    this.initFormGroup();
+    this.initRegisterForm();
+  }
+
+  private checkAuth(): void {
+    if (
+      this.localStorageService.get(LocalStorageKey.SESSION_KEY, localStorage)
+    ) {
+      this.authService.isAlive().subscribe((res) => {
+        if (res) {
+          this.router.navigate(['admin']);
+        }
+      });
+    }
+  }
+
+  initFormGroup(): void {
     this.loginForm = new FormGroup({
-      username: new FormControl(null, [
+      email: new FormControl(null, [
         Validators.required,
         Validators.min(5),
         Validators.max(30),
@@ -32,7 +65,26 @@ export class LoginComponent implements OnInit {
         Validators.min(5),
         Validators.max(40),
       ]),
-      hasDoNotLogout: new FormControl(null)
+      hasDoNotLogout: new FormControl(null),
+    });
+  }
+
+  initRegisterForm(): void {
+    this.registerForm = this.fb.group({
+      firstName: [
+        null,
+        [Validators.required, Validators.min(3), Validators.max(20)],
+      ],
+      lastName: [
+        null,
+        [Validators.required, Validators.min(2), Validators.max(30)],
+      ],
+      birthdate: [null, [Validators.required]],
+      userGroup: [null, [Validators.required]],
+      email: [null, [Validators.required, Validators.email]],
+      confirm_email: [null, [Validators.required, Validators.email]],
+      password: [null, [Validators.min(7), Validators.required]],
+      confirm_password: [null, [Validators.required, Validators.min(7)]],
     });
   }
 
@@ -53,4 +105,49 @@ export class LoginComponent implements OnInit {
 
     this.router.navigate(['home'])
   }
+
+  private same_values(value1: string, value2: string): ValidationErrors | null {
+    let value = this.registerForm.get(value1)?.value;
+    let confirmValue = this.registerForm.get(value2)?.value;
+    return value === confirmValue ? null : {notSame: true};
+  }
+
+  onSubmit(): void {
+    const loginRequest = {} as LoginRequest;
+    loginRequest.email = this.loginForm.get('email')?.value;
+    loginRequest.password = this.loginForm.get('password')?.value;
+    loginRequest.hasDoNotLogout = this.loginForm.get('logout')?.value;
+    this.authService.login(loginRequest).subscribe(
+      (res: SessionDTO) => {
+        this.localStorageService.set(
+          LocalStorageKey.SESSION_KEY,
+          res.sessionKey,
+          localStorage
+        );
+        this.router.navigate(['admin']);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  }
+
+  onSubmitRegister(): void {
+    const user = {} as UserDTO;
+    if (this.registerForm.valid) {
+      user.firstName = this.registerForm.get('firstName')?.value;
+      user.lastName = this.registerForm.get('lastName')?.value;
+      user.password = this.registerForm.get('password')?.value;
+      user.email = this.registerForm.get('email')?.value;
+      user.userGroup = this.registerForm.get('userGroup')?.value;
+      user.birthdate = this.registerForm.get('birthdate')?.value;
+      this.authService.register(user).subscribe((res) => {
+        this.isLoginOpen = true;
+      });
+    }
+  }
+
+  handleRegisterButton = (): void => {
+    this.isLoginOpen = !this.isLoginOpen;
+  };
 }

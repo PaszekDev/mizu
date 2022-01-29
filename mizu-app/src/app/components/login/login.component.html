@@ -1,34 +1,166 @@
-
 <div class="global">
-    <section class="background">
-    </section>
-    <div class="main-container">
-        <div class="row">
-            <div class="left-item">
-                <h1>Welcome!</h1>
-                <div class="text">Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsum</div>
-                <a class="btn btn-primary" href="#" role="button">Read More</a>
-            </div>
-            <div class="right-item">
-                <div class="sign-in">
-                    <h1>Sign in</h1>
-                    <form [formGroup]="loginForm">                              
-                        <div class="container">
-                          <label for="uname">username</label>
-                          <input type="text"  name="uname" formControlName="username" required>
-                      
-                          <label for="psw">password</label>
-                          <input type="password"  name="psw" formControlName="password" required><br>
-                          
-                          <div class="rememberLog">
-                            <input type="checkbox" id="remember" name="nlogout" formControlName="hasDoNotLogout">
-                            <label for="remember">Remember login</label>
-                          </div>
-                          <button class="btn btn-primary submit-button" (click)="onSubmit()">Submit</button>
-                        </div>                                    
-                      </form>
-                </div>
-            </div>
+  <section class="background"></section>
+  <div class="main-container" *ngIf="isLoginOpen">
+    <div class="row">
+      <div class="left-item">
+        <h1>Welcome!</h1>
+        <div class="text">
+          Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem
+          ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem
+          ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem
+          ipsumLorem ipsum
         </div>
+        <a class="btn btn-primary" href="#" role="button">Read More</a>
+      </div>
+      <div class="right-item">
+        <div class="sign-in">
+          <h1>Sign in</h1>
+          <form [formGroup]="loginForm">
+            <div class="container">
+              <label class="mizu-label" for="email">e-mail</label>
+              <input
+                class="mizu-input"
+                type="email"
+                name="email"
+                formControlName="email"
+                required
+              />
+
+              <label class="mizu-label" for="psw">password</label>
+              <input
+                class="mizu-input"
+                type="password"
+                name="psw"
+                formControlName="password"
+                required
+              /><br />
+
+              <div class="rememberLog">
+                <input
+                  class="mizu-input"
+                  type="checkbox"
+                  id="remember"
+                  name="nlogout"
+                  formControlName="hasDoNotLogout"
+                />
+                <label for="remember">Remember login</label>
+              </div>
+
+              <div style="display: flex; flex-direction: row">
+                <button
+                  class="btn btn-primary submit-button"
+                  type="button"
+                  (click)="onSubmit()"
+                  [disabled]="!loginForm.valid"
+                >
+                  Submit
+                </button>
+
+                <button
+                  type="button"
+                  class="btn btn-primary submit-button"
+                  style="margin-left: 1vh"
+                  (click)="handleRegisterButton()"
+                >
+                  Sign up
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
+  </div>
+  <div class="main-container-register" *ngIf="!isLoginOpen">
+    <div *ngIf="!isLoginOpen" class="register-container">
+      <form class="register-form" [formGroup]="registerForm">
+        <div class="register-form-left">
+          <label class="mizu-label" for="fn">First Name</label>
+          <input
+            class="mizu-input"
+            type="text"
+            name="fn"
+            required
+            formControlName="firstName"
+          />
+          <label class="mizu-label" for="sn">Last Name</label>
+          <input
+            class="mizu-input"
+            type="text"
+            name="sn"
+            required
+            formControlName="lastName"
+          />
+          <div class="mizu-datepicker">
+            <mat-form-field>
+              <mat-label>Birthday Date</mat-label>
+              <input
+                matInput
+                [matDatepicker]="birthdate"
+                formControlName="birthdate"
+              />
+              <mat-datepicker-toggle
+                matSuffix
+                [for]="birthdate"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #birthdate></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="mizu-selector">
+            <mat-form-field appearance="fill">
+              <mat-label>Group Select</mat-label>
+              <mat-select formControlName="userGroup">
+                <mat-option
+                  *ngFor="let group of groups"
+                  [value]="group.value"
+                >
+                  {{ group.value.toLowerCase() }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="register-form-right">
+          <label class="mizu-label" for="em">email</label>
+          <input
+            class="mizu-input"
+            type="email"
+            name="em"
+            required
+            formControlName="email"
+          />
+          <label class="mizu-label" for="emc">confirm email</label>
+          <input
+            class="mizu-input"
+            type="email"
+            name="emc"
+            required
+            formControlName="confirm_email"
+          />
+          <label class="mizu-label" for="pass">password</label>
+          <input
+            class="mizu-input"
+            type="password"
+            name="pass"
+            required
+            formControlName="password"
+          />
+          <label class="mizu-label" for="passc">confirm password</label>
+          <input
+            class="mizu-input"
+            type="password"
+            name="passc"
+            required
+            formControlName="confirm_password"
+          />
+        </div>
+      </form>
+      <div class="register-button-container">
+        <button class="btn btn-primary submit-button" type="submit" (click)="handleRegisterButton()">Cancel</button>
+        <button class="btn btn-primary submit-button" type="button" (click)="onSubmitRegister()"
+                [disabled]="!registerForm.valid">Register
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

@@ -5,7 +5,10 @@ import com.mizu.mizuapi.dto.UserDTO;
 import com.mizu.mizuapi.request.LoginRequest;
 import com.mizu.mizuapi.service.authentication.AuthenticationService;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -23,13 +26,25 @@ public class AuthenticationController {
 
     @PostMapping("/login")
     @ResponseBody
-    public SessionDTO login(@RequestBody LoginRequest loginRequest) {
+    public SessionDTO login(@RequestBody LoginRequest loginRequest, HttpServletRequest request) {
+        loginRequest.setRemoteAddr(request.getRemoteAddr());
         return authenticationService.login(loginRequest);
+    }
+
+    @DeleteMapping("/logout")
+    @ResponseStatus(HttpStatus.OK)
+    public Boolean logout(@RequestHeader(value = "sessionKey") String sessionKey) {
+        return authenticationService.logout(sessionKey);
     }
 
     @PostMapping("/isSessionExpired")
     public Boolean isSessionExpired(@RequestParam String sessionKey) {
         return authenticationService.isSessionExpired(sessionKey);
+    }
+
+    @PostMapping("/check-alive-session")
+    public Boolean isSessionAlive(@RequestBody SessionDTO sessionDTO) {
+        return this.authenticationService.isSessionAlive(sessionDTO);
     }
 
 
