@@ -1,6 +1,6 @@
 package com.mizu.mizuapi.controller;
 
-import com.mizu.mizuapi.domain.user.UserGroup;
+import com.mizu.mizuapi.domain.permission.UserGroup;
 import com.mizu.mizuapi.domain.user.UserEntity;
 import com.mizu.mizuapi.dto.UserDTO;
 import com.mizu.mizuapi.exception.EnumValueNotFound;
