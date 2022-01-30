@@ -1,11 +1,11 @@
 package com.mizu.mizuapi.controller;
 
-import com.mizu.mizuapi.domain.permission.PermissionsEntity;
-import com.mizu.mizuapi.domain.user.UserEntity;
-import com.mizu.mizuapi.repository.PermissionsRepository;
-import com.mizu.mizuapi.repository.UserRepository;
+import com.mizu.mizuapi.dto.PermissionDTO;
+import com.mizu.mizuapi.service.permission.PermissionService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Set;
 
@@ -14,7 +14,11 @@ import java.util.Set;
 @AllArgsConstructor
 public class PermissionsController {
 
-    private final UserRepository userRepository;
-    private final PermissionsRepository permissionsRepository;
+    private PermissionService permissionService;
+
+    @GetMapping
+    Set<PermissionDTO> getAllPermissions() {
+        return permissionService.getAllPermissions();
+    }
 
 }

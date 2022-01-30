@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="008-upgrade-session" author="id">
+        <dropTable tableName="user_group_permission_relation"/>
+        <dropTable tableName="permissions"/>
+
+        <createTable tableName="user_group_permission">
+            <column name="id" type="bigserial">
+                <constraints nullable="false"/>
+            </column>
+            <column name="group_name" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="permissions">
+            <column name=""></column>
+        </createTable>
+    </changeSet>
+
+
+</databaseChangeLog>
