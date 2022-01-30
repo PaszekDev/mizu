@@ -1,47 +1,70 @@
+#sidenav-btn {
+    padding-top: .7em;
+    padding-left: .1em; 
+    position: inherit;
+    width: 5vw; 
+    height: 5vh;
+    cursor: pointer;
+}
 
-.container-fluid {
+mat-sidenav-container {
+    height: 100%;
 
-    .col-2 {
+    mat-sidenav {
         background-color: rgba(59, 59, 59, 0.66);
-    }
-
-    input {
-        background-image: url('/assets/images/admin_panel/search.svg');
-        background-position: 4px 4px;
-        background-repeat: no-repeat;
-        background-size: 1.5vw;
-        width: 100%;
-        font-size: 1vw;
-        border-radius: 1em;
-        padding: 0 0 0 2vw;
-        border: 1px solid #ddd;
-        margin-bottom: 5vh;
+        width: 20vw;
     }
 
     h1 {
-        font-size: 3vw;
+        margin-top: 5vh;
+        font-size: 5vw;
         text-align: center;
     }
 
-    ul {    
+    ul {
         margin: 0;
         padding: 0.7em;  
-        li { 
-            margin-bottom: 2.5em; 
-            list-style-type: none;
-            img {
-                width: 2.3vw;
-                margin-right: 1em;
+        input {
+                background-image: url('/assets/images/admin_panel/search.svg');
+                background-position: 4px 3px;
+                background-repeat: no-repeat;
+                background-size: 1.5vw;
+                width: 100%;
+                font-size: 1vw;
+                border-radius: 1em;
+                padding: 0 0 0 2vw;
+                border: 1px solid #ddd;
+                margin-bottom: 5vh;
             }
-            a {
-                text-decoration: none;
-                color: black;
-                font-size: 1.5vw;
-            }
+
+            li { 
+                margin-bottom: 2.5em; 
+                position: relative;
+                list-style-type: none;
+                img {
+                        width: 3vw;
+                        margin-right: 1em;
+                    }
+                a {
+                    text-decoration: none;
+                    color: black;
+                    font-size: 2vw;
+                }
+
             a:hover, a:focus {
                 color:rgb(82, 77, 77)
             }
         }
     }
 
+    mat-sidenav-content {
+        .row {
+            .col-1 {
+                width: 5%;
+            }
+            .col-2 {
+                width: 95%;
+            }
+        }
+    }
 }

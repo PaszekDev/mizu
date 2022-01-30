@@ -10,9 +10,11 @@ import {NavbarComponent} from './components/navbar/navbar.component';
 import {AdminComponent} from './components/admin/admin.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {MatListModule} from '@angular/material/list';
 import {MatSelectModule} from '@angular/material/select';
 // import {InjectableRxStompConfig, RxStompService, rxStompServiceFactory} from '@stomp/ng2-stompjs';
 import {myRxStompConfig} from './my-rx-stomp.config';
@@ -41,6 +43,8 @@ import { StudentListComponent } from './components/student/studentList.component
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    MatSidenavModule,
+    MatListModule,
   ],
   // providers: [
   //   {
