@@ -109,6 +109,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmitRegister(): void {
+    console.log("xdd");
     const user = {} as UserDTO;
     if (this.registerForm.valid) {
       user.firstName = this.registerForm.get('firstName')?.value;
