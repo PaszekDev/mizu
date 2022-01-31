@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  navbarTitle:String = "Home Page";
+
   subjects = [
     { sub: 'IT', srcBc: 'https://www.computerworld.pl/g1/news/thumbnails/3/2/329387_panorama_informatyka_png_80_resize_830x689.webp' },
     { sub: 'Math', srcBc: 'https://www.wsip.pl/blog/wp-content/uploads/2021/03/matematyka-852x568.png' },

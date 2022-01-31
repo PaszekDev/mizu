@@ -16,6 +16,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatListModule} from '@angular/material/list';
 import {MatSelectModule} from '@angular/material/select';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
 // import {InjectableRxStompConfig, RxStompService, rxStompServiceFactory} from '@stomp/ng2-stompjs';
 import {myRxStompConfig} from './my-rx-stomp.config';
 import {HomeComponent} from './components/home/home.component';
@@ -45,6 +47,8 @@ import { StudentListComponent } from './components/student/studentList.component
     MatSelectModule,
     MatSidenavModule,
     MatListModule,
+    MatToolbarModule,
+    MatIconModule,
   ],
   // providers: [
   //   {

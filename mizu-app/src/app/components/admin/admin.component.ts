@@ -9,8 +9,7 @@ export class AdminComponent implements OnInit {
 
   sidenav_opened: boolean = true;
 
-  navbarTitle:String = "Panel Administracyjny";
-  avatarUrl:String = "/assets/images/user_avatar_example.svg";
+  navbarTitle:String = "Administration Panel";
   searchText:String = "";
 
   constructor() { }

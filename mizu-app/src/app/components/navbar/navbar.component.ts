@@ -12,7 +12,6 @@ import {LocalStorageService} from 'src/app/services/local-data-storage.service';
 export class NavbarComponent implements OnInit {
 
   @Input() title:String = "";
-  @Input() avatarUrl:String = "";
 
   constructor(private localStorageService: LocalStorageService, private router: Router, private authService: AuthService) {
   }
