@@ -1,7 +1,7 @@
-<nav class="navbar">
-    <div class="navbar-logo">
-            <span><img src="/assets/images/logo.svg"/></span>
-            {{title}}
-    </div>
-    <img (click)="logout()" src="{{avatarUrl}}">
-</nav>
+<mat-toolbar>
+    <span><img class="img-logo" src="/assets/images/logo.svg"/></span>
+    <span class="title">{{title}}</span>
+    <span class="spacer"></span>
+    <mat-icon>person</mat-icon>
+    <mat-icon (click)="logout()">logout</mat-icon>
+</mat-toolbar>
