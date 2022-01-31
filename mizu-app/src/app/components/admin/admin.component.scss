@@ -2,8 +2,8 @@
     padding-top: .7em;
     padding-left: .1em; 
     position: inherit;
-    width: 5vw; 
-    height: 5vh;
+    width: 4vw; 
+    height: 4vh;
     cursor: pointer;
 }
 
@@ -11,13 +11,13 @@ mat-sidenav-container {
     height: 100%;
 
     mat-sidenav {
-        background-color: rgba(59, 59, 59, 0.66);
+        background-color:rgba(77, 98, 165, 0.6); 
         width: 20vw;
     }
 
     h1 {
         margin-top: 5vh;
-        font-size: 5vw;
+        font-size: 4vw;
         text-align: center;
     }
 
@@ -42,13 +42,13 @@ mat-sidenav-container {
                 position: relative;
                 list-style-type: none;
                 img {
-                        width: 3vw;
+                        width: 2vw;
                         margin-right: 1em;
                     }
                 a {
                     text-decoration: none;
                     color: black;
-                    font-size: 2vw;
+                    font-size: 1.5vw;
                 }
 
             a:hover, a:focus {
