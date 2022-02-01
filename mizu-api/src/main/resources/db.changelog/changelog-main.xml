@@ -9,5 +9,6 @@
     <include file="changelogs/004-create-permission.xml" relativeToChangelogFile="true"/>
     <include file="changelogs/005-update-user-table.xml" relativeToChangelogFile="true"/>
     <include file="changelogs/006-update-session-table.xml" relativeToChangelogFile="true"/>
+    <include file="changelogs/007-create-login-history.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>
