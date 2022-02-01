@@ -1,6 +1,7 @@
 package com.mizu.mizuapi.domain.user;
 
 
+import com.mizu.mizuapi.domain.permission.UserGroup;
 import com.mizu.mizuapi.domain.session.SessionEntity;
 import com.mizu.mizuapi.domain.user_group_permission.UserGroupPermissionEntity;
 import com.mizu.mizuapi.dto.UserDTO;
@@ -42,11 +43,17 @@ public class UserEntity implements GenericCRUDEntity<UserEntity, UserDTO> {
     @Column(name = "index")
     private Long index;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "user_group")
+    private UserGroup userGroup;
+
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "session_id")
     private SessionEntity session;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.EAGER)
+    @JoinTable(name = "user_user_group_permission_relation",
+            joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "user_group_permission_id"))
     private List<UserGroupPermissionEntity> groupPermissionList;
 
 

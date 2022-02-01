@@ -14,11 +14,11 @@ export class PermissionService extends BaseService<UserPermission> {
   }
 
   hasOnePermission(permission: PermissionType) {
-    const groupPerm = permission.split('/');
-    return this.localStorageService
-      .getUserPermission()
-      .some(
-        (e) => e.groupName === groupPerm[0] && e.permission === groupPerm[1]
-      );
+    // const groupPerm = permission.split('/');
+    // return this.localStorageService
+    //   .getUserPermission()
+    //   .some(
+    //     (e) => e.groupName === groupPerm[0] && e.permission === groupPerm[1]
+    //   );
   }
 }

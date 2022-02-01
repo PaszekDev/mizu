@@ -1,6 +1,6 @@
 package com.mizu.mizuapi.controller;
 
-import com.mizu.mizuapi.domain.permission.UserGroup;
+import com.mizu.mizuapi.domain.permission.PermissionsGroup;
 import com.mizu.mizuapi.domain.user.UserEntity;
 import com.mizu.mizuapi.dto.UserDTO;
 import com.mizu.mizuapi.exception.EnumValueNotFound;
@@ -14,10 +14,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Locale;
-
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
@@ -34,8 +30,8 @@ public class UserController  extends GenericCRUDController<UserEntity, UserDTO> 
 
     @GetMapping("/group/{userGroup}")
     public Page<UserDTO> getAllByUserGroup(Pageable pageable, @PathVariable String userGroup) {
-        if(EnumUtils.isValidEnum(UserGroup.class, userGroup.toUpperCase(Locale.ROOT))){
-            return userService.getAllByUserGroup(pageable,userGroup);
+        if (EnumUtils.isValidEnum(PermissionsGroup.class, userGroup.toUpperCase(Locale.ROOT))) {
+            return userService.getAllByUserGroup(pageable, userGroup);
         }
         throw new EnumValueNotFound();
     }

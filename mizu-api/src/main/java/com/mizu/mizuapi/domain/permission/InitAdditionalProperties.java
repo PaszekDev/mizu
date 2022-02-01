@@ -23,7 +23,7 @@ public class InitAdditionalProperties implements ApplicationRunner {
     private final PermissionsRepository permissionRepository;
     private final SessionRepository sessionRepository;
     private final UserRepository userRepository;
-    private final UserGroupPermissionRepository userGroupPErmissionRepository;
+    private final UserGroupPermissionRepository userGroupPermissionRepository;
 
     @Override
     public void run(ApplicationArguments args) {
@@ -42,28 +42,44 @@ public class InitAdditionalProperties implements ApplicationRunner {
     }
 
     private void initPermissions() {
+
+        Set<UserGroupPermissionEntity> userGroupPermissionEntities = userGroupPermissionRepository.getAll();
         Set<PermissionsEntity> permissionsEntities = permissionRepository.getAll();
-        for (Permission permission : Permission.values()) {
-            if (permissionsEntities.stream().noneMatch(e -> e.getPermission().equals(permission.name()))) {
-                PermissionsEntity permissions = new PermissionsEntity();
-                permissions.setPermission(permission.name());
-                permissionsEntities.add(permissions);
+        int countGroup = userGroupPermissionEntities.size();
+        int countPermission = countGroup > 0 ? permissionsEntities.size() / countGroup : 0;
+
+        if (countGroup == PermissionsGroup.values().length && countPermission == Permission.values().length) {
+            log.info("Permission Init");
+        } else {
+
+            for (PermissionsGroup permissionsGroup : PermissionsGroup.values()) {
+                if (countGroup < PermissionsGroup.values().length && userGroupPermissionRepository.getByGroupName(permissionsGroup.name()).isEmpty()) {
+                    UserGroupPermissionEntity userGroupPermission = new UserGroupPermissionEntity();
+                    userGroupPermission.setGroupName(permissionsGroup.name());
+                    userGroupPermission.setPermissionList(new HashSet<>());
+                    for (Permission permission : Permission.values()) {
+                        PermissionsEntity permissionsEntity = new PermissionsEntity();
+                        permissionsEntity.setPermission(permission.name());
+                        userGroupPermission.getPermissionList().add(permissionsEntity);
+                    }
+                    userGroupPermissionRepository.save(userGroupPermission);
+                } else {
+                    UserGroupPermissionEntity userGroupPermission = userGroupPermissionRepository.getByGroupName(permissionsGroup.name()).get();
+                    if (countPermission < Permission.values().length) {
+                        for (Permission permission : Permission.values()) {
+                            if (userGroupPermission.getPermissionList().stream().noneMatch(e -> e.getPermission().equals(permission.name()))) {
+                                PermissionsEntity permissionsEntity = new PermissionsEntity();
+                                permissionsEntity.setPermission(permission.name());
+                                userGroupPermission.getPermissionList().add(permissionsEntity);
+                            }
+                        }
+                        userGroupPermissionRepository.save(userGroupPermission);
+                    }
+                }
             }
+            log.info("Permission Init");
         }
-
-        permissionRepository.saveAll(permissionsEntities);
-
-
-        Set<UserGroupPermissionEntity> userGroupPermissionEntities = new HashSet<>();
-
-        for (UserGroup group : UserGroup.values()) {
-            UserGroupPermissionEntity userGroupPermission = new UserGroupPermissionEntity();
-            userGroupPermission.setGroupName(group.name());
-            userGroupPermission.setPermissionsList(permissionsEntities);
-            userGroupPermissionEntities.add(userGroupPermission);
-        }
-
-        userGroupPErmissionRepository.saveAll(userGroupPermissionEntities);
-
     }
+
+
 }

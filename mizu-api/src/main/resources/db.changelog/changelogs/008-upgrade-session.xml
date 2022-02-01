@@ -5,22 +5,75 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
-    <changeSet id="008-upgrade-session" author="id">
-        <dropTable tableName="user_group_permission_relation"/>
+    <changeSet id="008-delete-old-user_permissions_relation" author="paszekd">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="user_permissions_relation"/>
+        </preConditions>
+
+        <dropTable tableName="user_permissions_relation"/>
+    </changeSet>
+
+    <changeSet id="008-delete-old-permissions" author="paszekd">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="permissions"/>
+        </preConditions>
         <dropTable tableName="permissions"/>
+    </changeSet>
+
+    <changeSet id="008-upgrade-session" author="paszekd">
 
         <createTable tableName="user_group_permission">
             <column name="id" type="bigserial">
-                <constraints nullable="false"/>
+                <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="group_name" type="varchar(255)">
-                <constraints nullable="false"/>
+            <column name="permission_group_name" type="varchar(255)">
+                <constraints unique="true" nullable="false"/>
             </column>
         </createTable>
 
         <createTable tableName="permissions">
-            <column name=""></column>
+            <column name="id" type="bigserial">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="permission" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
+
+        <createTable tableName="user_group_permission_relation_permissions">
+            <column name="permission_id" type="bigint"/>
+            <column name="user_group_permission_id" type="bigint"/>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="user_group_permission_relation_permissions"
+                                 baseColumnNames="permission_id"
+                                 constraintName="fk_user_group_permission_relation_permissions_permission_id"
+                                 referencedTableName="permissions"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="user_group_permission_relation_permissions"
+                                 baseColumnNames="user_group_permission_id"
+                                 constraintName="fk_user_group_permission_relation_permissions_user_group_permission_id"
+                                 referencedTableName="user_group_permission"
+                                 referencedColumnNames="id"/>
+
+        <createTable tableName="user_user_group_permission_relation">
+            <column type="bigint" name="user_id">
+                <constraints nullable="false"/>
+            </column>
+            <column type="bigint" name="user_group_permission_id">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint baseTableName="user_user_group_permission_relation" baseColumnNames="user_id"
+                                 constraintName="fk_user_user_group_permission_relation_user"
+                                 referencedTableName="users"
+                                 referencedColumnNames="id"/>
+        <addForeignKeyConstraint baseTableName="user_user_group_permission_relation"
+                                 baseColumnNames="user_group_permission_id"
+                                 constraintName="fk_user_user_group_permission_relation_user_group_permission"
+                                 referencedTableName="user_group_permission"
+                                 referencedColumnNames="id"/>
     </changeSet>
 
 

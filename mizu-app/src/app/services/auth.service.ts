@@ -2,6 +2,7 @@ import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {LoginRequest} from '../models/loginRequest.model';
+import {SessionWithUserPermissionDTO} from '../models/session-with-user-permissions-dto.model';
 import {SessionDTO} from '../models/sessionDTO.model';
 import {UserDTO} from '../models/user-dto.model';
 import {LocalStorageService} from './local-data-storage.service';
@@ -18,8 +19,8 @@ export class AuthService {
   ) {
   }
 
-  login(loginRequest: LoginRequest): Observable<SessionDTO> {
-    return this.http.post<SessionDTO>(this.resourceUrl + 'login', loginRequest);
+  login(loginRequest: LoginRequest): Observable<SessionWithUserPermissionDTO> {
+    return this.http.post<SessionWithUserPermissionDTO>(this.resourceUrl + 'login', loginRequest);
   }
 
   register(user: UserDTO) {

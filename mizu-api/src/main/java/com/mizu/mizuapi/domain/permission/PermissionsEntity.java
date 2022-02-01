@@ -1,8 +1,10 @@
 package com.mizu.mizuapi.domain.permission;
 
+import com.mizu.mizuapi.domain.user_group_permission.UserGroupPermissionEntity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -18,5 +20,7 @@ public class PermissionsEntity {
 
     private String permission;
 
+    @ManyToMany(mappedBy = "permissionList")
+    private Set<UserGroupPermissionEntity> userGroupPermissission;
 
 }

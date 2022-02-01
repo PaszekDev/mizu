@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, ValidationErrors, Validators,} from '@angular/forms';
 import {Router} from '@angular/router';
 import {LocalStorageKey} from 'src/app/models/LocalStorageKey.model';
-import {SessionDTO} from 'src/app/models/sessionDTO.model';
+import {SessionWithUserPermissionDTO} from 'src/app/models/session-with-user-permissions-dto.model';
 import {UserDTO} from 'src/app/models/user-dto.model';
 import {UserGroups} from 'src/app/models/user-groups.enum';
 import {AuthService} from 'src/app/services/auth.service';
@@ -100,12 +100,17 @@ export class LoginComponent implements OnInit {
     loginRequest.password = this.loginForm.get('password')?.value;
     loginRequest.hasDoNotLogout = this.loginForm.get('logout')?.value;
     this.authService.login(loginRequest).subscribe(
-      (res: SessionDTO) => {
+      (res: SessionWithUserPermissionDTO) => {
         this.localStorageService.set(
           LocalStorageKey.SESSION_KEY,
           res.sessionKey,
           localStorage
         );
+        this.localStorageService.set(
+          LocalStorageKey.USER_PERMISSIONS,
+          JSON.stringify(res.userGroupPermissionDTOS),
+          localStorage
+        )
         this.router.navigate(['admin']);
       },
       (error) => {
@@ -115,7 +120,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmitRegister(): void {
-    console.log("xdd");
     const user = {} as UserDTO;
     if (this.registerForm.valid) {
       user.firstName = this.registerForm.get('firstName')?.value;
