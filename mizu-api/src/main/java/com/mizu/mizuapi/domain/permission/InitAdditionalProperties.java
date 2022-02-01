@@ -34,10 +34,9 @@ public class InitAdditionalProperties implements ApplicationRunner {
     private void initNewSessions() {
         List<UserEntity> userEntityList = userRepository.getAllWhereSessionIsNotNull();
         userEntityList.forEach(e -> {
-            Long idToDelete = e.getSession().getId();
             e.setSession(null);
             userRepository.save(e);
-            sessionRepository.deleteById(idToDelete);
+            sessionRepository.deleteSessionByUserId(e.getId());
         });
     }
 

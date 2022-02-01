@@ -1,18 +1,26 @@
-.navbar{
-    background-color: rgba(3, 3, 3, 0.66);
-    
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 20px;
-    height: 10vh;
+.mat-toolbar {
+    height: 5vw;
+    background-color:rgba(25, 37, 78, 0.6); 
 
-    img{
-        height:8vh;
-    }
+    .spacer {
+        flex: 1 1 auto;
+      }
 
-    .navbar-logo{
-        color: white;
-        font-weight: bold;
-    }
+      .img-logo {
+        font-size: 4vw;
+        height: 4vw ;
+        width: 4vw;
+      }
+
+      .title {
+          font-size: 1.5vw;
+      }
+
+      .mat-icon{
+          cursor: pointer;
+          font-size: 2.5vw;
+          height: 2.5vw ;
+          width: 2.5vw;
+          margin: 1vw;
+      }
 }

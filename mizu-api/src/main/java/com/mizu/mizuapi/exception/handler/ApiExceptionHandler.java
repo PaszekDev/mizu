@@ -1,6 +1,8 @@
 package com.mizu.mizuapi.exception.handler;
 
+import com.mizu.mizuapi.exception.SessionNotFound;
 import com.mizu.mizuapi.exception.UserNotFoundException;
+import com.mizu.mizuapi.exception.UserWithSessionNotFound;
 import com.mizu.mizuapi.exception.UsernameOrEmailAlreadyTakenException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +19,17 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = UserNotFoundException.class)
     public ResponseEntity<String> handleUserNotFoundException(UserNotFoundException e) {
-        return new ResponseEntity<>(e.getMessage(),HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(value = UserWithSessionNotFound.class)
+    public ResponseEntity<String> handleUserWithSessionNotFoundException(UserWithSessionNotFound e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(value = SessionNotFound.class)
+    public ResponseEntity<String> handleSessionNotFoundException(SessionNotFound e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
     }
 
 

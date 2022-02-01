@@ -7,8 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminComponent implements OnInit {
 
-  navbarTitle:String = "Panel Administracyjny";
-  avatarUrl:String = "/assets/images/user_avatar_example.svg";
+  sidenav_opened: boolean = true;
+
+  navbarTitle:String = "Administration Panel";
   searchText:String = "";
 
   constructor() { }

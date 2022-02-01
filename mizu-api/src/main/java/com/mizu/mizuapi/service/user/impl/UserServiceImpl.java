@@ -28,6 +28,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserDTO getUserBySessionKey(String sessionKey) {
+        return userMapper.toDto(userRepository.getUserBySessionKey(sessionKey));
+    }
+  
+    @Override
     public Page<UserDTO> getAllByUserGroup(Pageable pageable, String userGroup) {
         List<UserDTO> chosenEntities = new ArrayList<>();
 //        List<UserEntity> dbEntities = userRepository.getByUserGroup(userGroup.toUpperCase(Locale.ROOT));
@@ -35,3 +40,4 @@ public class UserServiceImpl implements UserService {
         return new PageImpl<>(chosenEntities);
     }
 }
+   

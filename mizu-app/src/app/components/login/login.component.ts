@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, ValidationErrors, Validators,} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators,} from '@angular/forms';
 import {Router} from '@angular/router';
 import {LocalStorageKey} from 'src/app/models/LocalStorageKey.model';
 import {SessionWithUserPermissionDTO} from 'src/app/models/session-with-user-permissions-dto.model';
@@ -86,12 +86,6 @@ export class LoginComponent implements OnInit {
       password: [null, [Validators.min(7), Validators.required]],
       confirm_password: [null, [Validators.required, Validators.min(7)]],
     });
-  }
-
-  private same_values(value1: string, value2: string): ValidationErrors | null {
-    let value = this.registerForm.get(value1)?.value;
-    let confirmValue = this.registerForm.get(value2)?.value;
-    return value === confirmValue ? null : {notSame: true};
   }
 
   onSubmit(): void {
