@@ -13,27 +13,35 @@ public class UserMapper implements GenericMapper<UserEntity, UserDTO> {
     private final SessionMapper sessionMapper = new SessionMapper();
 
     public UserDTO toDto(UserEntity userEntity) {
-        return UserDTO.builder()
-                .id(userEntity.getId())
-                .email(userEntity.getEmail())
-                .password(userEntity.getPassword())
-                .firstName(userEntity.getFirstName())
-                .lastName(userEntity.getLastName())
-                .session(userEntity.getSession() != null ? sessionMapper.toDto(userEntity.getSession()) : null)
-                .birthdate(userEntity.getBirthdate())
-                .index(userEntity.getIndex())
-                .build();
+        if (userEntity != null) {
+            return UserDTO.builder()
+                    .id(userEntity.getId())
+                    .email(userEntity.getEmail())
+                    .password(userEntity.getPassword())
+                    .firstName(userEntity.getFirstName())
+                    .lastName(userEntity.getLastName())
+                    .session(userEntity.getSession() != null ? sessionMapper.toDto(userEntity.getSession()) : null)
+                    .birthdate(userEntity.getBirthdate())
+                    .index(userEntity.getIndex())
+                    .userGroup(userEntity.getUserGroup())
+                    .build();
+        }
+        return null;
     }
 
     public UserEntity fromDto(UserDTO userDTO) {
-        return UserEntity.builder()
-                .id(userDTO.getId())
-                .email(userDTO.getEmail())
-                .firstName(userDTO.getFirstName())
-                .lastName(userDTO.getLastName())
-                .password(userDTO.getPassword())
-                .birthdate(userDTO.getBirthdate())
-                .index(userDTO.getIndex())
-                .build();
+        if (userDTO != null) {
+            return UserEntity.builder()
+                    .id(userDTO.getId())
+                    .email(userDTO.getEmail())
+                    .firstName(userDTO.getFirstName())
+                    .lastName(userDTO.getLastName())
+                    .userGroup(userDTO.getUserGroup())
+                    .password(userDTO.getPassword())
+                    .birthdate(userDTO.getBirthdate())
+                    .index(userDTO.getIndex())
+                    .build();
+        }
+        return null;
     }
 }

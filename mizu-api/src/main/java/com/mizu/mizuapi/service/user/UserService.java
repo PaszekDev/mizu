@@ -9,5 +9,7 @@ public interface UserService {
 
     Page<UserDTO> getAllByUserGroup(Pageable pageable, String userGroup);
 
+    UserDTO getUserBySessionKey(String sessionKey);
+
     UserDTO getLastUserByIndex();
 }
