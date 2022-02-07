@@ -4,3 +4,4 @@
 /.idea/
 /mizu-app/dist
 /mizu-api/mizu-api.iml
+.DS_Store
