@@ -2,22 +2,23 @@
 
 <mat-sidenav-container>
 <mat-sidenav [(opened)]='sidenav_opened' #sidenav mode="side">
-    <img (click) = "sidenav_opened = !sidenav_opened" id="sidenav-btn" src="/assets/images/admin_panel/menu.svg" >    
+    <mat-icon (click) = "sidenav_opened = !sidenav_opened" class="hamburger">menu</mat-icon>  
     <mat-nav-list>
         <h1>Mizu</h1>   
         <ul>
             <input [(ngModel)]="searchText" type="text" placeholder="Search" id="search">
-            <li><a routerLink=""><img src="/assets/images/admin_panel/school.svg" >Schools</a></li>
-            <li><a routerLink="students"><img src="/assets/images/admin_panel/student.svg" >Students</a></li>
-            <li><a routerLink=""><img src="/assets/images/admin_panel/employee.svg" >Employees</a></li>
-            <li><a routerLink=""><img src="/assets/images/admin_panel/chart.svg" >Analyses</a></li>
+            <li><a routerLink=""><mat-icon>business</mat-icon>Schools</a></li>
+            <li><a routerLink="students"><mat-icon>school</mat-icon>Students</a></li>
+            <li><a routerLink=""><mat-icon>people_alt</mat-icon>Employees</a></li>
+            <li><a routerLink=""><mat-icon>pie_chart</mat-icon>Analyses</a></li>
+            <li><a routerLink="loginHistory"><mat-icon>history</mat-icon>Login History</a></li>
         </ul>
     </mat-nav-list>
 </mat-sidenav>
 <mat-sidenav-content>
     <div class="row">
         <div class="col-1">
-            <img *ngIf="!sidenav_opened" (click) = "sidenav_opened = !sidenav_opened" id="sidenav-btn" src="/assets/images/admin_panel/menu.svg" >    
+            <mat-icon *ngIf="!sidenav_opened" (click) = "sidenav_opened = !sidenav_opened" class="hamburger">menu</mat-icon>     
         </div>
         <div class="col-2"><router-outlet></router-outlet></div>
     </div>   

@@ -18,10 +18,13 @@ import {MatListModule} from '@angular/material/list';
 import {MatSelectModule} from '@angular/material/select';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
+import {MatTableModule} from '@angular/material/table';
 // import {InjectableRxStompConfig, RxStompService, rxStompServiceFactory} from '@stomp/ng2-stompjs';
 import {HomeComponent} from './components/home/home.component';
 import {StudentListComponent} from './components/student/studentList.component';
 import {PermissionGridComponent} from './components/permission-grid/permission-grid.component';
+import { StudentListComponent } from './components/student/studentList.component';
+import { LoginHistoryComponent } from './components/login-history/login-history.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +36,7 @@ import {PermissionGridComponent} from './components/permission-grid/permission-g
     StudentListComponent,
     HomeComponent,
     PermissionGridComponent,
+    LoginHistoryComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,6 +54,7 @@ import {PermissionGridComponent} from './components/permission-grid/permission-g
     MatListModule,
     MatToolbarModule,
     MatIconModule,
+    MatTableModule,
   ],
   // providers: [
   //   {

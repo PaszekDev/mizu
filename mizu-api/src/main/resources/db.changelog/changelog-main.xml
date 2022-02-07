@@ -11,4 +11,5 @@
     <include file="changelogs/006-update-session-table.xml" relativeToChangelogFile="true"/>
     <include file="changelogs/007-update-user-password.xml" relativeToChangelogFile="true"/>
     <include file="changelogs/008-upgrade-session.xml" relativeToChangelogFile="true"/>
+    <include file="changelogs/009-create-login-history.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>
