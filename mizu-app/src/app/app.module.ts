@@ -20,8 +20,9 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTableModule} from '@angular/material/table';
 // import {InjectableRxStompConfig, RxStompService, rxStompServiceFactory} from '@stomp/ng2-stompjs';
-import {myRxStompConfig} from './my-rx-stomp.config';
 import {HomeComponent} from './components/home/home.component';
+import {StudentListComponent} from './components/student/studentList.component';
+import {PermissionGridComponent} from './components/permission-grid/permission-grid.component';
 import { StudentListComponent } from './components/student/studentList.component';
 import { LoginHistoryComponent } from './components/login-history/login-history.component';
 
@@ -34,6 +35,7 @@ import { LoginHistoryComponent } from './components/login-history/login-history.
     PermissionDirective,
     StudentListComponent,
     HomeComponent,
+    PermissionGridComponent,
     LoginHistoryComponent,
   ],
   imports: [

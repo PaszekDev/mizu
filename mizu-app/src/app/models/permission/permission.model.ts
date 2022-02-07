@@ -1,5 +1,4 @@
-export interface UserPermission {
+export interface Permission {
   id: number;
-  groupName: string;
   permission: string;
 }

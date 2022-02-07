@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {LocalStorageKey} from './models/LocalStorageKey.model';
 import {LocalStorageService} from './services/local-data-storage.service';
 
 @Component({
@@ -15,8 +14,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (!this.localStorageService.get(LocalStorageKey.SESSION_KEY, localStorage)) {
-      this.route.navigate(['login'])
-    }
+    // if (!this.localStorageService.get(LocalStorageKey.SESSION_KEY, localStorage)) {
+    //   this.route.navigate(['login'])
+    // }
   }
 }

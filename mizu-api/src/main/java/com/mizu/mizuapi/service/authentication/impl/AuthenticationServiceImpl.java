@@ -3,6 +3,7 @@ package com.mizu.mizuapi.service.authentication.impl;
 import com.mizu.mizuapi.domain.session.SessionEntity;
 import com.mizu.mizuapi.domain.user.UserEntity;
 import com.mizu.mizuapi.dto.SessionDTO;
+import com.mizu.mizuapi.dto.SessionWithUserPermissionDTO;
 import com.mizu.mizuapi.dto.UserDTO;
 import com.mizu.mizuapi.exception.UserNotFoundException;
 import com.mizu.mizuapi.repository.AuthenticationRepository;
@@ -50,9 +51,9 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     @Override
-    public SessionDTO login(LoginRequest loginRequest) {
-        UserEntity user = userRepository.getUserByEmail(loginRequest.getEmail());
-        if (user != null && passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
+    public SessionWithUserPermissionDTO login(LoginRequest loginRequest) {
+        UserEntity user = userRepository.getUserByUsernameAndPassword(loginRequest.getEmail(), loginRequest.getPassword());
+        if (user != null) {
             SessionEntity session = SessionEntity.builder()
                     .sessionKey(UUID.randomUUID().toString())
                     .expirationDate(LocalDateTime.now().plusMinutes(extraMinutes))
@@ -62,7 +63,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                     .build();
             user.setSession(session);
             userRepository.save(user);
-            return sessionMapper.toDto(session);
+            return sessionMapper.toDtoWithUserPermissionDTO(session, user.getGroupPermissionList());
         }
         throw new UserNotFoundException();
     }

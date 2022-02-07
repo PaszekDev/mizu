@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {LocalStorageKey} from '../models/LocalStorageKey.model';
-import {UserPermission} from '../models/permission/permission.model';
+import {UserPermission} from '../models/permission/user-permission.model';
 
 @Injectable({
   providedIn: 'root',

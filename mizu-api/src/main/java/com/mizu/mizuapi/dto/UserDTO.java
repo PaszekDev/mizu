@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -22,4 +23,5 @@ public class UserDTO implements GenericCRUDEntity<UserEntity, UserDTO> {
     private Long index;
     private UserGroup userGroup;
     private SessionDTO session;
+    private Set<UserGroupPermissionDTO> userGroupPermissionDTOS;
 }

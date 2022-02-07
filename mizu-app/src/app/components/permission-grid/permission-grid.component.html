@@ -1,0 +1,8 @@
+<ul>
+    <li *ngFor="let item of items">
+      {{item.groupName}}
+      <a *ngFor="let permission of item.permissionList">
+        <p>{{permission.permission}}</p>
+      </a>
+    </li>
+</ul>

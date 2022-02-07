@@ -10,4 +10,5 @@ public interface PermissionsRepository extends JpaRepository<PermissionsEntity,L
 
     @Query("select s from PermissionsEntity s")
     Set<PermissionsEntity> getAll();
+
 }
