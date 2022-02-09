@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from 'src/app/models/abstraction/base-component.service';
-import { EmployeeDTO } from 'src/app/models/employee-dto.model';
 import { MizuColumn } from 'src/app/models/table/mizu-column.model';
 import { UserDTO } from 'src/app/models/user-dto.model';
 import { UserGroups } from 'src/app/models/user-groups.enum';
