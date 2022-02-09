@@ -1,0 +1,14 @@
+<div style="display: flex; flex-direction: column;">
+  <h2>Wyświetlane Kolumny</h2>
+  <div class="columns-checkbox" *ngFor="let column of columns">
+    <section>
+      <mat-checkbox
+        [(ngModel)]="!column.isHidden"
+        (change)="column.isHidden = !column.isHidden"
+      >
+        {{ column.columnName }}
+      </mat-checkbox>
+    </section>
+  </div>
+  <button style="margin-top: 1vh;" mat-raised-button (click)="onExit()">Close</button>
+</div>

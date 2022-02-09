@@ -12,6 +12,7 @@ import {LocalStorageService} from 'src/app/services/local-data-storage.service';
 export class NavbarComponent implements OnInit {
 
   @Input() title:String = "";
+  public optionsOpen: boolean = false;
 
   constructor(private localStorageService: LocalStorageService, private router: Router, private authService: AuthService) {
   }
@@ -19,10 +20,19 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  logout = () => {
+  logout = (): void => {
     this.authService.logout().subscribe(() => {
       localStorage.removeItem(LocalStorageKey.SESSION_KEY);
       this.router.navigate(['login']);
     })
   }
+
+  expandOptions(): void {
+    this.optionsOpen = !this.optionsOpen;
+  }
+
+  navigateToHome(): void {
+    this.router.navigate(['/']);
+  }
+  
 }

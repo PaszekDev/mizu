@@ -1,6 +1,7 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {AdminComponent} from './components/admin/admin.component';
+import { EmployeeGridComponent } from './components/employee-grid/employee-grid.component';
 import {HomeComponent} from './components/home/home.component';
 import { LoginHistoryComponent } from './components/login-history/login-history.component';
 import {LoginComponent} from './components/login/login.component';
@@ -20,6 +21,10 @@ const routes: Routes = [
       {
         path: 'students',
         component: StudentListComponent,
+      },
+      {
+        path: 'employee',
+        component: EmployeeGridComponent
       },
       {
         path: 'permissions/:userId',

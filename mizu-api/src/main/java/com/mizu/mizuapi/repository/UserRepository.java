@@ -1,5 +1,6 @@
 package com.mizu.mizuapi.repository;
 
+import com.mizu.mizuapi.domain.permission.UserGroup;
 import com.mizu.mizuapi.domain.user.UserEntity;
 import com.mizu.mizuapi.dto.UserDTO;
 import com.mizu.mizuapi.generic.crud.GenericCRUDRepository;
@@ -29,6 +30,8 @@ public interface UserRepository extends GenericCRUDRepository<UserEntity, UserDT
     @Query(value = "select u from UserEntity u inner join SessionEntity se on se.id = u.session.id where se.sessionKey = :sessionKey")
     UserEntity getUserBySessionKey(String sessionKey);
 
+    @Query(value = "select u from UserEntity u where u.userGroup = :userGroup")
+    List<UserEntity> getByUserGroup(UserGroup userGroup);
 }
 
 

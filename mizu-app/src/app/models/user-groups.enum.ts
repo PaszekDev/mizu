@@ -1,4 +1,5 @@
 export enum UserGroups {
   STUDENT = "STUDENT",
-  TEACHER = "TEACHER"
+  TEACHER = "TEACHER",
+  RECTOR = "RECTOR"
 }

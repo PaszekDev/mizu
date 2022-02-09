@@ -1,7 +1,11 @@
 <mat-toolbar>
-    <span><img class="img-logo" src="/assets/images/logo.svg"/></span>
+    <span (click)="navigateToHome()"><img class="img-logo" src="/assets/images/logo.svg"/></span>
     <span class="title">{{title}}</span>
     <span class="spacer"></span>
-    <mat-icon>person</mat-icon>
+    <mat-icon (click)="expandOptions()">person</mat-icon>
     <mat-icon (click)="logout()">logout</mat-icon>
 </mat-toolbar>
+
+<div class="selector">
+    <app-user-selector *ngIf="optionsOpen"></app-user-selector>
+</div>
