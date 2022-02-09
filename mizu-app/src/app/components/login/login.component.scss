@@ -100,14 +100,8 @@
 }
 
 .rememberLog {
-  input {
-    margin-left: -45%;
-  }
-
-  label {
-    margin-top: -7.5%;
-    margin-left: 10%;
-  }
+  display: flex;
+  flex-direction: column-reverse;
 }
 
 .sign-in {

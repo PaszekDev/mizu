@@ -55,7 +55,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     public SessionWithUserPermissionDTO login(LoginRequest loginRequest) {
         UserEntity user = userRepository.getUserByEmail(loginRequest.getEmail());
 
-        if (!passwordEncoder.matches(loginRequest.getPassword(), loginRequest.getPassword())) {
+        if (!passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
             throw new EmailOrPasswordIsIncorrectException();
         }
 

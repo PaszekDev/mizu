@@ -9,7 +9,7 @@
             <input [(ngModel)]="searchText" type="text" placeholder="Search" id="search">
             <li><a routerLink=""><mat-icon>business</mat-icon>Schools</a></li>
             <li><a routerLink="students"><mat-icon>school</mat-icon>Students</a></li>
-            <li><a routerLink=""><mat-icon>people_alt</mat-icon>Employees</a></li>
+            <li><a routerLink="employee"><mat-icon>people_alt</mat-icon>Employees</a></li>
             <li><a routerLink=""><mat-icon>pie_chart</mat-icon>Analyses</a></li>
             <li><a routerLink="loginHistory"><mat-icon>history</mat-icon>Login History</a></li>
         </ul>
@@ -20,7 +20,7 @@
         <div class="col-1">
             <mat-icon *ngIf="!sidenav_opened" (click) = "sidenav_opened = !sidenav_opened" class="hamburger">menu</mat-icon>     
         </div>
-        <div class="col-2"><router-outlet></router-outlet></div>
+        <div class="col-2 mx-auto"><router-outlet></router-outlet></div>
     </div>   
 </mat-sidenav-content>
 </mat-sidenav-container>

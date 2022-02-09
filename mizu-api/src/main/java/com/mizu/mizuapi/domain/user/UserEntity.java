@@ -56,5 +56,4 @@ public class UserEntity implements GenericCRUDEntity<UserEntity, UserDTO> {
             joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "user_group_permission_id"))
     private List<UserGroupPermissionEntity> groupPermissionList;
 
-
 }
