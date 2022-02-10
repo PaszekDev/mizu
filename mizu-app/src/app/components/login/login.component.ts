@@ -1,13 +1,14 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators,} from '@angular/forms';
-import {Router} from '@angular/router';
-import {LocalStorageKey} from 'src/app/models/LocalStorageKey.model';
-import {SessionWithUserPermissionDTO} from 'src/app/models/session-with-user-permissions-dto.model';
-import {UserDTO} from 'src/app/models/user-dto.model';
-import {UserGroups} from 'src/app/models/user-groups.enum';
-import {AuthService} from 'src/app/services/auth.service';
-import {LocalStorageService} from 'src/app/services/local-data-storage.service';
-import {LoginRequest} from '../../models/loginRequest.model';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators, } from '@angular/forms';
+import { Router } from '@angular/router';
+import { LocalStorageKey } from 'src/app/models/LocalStorageKey.model';
+import { SessionWithUserPermissionDTO } from 'src/app/models/session-with-user-permissions-dto.model';
+import { UserDTO } from 'src/app/models/user-dto.model';
+import { UserGroups } from 'src/app/models/user-groups.enum';
+import { AuthService } from 'src/app/services/auth.service';
+import { LocalStorageService } from 'src/app/services/local-data-storage.service';
+import { ToastService } from 'src/app/services/toast.service';
+import { LoginRequest } from '../../models/loginRequest.model';
 
 @Component({
   selector: 'app-login',
@@ -31,7 +32,8 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private localStorageService: LocalStorageService,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private toastService: ToastService
   ) {
   }
 
@@ -107,9 +109,9 @@ export class LoginComponent implements OnInit {
         )
         this.router.navigate(['admin']);
       },
-      (error) => {
-        console.log(error);
-      }
+      err => {
+        this.toastService.showNotification("Wrong email or password", "Close", "error");
+      },
     );
   }
 
