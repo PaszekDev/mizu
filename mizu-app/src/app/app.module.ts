@@ -23,7 +23,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 // import {InjectableRxStompConfig, RxStompService, rxStompServiceFactory} from '@stomp/ng2-stompjs';
 import { HomeComponent } from './components/home/home.component';
 import { PermissionGridComponent } from './components/permission-grid/permission-grid.component';
-import { StudentGridComponent } from './components/student/student-grid.component';
+import { StudentGridComponent } from './components/student-grid/student-grid.component';
 import { LoginHistoryComponent } from './components/login-history/login-history.component';
 import { UserSelectorComponent } from './components/user-selector/user-selector.component';
 import { EmployeeGridComponent } from './components/employee-grid/employee-grid.component';
