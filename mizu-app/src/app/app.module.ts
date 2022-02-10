@@ -23,7 +23,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 // import {InjectableRxStompConfig, RxStompService, rxStompServiceFactory} from '@stomp/ng2-stompjs';
 import { HomeComponent } from './components/home/home.component';
 import { PermissionGridComponent } from './components/permission-grid/permission-grid.component';
-import { StudentListComponent } from './components/student/studentList.component';
+import { StudentGridComponent } from './components/student/student-grid.component';
 import { LoginHistoryComponent } from './components/login-history/login-history.component';
 import { UserSelectorComponent } from './components/user-selector/user-selector.component';
 import { EmployeeGridComponent } from './components/employee-grid/employee-grid.component';
@@ -40,7 +40,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     NavbarComponent,
     AdminComponent,
     PermissionDirective,
-    StudentListComponent,
+    StudentGridComponent,
     HomeComponent,
     PermissionGridComponent,
     LoginHistoryComponent,
