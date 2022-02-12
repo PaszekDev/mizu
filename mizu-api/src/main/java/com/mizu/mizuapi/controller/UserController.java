@@ -10,6 +10,7 @@ import com.mizu.mizuapi.service.user.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityManager;
 import java.util.List;
 
 
@@ -22,8 +23,8 @@ public class UserController extends GenericCRUDController<UserEntity, UserDTO> {
     private UserProvider userProvider;
     private final UserServiceImpl userService;
 
-    public UserController(UserRepository userRepository, UserMapper mapper, UserServiceImpl userService) {
-        super(userRepository, mapper);
+    public UserController(UserRepository userRepository, UserMapper mapper, UserServiceImpl userService, EntityManager em) {
+        super(userRepository, mapper, em, UserEntity.class);
         this.userService = userService;
     }
 

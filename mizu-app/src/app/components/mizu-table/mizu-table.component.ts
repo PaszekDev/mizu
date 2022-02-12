@@ -1,6 +1,7 @@
-import { ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CustomizeTableDialogComponent } from 'src/app/dialog/customize-table-dialog/customize-table-dialog.component';
+import { SearchRequest } from 'src/app/models/search-request.model';
 import { MizuColumn } from 'src/app/models/table/mizu-column.model';
 
 @Component({
@@ -12,9 +13,16 @@ export class MizuTableComponent {
 
   private _columns: MizuColumn[] = []
   private _data: any[] = [];
-  
+  private _listLength!: number;
 
   constructor(private dialog: MatDialog){}
+
+  @Output() newSearchRequest = new EventEmitter<string>();
+  @Output() changePageEmitter = new EventEmitter<any>();
+
+  @Input() set listLength(ll: number) {
+    this._listLength = ll;
+  }
 
   @Input() set columns(values:MizuColumn[]) {
     this._columns = values;
@@ -36,6 +44,10 @@ export class MizuTableComponent {
     return this.columns.filter(e=> !e.isHidden).map(e=> e.columnName);
   }
 
+  get listLength() {
+    return this._listLength;
+  }
+
   displayPreferenceTable(): void {
     this.dialog.open(CustomizeTableDialogComponent, {
       height: 'auto',
@@ -47,6 +59,14 @@ export class MizuTableComponent {
       console.log(this.columns)
     })
 
+  }
+
+  search(value: string) {
+    this.newSearchRequest.emit(value);
+  }
+
+  changePage(value: any) {
+    this.changePageEmitter.emit(value);
   }
 
 }

@@ -18,9 +18,6 @@ public interface UserRepository extends GenericCRUDRepository<UserEntity, UserDT
     @Query("select s from UserEntity s where s.id = :userId")
     UserEntity getById(Long userId);
 
-//    @Query("select s from UserEntity s left join s.permissions p where p.groupName = :userGroup group by s.id")
-//    List<UserEntity> getByUserGroup(String userGroup);
-
     @Query(value = "select * from users s order by s.index DESC LIMIT 1", nativeQuery = true)
     UserEntity getUsersDSC();
 

@@ -4,6 +4,8 @@ import { UserDTO } from '../models/user-dto.model';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BaseService } from '../models/abstraction/base-service.service';
+import { SearchRequest } from '../models/search-request.model';
+import { UserListDTO } from '../models/abstraction/user-list.model';
 
 @Injectable({
   providedIn: 'root',
@@ -22,6 +24,10 @@ export class UserService extends BaseService<UserDTO> {
 
   getAllByUserGroups(userGroups: string[]) {
     return this.http.post<UserDTO[]>(this.resourceUrl+'/group',userGroups);
+  }
+
+  getBySearchRequest(searchRequest: SearchRequest) {
+    return this.http.post<UserListDTO<UserDTO>>(this.resourceUrl+'/search',searchRequest);
   }
 
 }
