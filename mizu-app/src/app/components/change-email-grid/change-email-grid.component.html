@@ -1,0 +1,32 @@
+<div class="container mat-elevation-z24">
+    <h1>Email</h1>
+    <form [formGroup]="emailForm" (ngSubmit)="onSubmit()">
+        <hr>
+        <div class="row">
+            <div class="column left">
+                <label for="newEmail">
+                    New Email:
+                </label>
+            </div>
+            <div class="column right">
+                <input id="newEmail" placeholder="Enter email" type="email" formControlName="newEmail">
+            </div>               
+        </div>
+        <hr>
+        <div class="row">
+            <div class="column left">
+                <label for="confirmEmail">
+                    Confirm:
+                </label>
+            </div>
+            <div class="column right">
+                <input id="confirmEmail" placeholder="Confirm email" type="email" formControlName="confirmEmail">
+            </div>               
+        </div>
+        <hr>
+        <div class="flex-box">
+            <button class="btn btn-primary" type="submit">Change</button>
+        </div>    
+    </form>
+    <hr>
+</div>

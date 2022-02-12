@@ -1,0 +1,44 @@
+<div class="container mat-elevation-z24">
+    <h1>User Preferences</h1>
+    <hr>
+    <form [formGroup] = "preferencesForm" (ngSubmit) = "onSubmit()">
+        <div class="row">
+            <div class="column left">
+                <label for="language">
+                    Language:
+                </label>
+            </div>
+            <div class="column right">
+                <mat-form-field>
+                    <mat-select formControlName="language">
+                        <mat-option *ngFor = "let language of languages" [value]="language.value"> 
+                            {{language.value}}
+                        </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </div>               
+        </div>
+        <hr>
+        <div class="row">
+            <div class="column left">
+                <label for="language">
+                    Date Format:
+                </label>
+            </div>
+            <div class="column right">
+                <mat-form-field>
+                    <mat-select formControlName="dateFormat">
+                        <mat-option *ngFor = "let format of dateFormats" [value]="format.value"> 
+                            {{format.value}}
+                        </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </div>               
+        </div>
+        <hr>
+        <div class="flex-box">
+            <button class="btn btn-primary" type="submit">Save</button>
+        </div>
+        <hr>
+    </form>
+</div>

@@ -73,10 +73,16 @@ body {
 .error.mat-snack-bar-container {
   background: red;
   color: white;
+  white-space: pre-wrap
 }
 
 .success.mat-snack-bar-container {
   background: green;
   color: white;
+  white-space: pre-wrap
+}
+
+.mat-drawer-inner-container::-webkit-scrollbar {
+  display: none;
 }
 
