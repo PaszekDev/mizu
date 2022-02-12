@@ -31,6 +31,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CustomizeTableDialogComponent } from './dialog/customize-table-dialog/customize-table-dialog.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatTableModule,
     MatButtonModule,
     MatDialogModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatPaginatorModule
   ],
   // providers: [
   //   {
