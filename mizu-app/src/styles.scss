@@ -66,3 +66,17 @@ body {
   }
 }
 
+.mat-simple-snackbar-action {
+  color: white;
+}
+
+.error.mat-snack-bar-container {
+  background: red;
+  color: white;
+}
+
+.success.mat-snack-bar-container {
+  background: green;
+  color: white;
+}
+

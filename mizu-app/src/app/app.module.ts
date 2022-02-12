@@ -19,6 +19,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 // import {InjectableRxStompConfig, RxStompService, rxStompServiceFactory} from '@stomp/ng2-stompjs';
 import { HomeComponent } from './components/home/home.component';
 import { PermissionGridComponent } from './components/permission-grid/permission-grid.component';
@@ -69,6 +70,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatButtonModule,
     MatDialogModule,
     MatCheckboxModule,
+    MatSnackBarModule,
     MatPaginatorModule
   ],
   // providers: [
