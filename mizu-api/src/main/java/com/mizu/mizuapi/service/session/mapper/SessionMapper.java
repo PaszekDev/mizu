@@ -6,10 +6,12 @@ import com.mizu.mizuapi.dto.SessionDTO;
 import com.mizu.mizuapi.dto.SessionWithUserPermissionDTO;
 import com.mizu.mizuapi.generic.crud.GenericMapper;
 import com.mizu.mizuapi.service.permission.mapper.UserGroupPermissionMapper;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class SessionMapper implements GenericMapper<SessionEntity, SessionDTO> {
 
     private final UserGroupPermissionMapper userGroupPermissionMapper = new UserGroupPermissionMapper();

@@ -15,5 +15,7 @@ public interface UserService {
 
     UserDTO getLastUserByIndex();
 
+    UserDTO updateUser(UserDTO userDTO);
+
     List<UserDTO> getAllByUserGroups(String[] userGroups);
 }
