@@ -32,12 +32,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CustomizeTableDialogComponent } from './dialog/customize-table-dialog/customize-table-dialog.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import { SettingsComponent } from './components/settings/settings.component';
-import { UserInformationGridComponent } from './components/user-information-grid/user-information-grid.component';
-import { ChangeEmailGridComponent } from './components/change-email-grid/change-email-grid.component';
-import { ChangePasswordGridComponent } from './components/change-password-grid/change-password-grid.component';
-import { UserPreferencesGridComponent } from './components/user-preferences-grid/user-preferences-grid.component';
-import { HelpGridComponent } from './components/help-grid/help-grid.component';
+import { SettingsComponent } from './components/settingsView/settings/settings.component';
+import { UserInformationGridComponent } from './components/settingsView/user-information-grid/user-information-grid.component';
+import { ChangeEmailGridComponent } from './components/settingsView/change-email-grid/change-email-grid.component';
+import { ChangePasswordGridComponent } from './components/settingsView/change-password-grid/change-password-grid.component';
+import { UserPreferencesGridComponent } from './components/settingsView/user-preferences-grid/user-preferences-grid.component';
+import { HelpGridComponent } from './components/settingsView/help-grid/help-grid.component';
 
 @NgModule({
   declarations: [
