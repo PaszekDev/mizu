@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -33,6 +33,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { CustomizeTableDialogComponent } from './dialog/customize-table-dialog/customize-table-dialog.component';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { SessionInterceptor } from './helpers/interceptors/session-interceptor';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,13 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatCheckboxModule,
     MatSnackBarModule,
     MatPaginatorModule
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SessionInterceptor,
+      multi: true
+    }
   ],
   // providers: [
   //   {

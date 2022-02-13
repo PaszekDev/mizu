@@ -110,7 +110,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['admin']);
       },
       err => {
-        this.toastService.showNotification("Wrong email or password", "Close", "error");
+        this.toastService.showNotification(err.error, "Close", "error");
       },
     );
   }
