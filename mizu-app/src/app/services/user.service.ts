@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BaseService } from '../models/abstraction/base-service.service';
 import { LocalStorageService } from './local-data-storage.service';
+import { EmailRequest } from '../models/email-request';
 
 @Injectable({
   providedIn: 'root',
@@ -30,6 +31,9 @@ export class UserService extends BaseService<UserDTO> {
     return this.http.get<UserDTO>(this.resourceUrl + '/logged');
   }
 
+  sendEmail(emailRequest: EmailRequest) {
+    return this.http.post<EmailRequest>(this.resourceUrl + '/email', emailRequest);
+  }
 }
 
 interface GetResponse {
