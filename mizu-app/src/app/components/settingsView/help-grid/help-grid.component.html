@@ -1,25 +1,35 @@
 <div class="container mat-elevation-z24">
-    <h1>Help</h1>
-    <hr>
-    <form [formGroup]="helpForm" (ngSubmit)="onSubmit()">
-        <div class="row">
-                <div class="form-group">
-                    <label for="email">Your Email:</label>
-                    <a id="email">agrest321@go2.pl</a>
+    <div class="contact-wrap w-100 p-md-3 p-4">
+        <h1 class="mb-4">Get in touch</h1>
+        <form [formGroup]="helpForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="form-group">
+                        <input type="text" class="form-control" disabled placeholder='{{user.firstName}} {{user.lastName}}'>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="fullname">Name:</label>
-                    <a id="fullname">Grzegorz Dudek</a>
+                <div class="col-md-10">
+                    <div class="form-group">
+                        <input type="email" class="form-control" disabled placeholder='{{user.email}}' >
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="comment">Enter Message:</label>
-                    <textarea class="form-control" formControlName="message" name="message"></textarea>
-                </div>            
+                <div class="col-md-10">
+                    <div class="form-group">
+                        <input type="text" class="form-control" formControlName="subject" placeholder="Subject">
+                    </div>
+                </div>
+                <div class="col-md-10">
+                    <div class="form-group">
+                        <textarea name="message" class="form-control" formControlName="message" cols="30" rows="5"
+                            placeholder="Message"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-10">
+                    <div class="form-group">
+                        <input type="submit" value="Send Message" class="btn btn-primary">
+                    </div>
+                </div>
             </div>
-            <hr>
-        <div class="flex-box">
-            <button class="btn btn-primary" type="submit">Send</button>
-        </div>
-        <hr>
-    </form>
+        </form>
+    </div>
 </div>

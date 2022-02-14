@@ -1,53 +1,42 @@
 .container {
-    margin-right: 7vw;
-    margin-left: 2vw;
     margin-top: 3vh;
     padding: 0;
-    width: 90%;
-    background-color: rgb(167, 191, 223);
+    width: 80%;
+    text-align: center;
+    background-color: white;
+    border-radius: 0.7em;
 
     h1 {
-        font-weight: bold;
-        font-size: 2.7vw;
-        margin-bottom: 3vh;
-        margin-left: 1vw;
-        padding-top: 3vh;
+        margin-top: 1vw;
+        font-size: 2.5vw;
     }
 
-    .form-group {
-        margin-top: 1.5vw;
-        margin-bottom: 1.5vw;
-    }
-
-    a {
-        margin-left: 2vw;
-        font-size: 1.5vw;
-    }
-    label {
-        font-size: 2vw;
-        margin-left: 1vw;
-    }
-
-    textarea {
-        margin-left: 1vw;
-        width: 50vw;
-        height: 7vw;
+    input, textarea  {
         font-size: 1vw;
     }
 
-    .flex-box {
-        display:flex;
-        justify-content: flex-end;
+    .row {
+        align-items: center;
+        justify-content: center;
+    }
 
-        .btn {
-            font-size: 2vw;
-            margin-right: 1vw;
-            color: white;
-            background-color: #324379;
-            border-color: #324379;
-        }
-        .btn:hover {
-            background-color: #6a7394 !important;
-        }
+    .form-group {
+        margin-top: 1vw;
+        margin-bottom: 1vw;
+    }
+
+    input {
+        border-radius: 0.5em;
+    }
+
+    .btn {
+        font-size: 1.5vw;
+        margin-right: 1vw;
+        color: white;
+        background-color: #627dd4;
+        border-color: #627dd4;
+    }
+    .btn:hover {
+        background-color: #6a7394 !important;
     }
 }
