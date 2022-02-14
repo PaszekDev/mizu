@@ -56,7 +56,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         UserEntity user = userRepository.getUserByEmail(loginRequest.getEmail());
 
         if(user == null) {
-            throw new UserNotFoundException();
+            throw new EmailOrPasswordIsIncorrectException();
         }
 
         if (!passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
