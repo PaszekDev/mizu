@@ -27,12 +27,7 @@ export class UserService extends BaseService<UserDTO> {
   }
 
   getLoggedUser() {
-    const sessionKey = this.localStorageService.getSessionKey();
-    let headers = new HttpHeaders();
-    headers = headers.append('Authorization',sessionKey);
-    return this.http.get<UserDTO>(this.resourceUrl + '/logged', {
-      headers: headers
-    });
+    return this.http.get<UserDTO>(this.resourceUrl + '/logged');
   }
 
 }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -38,6 +38,7 @@ import { ChangeEmailGridComponent } from './components/settingsView/change-email
 import { ChangePasswordGridComponent } from './components/settingsView/change-password-grid/change-password-grid.component';
 import { UserPreferencesGridComponent } from './components/settingsView/user-preferences-grid/user-preferences-grid.component';
 import { HelpGridComponent } from './components/settingsView/help-grid/help-grid.component';
+import { SessionInterceptor } from './helpers/interceptors/session-interceptor';
 
 @NgModule({
   declarations: [
@@ -82,6 +83,13 @@ import { HelpGridComponent } from './components/settingsView/help-grid/help-grid
     MatDialogModule,
     MatCheckboxModule,
     MatSnackBarModule
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: SessionInterceptor,
+      multi: true
+    }
   ],
   // providers: [
   //   {
