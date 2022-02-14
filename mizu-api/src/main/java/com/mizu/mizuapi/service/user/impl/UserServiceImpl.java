@@ -33,8 +33,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private EntityManager em;
 
-    private final String[] fieldToOmmit = {"id", "birthdate", "session", "password", "groupPermissionList"};
-
     @Override
     public UserDTO getLastUserByIndex() {
         return userMapper.toDto(userRepository.getUsersDSC());
