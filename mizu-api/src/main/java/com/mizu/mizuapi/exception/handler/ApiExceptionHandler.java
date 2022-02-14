@@ -36,5 +36,8 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_ACCEPTABLE);
     }
 
-
+    @ExceptionHandler(value = EmailSenderException.class)
+    public ResponseEntity<String> handleEmailSenderException(EmailSenderException e) {
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.UNPROCESSABLE_ENTITY);
+    }
 }
