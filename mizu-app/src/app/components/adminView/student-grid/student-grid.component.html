@@ -1,5 +1,8 @@
-<app-mizu-table
-  *ngIf="items.length >= 1"
-  [data]="items"
-  [columns]="columns"
-></app-mizu-table>
+
+  <app-mizu-table
+    [data]="items"
+    [columns]="columns"
+    [listLength]="listLength"
+    (newSearchRequest)="searchResult($event)"
+    (changePageEmitter)="changePage($event)"
+  ></app-mizu-table>

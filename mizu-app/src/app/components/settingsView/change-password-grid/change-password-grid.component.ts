@@ -12,7 +12,6 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./change-password-grid.component.scss']
 })
 export class ChangePasswordGridComponent
-  extends BaseComponent<UserDTO>
   implements OnInit {
 
   hidePassword = true;
@@ -28,8 +27,7 @@ export class ChangePasswordGridComponent
     ])
   })
 
-  constructor(protected http: HttpClient, private toastService: ToastService, private userService: UserService) {
-    super(http, 'user/update/password');
+  constructor(private toastService: ToastService, private userService: UserService) {
   }
 
   ngOnInit(): void {
@@ -70,7 +68,7 @@ export class ChangePasswordGridComponent
     var param: HttpParams = new HttpParams();
     param = param.set('password', this.passwordForm.get('currentPassword')?.value);
 
-    this.update(this.user,param).subscribe(
+    this.userService.updateUser('/update/password',this.user,param).subscribe(
       (data: any) => { 
         this.toastService.showNotification("Password changed succesfully", "Close", "success") 
       },

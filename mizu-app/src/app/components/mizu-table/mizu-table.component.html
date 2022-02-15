@@ -1,23 +1,45 @@
-<button (click)="displayPreferenceTable()" style="margin-top: 3vh; margin-bottom: 3vh;" mat-raised-button><mat-icon>settings</mat-icon> Kolumny</button>
+<form class="options">
+  <div>
+    <button (click)="displayPreferenceTable()" mat-raised-button>
+      <mat-icon>settings</mat-icon> Kolumny
+    </button>
+  </div>
+  <div>
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Search</mat-label>
+      <mat-icon matPrefix>search</mat-icon>
+      <input
+        #newValue
+        matInput
+        (keyup)="search(newValue.value)"
+        placeholder="Search"
+      />
+    </mat-form-field>
+  </div>
+</form>
+<div class="mat-elevation-z8 demo-table" style="width: 80%">
+  <table mat-table [dataSource]="data" style="width: 100%">
+    <ng-container
+      *ngFor="let column of columns"
+      [matColumnDef]="column.columnName"
+    >
+      <th mat-header-cell *matHeaderCellDef>
+        <a>{{ column.columnName }}</a>
+      </th>
+      <td mat-cell *matCellDef="let element">
+        <a>{{ column.cell(element) }}</a>
+      </td>
+    </ng-container>
 
-<table
-  mat-table
-  [dataSource]="data"
-  class="mat-elevation-z8 demo-table"
-  style="width: 80%"
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <mat-paginator
+  [pageSizeOptions]="[5, 10, 20]"
+  [pageSize]="10"
+  [length]="listLength"
+  (page) = "changePage($event)"
+  aria-label="Select page of periodic elements"
 >
-  <ng-container
-    *ngFor="let column of columns"
-    [matColumnDef]="column.columnName"
-  >
-    <th mat-header-cell *matHeaderCellDef>
-      <a>{{ column.columnName }}</a>
-    </th>
-    <td mat-cell *matCellDef="let element">
-      <a>{{ column.cell(element) }}</a>
-    </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-</table>
+</mat-paginator>
+</div>

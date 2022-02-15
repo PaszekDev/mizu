@@ -20,4 +20,5 @@ public interface UserService {
     UserDTO updateUserPassword(UserDTO userDTO, String currentPassword);
 
     List<UserDTO> getAllByUserGroups(String[] userGroups);
+
 }

@@ -40,6 +40,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private EntityManager em;
 
+    private final String[] fieldToOmmit = {"id", "birthdate", "session", "password", "groupPermissionList"};
+
     @Override
     public UserDTO getLastUserByIndex() {
         return userMapper.toDto(userRepository.getUsersDSC());
@@ -60,6 +62,7 @@ public class UserServiceImpl implements UserService {
         cq.where(cb.or(predicates.toArray(new Predicate[0])));
         return em.createQuery(cq).getResultList().stream().map(userMapper::toDto).collect(Collectors.toList());
     }
+
 
     @Override
     public UserDTO getUserBySessionKey(String sessionKey) {

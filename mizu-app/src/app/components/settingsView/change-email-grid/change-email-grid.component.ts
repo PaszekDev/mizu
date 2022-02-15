@@ -12,7 +12,6 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./change-email-grid.component.scss']
 })
 export class ChangeEmailGridComponent
-  extends BaseComponent<UserDTO>
   implements OnInit {
 
   user!: UserDTO;
@@ -24,8 +23,7 @@ export class ChangeEmailGridComponent
     confirmEmail: new FormControl('')
   })
 
-  constructor(protected http: HttpClient, private toastService: ToastService, private userService: UserService) {
-    super(http, 'user/update');
+  constructor(private toastService: ToastService, private userService: UserService) {
   }
 
   ngOnInit(): void {
@@ -63,7 +61,7 @@ export class ChangeEmailGridComponent
   updateEmail() {
     this.user.email = this.emailForm.get('newEmail')?.value;
 
-    this.update(this.user).subscribe(
+    this.userService.updateUser('/update', this.user).subscribe(
       (res: any) => { 
         this.toastService.showNotification("Email changed succesfully", "Close", "success") 
       },

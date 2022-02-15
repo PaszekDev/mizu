@@ -1,8 +1,6 @@
 .btn-primary {
   margin-top: 4em;
-  width: 10em;
   color: white;
-  border-radius: 20px;
   background-color: #19254e;
   border-color: #19254e;
 }
@@ -118,6 +116,11 @@
   form {
     .submit-button {
       align-self: center;
+      background-color: #19254e;
+      border-color: #19254e;
+      color: white;
+      border-radius: 20px;
+      width: 10em;
     }
   }
 }

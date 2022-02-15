@@ -38,6 +38,7 @@ import { ChangeEmailGridComponent } from './components/settingsView/change-email
 import { ChangePasswordGridComponent } from './components/settingsView/change-password-grid/change-password-grid.component';
 import { UserPreferencesGridComponent } from './components/settingsView/user-preferences-grid/user-preferences-grid.component';
 import { HelpGridComponent } from './components/settingsView/help-grid/help-grid.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { SessionInterceptor } from './helpers/interceptors/session-interceptor';
 
 @NgModule({
@@ -82,7 +83,8 @@ import { SessionInterceptor } from './helpers/interceptors/session-interceptor';
     MatButtonModule,
     MatDialogModule,
     MatCheckboxModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatPaginatorModule
   ],
   providers: [
     {

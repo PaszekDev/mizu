@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from 'src/app/models/abstraction/base-component.service';
+import { Param, SearchRequest } from 'src/app/models/search-request.model';
 import { MizuColumn } from 'src/app/models/table/mizu-column.model';
 import { UserDTO } from 'src/app/models/user-dto.model';
 import { UserGroups } from 'src/app/models/user-groups.enum';
@@ -15,21 +16,24 @@ export class StudentGridComponent
   extends BaseComponent<UserDTO>
   implements OnInit
 {
-  constructor(protected http: HttpClient, private userService: UserService) {
-    super(http, 'user');
-  }
 
   public columns: MizuColumn[] = [];
 
-  ngOnInit(): void {
-    this.initData();
+  public params: Param[] = [
+    {
+      value: UserGroups.STUDENT,
+      fieldName: "userGroup"
+    }
+  ]
+
+  constructor(protected http: HttpClient) {
+    super(http, 'user');
   }
 
-  public initData(): void {
-    this.userService.getAllByUserGroups([UserGroups.STUDENT]).subscribe((data) => {
-      this.items = data;
-      this.initColumns();
-    });
+
+  ngOnInit(): void {
+    this.initData();
+    this.initColumns();
   }
 
   public initColumns(): void {
