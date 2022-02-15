@@ -6,6 +6,7 @@ import com.mizu.mizuapi.domain.session.SessionEntity;
 import com.mizu.mizuapi.domain.user.UserEntity;
 import com.mizu.mizuapi.dto.UserDTO;
 import com.mizu.mizuapi.exception.UserWithSessionNotFound;
+import com.mizu.mizuapi.exception.WrongPasswordException;
 import com.mizu.mizuapi.repository.UserRepository;
 import com.mizu.mizuapi.service.session.mapper.SessionMapper;
 import com.mizu.mizuapi.service.user.UserService;
@@ -78,13 +79,34 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO updateUser(UserDTO userDTO) {
+    public UserDTO updateUser(UserDTO userDTO, String currentPasswordNotRequired) {
+
+        if (currentPasswordNotRequired!= null) {
+            if (!passwordEncoder.matches(currentPasswordNotRequired,userRepository.getUserBySessionKey(userDTO.getSession().getSessionKey()).getPassword())) {
+                throw new WrongPasswordException();
+            }
+        }
+        saveUpdatedUser(userDTO);
+        return userDTO;
+    }
+
+    @Override
+    public UserDTO updateUserPassword(UserDTO userDTO, String currentPassword) {
+
+        if (!passwordEncoder.matches(currentPassword,userRepository.getUserBySessionKey(userDTO.getSession().getSessionKey()).getPassword())) {
+                throw new WrongPasswordException();
+        }
         userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+        saveUpdatedUser(userDTO);
+        return userDTO;
+    }
+
+    private UserEntity saveUpdatedUser(UserDTO userDTO) {
         UserEntity user = userMapper.fromDto(userDTO);
         SessionEntity session = sessionMapper.fromDto(userDTO.getSession());
         user.setSession(session);
         userRepository.save(user);
-        return userDTO;
+        return user;
     }
 }
    

@@ -47,8 +47,13 @@ public class UserController extends GenericCRUDController<UserEntity, UserDTO> {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<UserDTO> update(@RequestBody UserDTO userDTO) {
-        return ResponseEntity.ok(userService.updateUser(userDTO));
+    public ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO userDTO, @RequestParam(value = "password", required = false) String password) {
+        return ResponseEntity.ok(userService.updateUser(userDTO, password));
+    }
+
+    @PutMapping("/update/password")
+    public ResponseEntity<UserDTO> updateUserPassword(@RequestBody UserDTO userDTO, @RequestParam("password") String password) {
+        return ResponseEntity.ok(userService.updateUserPassword(userDTO, password));
     }
 
     @PostMapping("/email")

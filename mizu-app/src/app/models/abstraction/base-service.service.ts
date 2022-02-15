@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -25,7 +25,7 @@ export abstract class BaseService<T> {
         return this.http.delete<any>(this.resourceUrl+"/"+id);
     }
 
-    protected update(object: T): any {
-        return this.http.put<any>(this.resourceUrl,object);
+    protected update(object: T, params?: HttpParams): any {
+        return this.http.put<any>(this.resourceUrl, object, {params});
     }
 }

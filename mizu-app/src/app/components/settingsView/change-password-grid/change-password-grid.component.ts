@@ -1,4 +1,4 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { BaseComponent } from 'src/app/models/abstraction/base-component.service';
@@ -23,11 +23,13 @@ export class ChangePasswordGridComponent
       Validators.required,
       Validators.pattern('(?=.*[0-9])(?=.*[A-Z]).{5,}')]),
     confirmPassword: new FormControl(''),
-    currentPassword: new FormControl('')
+    currentPassword: new FormControl('', [
+      Validators.required
+    ])
   })
 
   constructor(protected http: HttpClient, private toastService: ToastService, private userService: UserService) {
-    super(http, 'user/update');
+    super(http, 'user/update/password');
   }
 
   ngOnInit(): void {
@@ -65,12 +67,15 @@ export class ChangePasswordGridComponent
   updatePassword() {
     this.user.password = this.passwordForm.get('newPassword')?.value;
 
-    this.update(this.user).subscribe(
+    var param: HttpParams = new HttpParams();
+    param = param.set('password', this.passwordForm.get('currentPassword')?.value);
+
+    this.update(this.user,param).subscribe(
       (data: any) => { 
         this.toastService.showNotification("Password changed succesfully", "Close", "success") 
       },
       (err: any) => {
-          this.toastService.showNotification("Something went wrong", "Close", "error");
+          this.toastService.showNotification(err.error, "Close", "error");
       });
   }
 }
