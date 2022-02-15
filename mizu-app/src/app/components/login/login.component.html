@@ -30,7 +30,7 @@
 
               <div style="display: flex; flex-direction: row; margin-top: 2vh;">
                 <button mat-button [disabled]="!loginForm.valid" (click)="onSubmit()" class="submit-button">Submit</button>
-                <button style="margin-left: 1vh;" mat-button [disabled]="!loginForm.valid" (click)="handleRegisterButton()" class="submit-button">Sign up</button>
+                <button mat-button style="margin-left: 1vh;" (click)="handleRegisterButton()" class="submit-button">Sign up</button>
               </div>
             </div>
           </form>
