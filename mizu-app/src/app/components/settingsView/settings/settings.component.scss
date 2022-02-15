@@ -1,0 +1,57 @@
+.hamburger {
+    padding-top: .1em;
+    padding-left: .1em; 
+    position: inherit;
+    width: 3vw;
+    height: 3vw;
+    font-size: 3vw;
+    cursor: pointer;
+}
+
+mat-sidenav-container {
+    height: 100%;
+
+    mat-sidenav {
+        background-color:rgba(77, 98, 165, 0.6); 
+        width: 20vw;
+    }
+    
+    ul {
+        margin: 0;
+        padding: 0.7em;  
+            li { 
+                margin-bottom: 2.5em; 
+                position: relative;
+                list-style-type: none;
+                mat-icon {
+                        width: 2vw;
+                        height: 2vw;
+                        font-size: 2vw;
+                        margin-right: 1em;
+                        vertical-align:middle
+                    }
+                a {
+                    display: flex;
+                    align-items: center;
+                    text-decoration: none;
+                    color: black;
+                    font-size: 1.5vw;
+                }
+
+            a:hover, a:focus {
+                color:rgb(82, 77, 77)
+            }
+        }
+    }
+
+    mat-sidenav-content {
+        .row {
+            .col-1 {
+                width: 5%;
+            }
+            .col-2 {
+                width: 95%;
+            }
+        }
+    }
+}

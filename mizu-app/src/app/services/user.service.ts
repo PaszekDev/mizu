@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { UserDTO } from '../models/user-dto.model';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { BaseService } from '../models/abstraction/base-service.service';
+import { LocalStorageService } from './local-data-storage.service';
+import { EmailRequest } from '../models/email-request';
 import { SearchRequest } from '../models/search-request.model';
 import { UserListDTO } from '../models/abstraction/user-list.model';
 
@@ -12,7 +14,8 @@ import { UserListDTO } from '../models/abstraction/user-list.model';
 })
 export class UserService extends BaseService<UserDTO> {
 
-  constructor(protected http: HttpClient) {
+  constructor(protected http: HttpClient,
+    private localStorageService: LocalStorageService) {
     super(http, 'user');
   }
 
@@ -23,13 +26,28 @@ export class UserService extends BaseService<UserDTO> {
   }
 
   getAllByUserGroups(userGroups: string[]) {
-    return this.http.post<UserDTO[]>(this.resourceUrl+'/group',userGroups);
+    return this.http.post<UserDTO[]>(this.resourceUrl + '/group', userGroups);
+  }
+
+  getLoggedUser() {
+    return this.http.get<UserDTO>(this.resourceUrl + '/logged');
+  }
+
+  sendEmail(emailRequest: EmailRequest) {
+    return this.http.post<EmailRequest>(this.resourceUrl + '/email', emailRequest);
   }
 
   getBySearchRequest(searchRequest: SearchRequest) {
     return this.http.post<UserListDTO<UserDTO>>(this.resourceUrl+'/search',searchRequest);
   }
 
+  updateUser(path: string, userDTO: UserDTO) {
+    return this.http.put<any>(this.resourceUrl + path, userDTO);
+  }
+
+  doesPasswordMatch(path: string, userDTO: UserDTO) {
+    return this.http.put<any>(this.resourceUrl + path, userDTO);
+  }
 }
 
 interface GetResponse {

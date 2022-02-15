@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StudentListComponent } from './studentList.component';
+import { HelpGridComponent } from './help-grid.component';
 
-describe('StudentComponent', () => {
-  let component: StudentListComponent;
-  let fixture: ComponentFixture<StudentListComponent>;
+describe('HelpGridComponent', () => {
+  let component: HelpGridComponent;
+  let fixture: ComponentFixture<HelpGridComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ StudentListComponent ]
+      declarations: [ HelpGridComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(StudentListComponent);
+    fixture = TestBed.createComponent(HelpGridComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

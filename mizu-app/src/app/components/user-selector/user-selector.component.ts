@@ -14,4 +14,8 @@ export class UserSelectorComponent implements OnInit {
   getAdminPanel = (): void => {
     this.router.navigate(['/admin'])
   };
+
+  getSettingsPanel = (): void => {
+    this.router.navigate(['/settings'])
+  };
 }

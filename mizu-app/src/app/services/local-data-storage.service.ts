@@ -31,7 +31,7 @@ export class LocalStorageService {
       return sessionKey;
     }
     this.router.navigate(['login'])
-    throw console.error("no session key");
+    return "";
 
 
   }

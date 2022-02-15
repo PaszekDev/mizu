@@ -55,8 +55,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     public SessionWithUserPermissionDTO login(LoginRequest loginRequest) {
         UserEntity user = userRepository.getUserByEmail(loginRequest.getEmail());
 
-        if (user == null) {
-            throw new UserNotFoundException();
+        if(user == null) {
+            throw new EmailOrPasswordIsIncorrectException();
         }
 
         if (!passwordEncoder.matches(loginRequest.getPassword(), user.getPassword())) {
@@ -68,11 +68,11 @@ public class AuthenticationServiceImpl implements AuthenticationService {
                 .expirationDate(LocalDateTime.now().plusMinutes(extraMinutes))
                 .hasDoNotLogout(loginRequest.isHasDoNotLogout())
                 .userRemoteAddress(loginRequest.getRemoteAddr())
-                    .user(user)
-                    .build();
-            user.setSession(session);
-            userRepository.save(user);
-            return sessionMapper.toDtoWithUserPermissionDTO(session, user.getGroupPermissionList());
+                .user(user)
+                .build();
+        user.setSession(session);
+        userRepository.save(user);
+        return sessionMapper.toDtoWithUserPermissionDTO(session, user.getGroupPermissionList());
     }
 
     @Override

@@ -1,12 +1,18 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {AdminComponent} from './components/admin/admin.component';
-import { EmployeeGridComponent } from './components/employee-grid/employee-grid.component';
+import {AdminComponent} from './components/adminView/admin/admin.component';
+import { ChangeEmailGridComponent } from './components/settingsView/change-email-grid/change-email-grid.component';
+import { ChangePasswordGridComponent } from './components/settingsView/change-password-grid/change-password-grid.component';
+import { EmployeeGridComponent } from './components/adminView/employee-grid/employee-grid.component';
+import { HelpGridComponent } from './components/settingsView/help-grid/help-grid.component';
 import {HomeComponent} from './components/home/home.component';
-import { LoginHistoryComponent } from './components/login-history/login-history.component';
+import { LoginHistoryComponent } from './components/adminView/login-history/login-history.component';
 import {LoginComponent} from './components/login/login.component';
-import {PermissionGridComponent} from './components/permission-grid/permission-grid.component';
-import {StudentListComponent} from './components/student/studentList.component';
+import {PermissionGridComponent} from './components/adminView/permission-grid/permission-grid.component';
+import { SettingsComponent } from './components/settingsView/settings/settings.component';
+import {StudentGridComponent} from './components/adminView/student-grid/student-grid.component';
+import { UserInformationGridComponent } from './components/settingsView/user-information-grid/user-information-grid.component';
+import { UserPreferencesGridComponent } from './components/settingsView/user-preferences-grid/user-preferences-grid.component';
 import {AuthenticationGuard} from './helpers/authentication.guard';
 
 const routes: Routes = [
@@ -20,7 +26,7 @@ const routes: Routes = [
     children: [
       {
         path: 'students',
-        component: StudentListComponent,
+        component: StudentGridComponent,
       },
       {
         path: 'employee',
@@ -39,6 +45,34 @@ const routes: Routes = [
   },
   {
     path: 'login', component: LoginComponent
+  }
+  ,
+  {
+    path: 'settings', component: SettingsComponent,
+    canActivate: [AuthenticationGuard],
+    children: [
+      {
+        path: 'information',
+        component: UserInformationGridComponent
+      },
+      {
+        path: 'email',
+        component: ChangeEmailGridComponent
+      },
+      {
+        path: 'password',
+        component: ChangePasswordGridComponent
+      },
+      {
+        path: 'preferences',
+        component: UserPreferencesGridComponent
+      },
+      {
+        path: 'help',
+        component: HelpGridComponent
+      }  
+          
+    ]
   }
 ];
 

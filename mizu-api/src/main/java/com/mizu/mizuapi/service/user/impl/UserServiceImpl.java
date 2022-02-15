@@ -2,9 +2,14 @@ package com.mizu.mizuapi.service.user.impl;
 
 
 import com.mizu.mizuapi.domain.permission.UserGroup;
+import com.mizu.mizuapi.domain.session.SessionEntity;
 import com.mizu.mizuapi.domain.user.UserEntity;
 import com.mizu.mizuapi.dto.UserDTO;
+import com.mizu.mizuapi.exception.UserWithSessionNotFound;
+import com.mizu.mizuapi.exception.WrongPasswordException;
+import com.mizu.mizuapi.helper.UserProvider;
 import com.mizu.mizuapi.repository.UserRepository;
+import com.mizu.mizuapi.service.session.mapper.SessionMapper;
 import com.mizu.mizuapi.service.user.UserService;
 import com.mizu.mizuapi.service.user.mapper.UserMapper;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
@@ -30,6 +36,10 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+    private final SessionMapper sessionMapper;
+    private final PasswordEncoder passwordEncoder;
+    private final UserProvider userProvider;
+
     @Autowired
     private EntityManager em;
 
@@ -54,10 +64,13 @@ public class UserServiceImpl implements UserService {
         return em.createQuery(cq).getResultList().stream().map(userMapper::toDto).collect(Collectors.toList());
     }
 
-
     @Override
     public UserDTO getUserBySessionKey(String sessionKey) {
-        return userMapper.toDto(userRepository.getUserBySessionKey(sessionKey));
+        UserEntity user = userRepository.getUserBySessionKey(sessionKey);
+        if (user == null) {
+            throw new UserWithSessionNotFound();
+        }
+        return userMapper.toDto(user);
     }
 
     @Override
@@ -68,5 +81,33 @@ public class UserServiceImpl implements UserService {
         return new PageImpl<>(chosenEntities);
     }
 
+    @Override
+    public UserDTO updateUser(UserDTO userDTO) {
+        saveUpdatedUser(userDTO);
+        return userDTO;
+    }
+
+    @Override
+    public UserDTO updateUserPassword(UserDTO userDTO) {
+        userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+        saveUpdatedUser(userDTO);
+        return userDTO;
+    }
+
+    @Override
+    public UserDTO doesPasswordMatch(UserDTO userDTO) {
+        if(!passwordEncoder.matches(userDTO.getPassword(),userProvider.getUser().getPassword())) {
+            throw new WrongPasswordException();
+        }
+        return userDTO;
+    }
+
+    private UserEntity saveUpdatedUser(UserDTO userDTO) {
+        UserEntity user = userMapper.fromDto(userDTO);
+        SessionEntity session = sessionMapper.fromDto(userDTO.getSession());
+        user.setSession(session);
+        userRepository.save(user);
+        return user;
+    }
 }
    

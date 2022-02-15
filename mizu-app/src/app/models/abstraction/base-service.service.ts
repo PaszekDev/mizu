@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SearchRequest } from '../search-request.model';
@@ -32,6 +32,6 @@ export abstract class BaseService<T> {
     }
 
     protected update(object: T): any {
-        return this.http.put<any>(this.resourceUrl,object);
+        return this.http.put<any>(this.resourceUrl, object);
     }
 }

@@ -9,10 +9,10 @@ import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-student-list',
-  templateUrl: './studentList.component.html',
-  styleUrls: ['./studentList.component.scss'],
+  templateUrl: './student-grid.component.html',
+  styleUrls: ['./student-grid.component.scss'],
 })
-export class StudentListComponent
+export class StudentGridComponent
   extends BaseComponent<UserDTO>
   implements OnInit
 {

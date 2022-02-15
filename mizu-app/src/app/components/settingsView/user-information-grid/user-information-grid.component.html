@@ -1,0 +1,41 @@
+<div class="row container d-flex justify-content-center mat-elevation-z24">
+    <div class="card user-card-full ">
+        <div class="row m-l-0 m-r-1">
+            <div class="col-sm-4 bg-c-lite-green user-profile">
+                <div class="card-block text-center text-white">
+                    <div class="m-b-25">
+                        <mat-icon>account_circle</mat-icon>
+                    </div>
+                    <h6 class="f-w-500">{{user.firstName}} {{user.lastName}}</h6>
+                    <p>{{user.userGroup}}</p>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="card-block">
+                    <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information</h6>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p class="m-b-10 f-w-500">Email</p>
+                            <h6 class="text-muted f-w-400">{{user.email}}</h6>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="m-b-10 f-w-500">Birthdate</p>
+                            <h6 class="text-muted f-w-400">{{user.birthdate}}</h6>
+                        </div>
+                    </div>
+                    <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-500">School</h6>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p class="m-b-10 f-w-500">University Opole</p>
+                            <h6 class="text-muted f-w-400">Mathematic</h6>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="m-b-10 f-w-500">Index</p>
+                            <h6 class="text-muted f-w-400">{{user.index}}</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
