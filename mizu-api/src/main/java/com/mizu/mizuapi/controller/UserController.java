@@ -1,5 +1,6 @@
 package com.mizu.mizuapi.controller;
 
+import com.mizu.mizuapi.config.ProducerConfig;
 import com.mizu.mizuapi.domain.user.UserEntity;
 import com.mizu.mizuapi.dto.UserDTO;
 import com.mizu.mizuapi.generic.crud.GenericCRUDController;
@@ -28,6 +29,9 @@ public class UserController extends GenericCRUDController<UserEntity, UserDTO> {
     @Autowired
     private EmailService emailService;
     private final UserServiceImpl userService;
+
+    @Autowired
+    ProducerConfig producerConfig;
 
     public UserController(UserRepository userRepository, UserMapper mapper, UserServiceImpl userService, EntityManager em) {
         super(userRepository, mapper, em, UserEntity.class);
@@ -62,5 +66,10 @@ public class UserController extends GenericCRUDController<UserEntity, UserDTO> {
     @PostMapping("/email")
     public ResponseEntity<EmailRequest> sendEmail(@RequestBody EmailRequest emailRequest) {
         return ResponseEntity.ok(emailService.sendEmail(emailRequest));
+    }
+
+    @GetMapping("/kafka/{message}")
+    public void sendMessage(@PathVariable String message) {
+        producerConfig.sendMessage(message);
     }
 }
