@@ -1,44 +1,30 @@
 <div class="container mat-elevation-z24">
-    <h1>User Preferences</h1>
-    <hr>
-    <form [formGroup] = "preferencesForm" (ngSubmit) = "onSubmit()">
-        <div class="row">
-            <div class="column left">
-                <label for="language">
-                    Language:
-                </label>
-            </div>
-            <div class="column right">
+    <div class="cardStyle">
+        <form [formGroup]="preferencesForm" (ngSubmit)="onSubmit()">
+            <h1>User Preferences</h1>
+            <div class="inputDiv">
+                <label class="inputLabel">Language</label>
                 <mat-form-field>
                     <mat-select formControlName="language">
-                        <mat-option *ngFor = "let language of languages" [value]="language.value"> 
+                        <mat-option *ngFor="let language of languages" [value]="language.value">
                             {{language.value}}
                         </mat-option>
                     </mat-select>
-                  </mat-form-field>
-            </div>               
-        </div>
-        <hr>
-        <div class="row">
-            <div class="column left">
-                <label for="language">
-                    Date Format:
-                </label>
+                </mat-form-field>
             </div>
-            <div class="column right">
+            <div class="inputDiv">
+                <label class="inputLabel">Date Format</label>
                 <mat-form-field>
                     <mat-select formControlName="dateFormat">
-                        <mat-option *ngFor = "let format of dateFormats" [value]="format.value"> 
+                        <mat-option *ngFor="let format of dateFormats" [value]="format.value">
                             {{format.value}}
                         </mat-option>
                     </mat-select>
-                  </mat-form-field>
-            </div>               
-        </div>
-        <hr>
-        <div class="flex-box">
-            <button class="btn btn-primary" type="submit">Save</button>
-        </div>
-        <hr>
-    </form>
+                </mat-form-field>
+            </div>
+            <div class="flex-box">
+                <button class="btn btn-primary" type="submit">Change</button>
+            </div>
+        </form>
+    </div>
 </div>

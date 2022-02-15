@@ -22,7 +22,8 @@ export class ChangePasswordGridComponent
     newPassword: new FormControl('', [
       Validators.required,
       Validators.pattern('(?=.*[0-9])(?=.*[A-Z]).{5,}')]),
-    confirmPassword: new FormControl('')
+    confirmPassword: new FormControl(''),
+    currentPassword: new FormControl('')
   })
 
   constructor(protected http: HttpClient, private toastService: ToastService, private userService: UserService) {
