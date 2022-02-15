@@ -41,8 +41,12 @@ export class UserService extends BaseService<UserDTO> {
     return this.http.post<UserListDTO<UserDTO>>(this.resourceUrl+'/search',searchRequest);
   }
 
-  updateUser(path: string, userDTO: UserDTO, params?: HttpParams,) {
-    return this.http.put<any>(this.resourceUrl + path, userDTO, {params});
+  updateUser(path: string, userDTO: UserDTO) {
+    return this.http.put<any>(this.resourceUrl + path, userDTO);
+  }
+
+  doesPasswordMatch(path: string, userDTO: UserDTO) {
+    return this.http.put<any>(this.resourceUrl + path, userDTO);
   }
 }
 

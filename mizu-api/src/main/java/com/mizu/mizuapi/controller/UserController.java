@@ -40,19 +40,23 @@ public class UserController extends GenericCRUDController<UserEntity, UserDTO> {
     }
 
     @GetMapping("/logged")
-    public UserDTO getLoggedUser(HttpServletRequest httpServletRequest) {
-        userProvider = new UserProviderImpl(httpServletRequest, this.userService);
+    public UserDTO getLoggedUser() {
         return userProvider.getUser();
     }
 
     @PutMapping("/update")
-    public ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO userDTO, @RequestParam(value = "password", required = false) String password) {
-        return ResponseEntity.ok(userService.updateUser(userDTO, password));
+    public ResponseEntity<UserDTO> updateUser(@RequestBody UserDTO userDTO) {
+        return ResponseEntity.ok(userService.updateUser(userDTO));
     }
 
     @PutMapping("/update/password")
-    public ResponseEntity<UserDTO> updateUserPassword(@RequestBody UserDTO userDTO, @RequestParam("password") String password) {
-        return ResponseEntity.ok(userService.updateUserPassword(userDTO, password));
+    public ResponseEntity<UserDTO> updateUserPassword(@RequestBody UserDTO userDTO) {
+        return ResponseEntity.ok(userService.updateUserPassword(userDTO));
+    }
+
+    @PutMapping("/update/password/matches")
+    public ResponseEntity<UserDTO> doesPasswordMatch(@RequestBody UserDTO userDTO) {
+        return ResponseEntity.ok(userService.doesPasswordMatch(userDTO));
     }
 
     @PostMapping("/email")

@@ -1,7 +1,5 @@
-import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { BaseComponent } from 'src/app/models/abstraction/base-component.service';
 import { UserDTO } from 'src/app/models/user-dto.model';
 import { ToastService } from 'src/app/services/toast.service';
 import { UserService } from 'src/app/services/user.service';
@@ -38,14 +36,16 @@ export class ChangePasswordGridComponent
     this.userService.getLoggedUser().subscribe((res) => {
       this.user = res;
     },
-      err => this.toastService.showNotification(err.error, "Close", "error"),       
+      err => this.toastService.showNotification(err.error, "Close", "error"),
     );
   }
 
   onSubmit() {
-    if(this.user!=null) {
+    if (this.user != null) {
       if (this.isValid()) {
-        this.updatePassword()
+        const userTmp = {} as UserDTO;
+        userTmp.password = this.passwordForm.get('currentPassword')?.value;
+        this.checkIfCurrentPasswordIsValid(userTmp).then(() => this.updatePassword());
       }
     }
   }
@@ -62,18 +62,31 @@ export class ChangePasswordGridComponent
     return true;
   }
 
+  checkIfCurrentPasswordIsValid(userTmp: UserDTO) {
+    var promise = new Promise<void>((resolve, reject) => {
+      this.userService.doesPasswordMatch('/update/password/matches', userTmp).subscribe(
+        res => {
+          resolve();
+        },
+        err => {
+          this.toastService.showNotification(err.error, "Close", "error");
+          reject();
+        }
+      );
+    })
+
+    return promise;
+  }
+
   updatePassword() {
     this.user.password = this.passwordForm.get('newPassword')?.value;
 
-    var param: HttpParams = new HttpParams();
-    param = param.set('password', this.passwordForm.get('currentPassword')?.value);
-
-    this.userService.updateUser('/update/password',this.user,param).subscribe(
-      (data: any) => { 
-        this.toastService.showNotification("Password changed succesfully", "Close", "success") 
+    this.userService.updateUser('/update/password', this.user).subscribe(
+      (data: any) => {
+        this.toastService.showNotification("Password changed succesfully", "Close", "success")
       },
       (err: any) => {
-          this.toastService.showNotification(err.error, "Close", "error");
+        this.toastService.showNotification(err.error, "Close", "error");
       });
   }
 }

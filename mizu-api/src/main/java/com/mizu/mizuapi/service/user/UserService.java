@@ -15,10 +15,11 @@ public interface UserService {
 
     UserDTO getLastUserByIndex();
 
-    UserDTO updateUser(UserDTO userDTO, String currentPassword);
+    UserDTO updateUser(UserDTO userDTO);
 
-    UserDTO updateUserPassword(UserDTO userDTO, String currentPassword);
+    UserDTO updateUserPassword(UserDTO userDTO);
 
     List<UserDTO> getAllByUserGroups(String[] userGroups);
 
+    UserDTO doesPasswordMatch(UserDTO userDTO);
 }

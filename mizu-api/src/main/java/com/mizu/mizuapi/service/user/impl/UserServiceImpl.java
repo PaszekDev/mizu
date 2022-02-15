@@ -7,6 +7,7 @@ import com.mizu.mizuapi.domain.user.UserEntity;
 import com.mizu.mizuapi.dto.UserDTO;
 import com.mizu.mizuapi.exception.UserWithSessionNotFound;
 import com.mizu.mizuapi.exception.WrongPasswordException;
+import com.mizu.mizuapi.helper.UserProvider;
 import com.mizu.mizuapi.repository.UserRepository;
 import com.mizu.mizuapi.service.session.mapper.SessionMapper;
 import com.mizu.mizuapi.service.user.UserService;
@@ -37,6 +38,8 @@ public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
     private final SessionMapper sessionMapper;
     private final PasswordEncoder passwordEncoder;
+    private final UserProvider userProvider;
+
     @Autowired
     private EntityManager em;
 
@@ -63,7 +66,6 @@ public class UserServiceImpl implements UserService {
         return em.createQuery(cq).getResultList().stream().map(userMapper::toDto).collect(Collectors.toList());
     }
 
-
     @Override
     public UserDTO getUserBySessionKey(String sessionKey) {
         UserEntity user = userRepository.getUserBySessionKey(sessionKey);
@@ -82,25 +84,23 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO updateUser(UserDTO userDTO, String currentPasswordNotRequired) {
-
-        if (currentPasswordNotRequired!= null) {
-            if (!passwordEncoder.matches(currentPasswordNotRequired,userRepository.getUserBySessionKey(userDTO.getSession().getSessionKey()).getPassword())) {
-                throw new WrongPasswordException();
-            }
-        }
+    public UserDTO updateUser(UserDTO userDTO) {
         saveUpdatedUser(userDTO);
         return userDTO;
     }
 
     @Override
-    public UserDTO updateUserPassword(UserDTO userDTO, String currentPassword) {
-
-        if (!passwordEncoder.matches(currentPassword,userRepository.getUserBySessionKey(userDTO.getSession().getSessionKey()).getPassword())) {
-                throw new WrongPasswordException();
-        }
+    public UserDTO updateUserPassword(UserDTO userDTO) {
         userDTO.setPassword(passwordEncoder.encode(userDTO.getPassword()));
         saveUpdatedUser(userDTO);
+        return userDTO;
+    }
+
+    @Override
+    public UserDTO doesPasswordMatch(UserDTO userDTO) {
+        if(!passwordEncoder.matches(userDTO.getPassword(),userProvider.getUser().getPassword())) {
+            throw new WrongPasswordException();
+        }
         return userDTO;
     }
 
