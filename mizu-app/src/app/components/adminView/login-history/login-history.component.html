@@ -1,31 +1,8 @@
-<mat-table class="loginHistory-table" [dataSource]="loginHistory">
-   
-    <ng-container matColumnDef="id">
-        <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
-        <mat-cell class="id-cell"
-                  *matCellDef="let loginHistory">{{loginHistory.id}}</mat-cell>
-    </ng-container>
 
-    <ng-container matColumnDef="email">
-        <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
-        <mat-cell class="email-cell"
-                  *matCellDef="let loginHistory">{{loginHistory.email}}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="loginDate">
-        <mat-header-cell *matHeaderCellDef>Login Date</mat-header-cell>
-        <mat-cell class="loginDate-cell"
-                  *matCellDef="let loginHistory">{{loginHistory.loginDate}}</mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="remoteAddress">
-        <mat-header-cell *matHeaderCellDef>IP</mat-header-cell>
-        <mat-cell class="remoteAddress-cell"
-                  *matCellDef="let loginHistory">{{loginHistory.remoteAddress}}</mat-cell>
-    </ng-container>
-
-
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    
-    <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-</mat-table>
+  <app-mizu-table
+  [data]="items"
+  [columns]="columns"
+  [listLength]="listLength"
+  (newSearchRequest)="searchResult($event)"
+  (changePageEmitter)="changePage($event)"
+></app-mizu-table>
