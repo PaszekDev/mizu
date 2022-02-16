@@ -1,5 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { BaseComponent } from 'src/app/models/abstraction/base-component.service';
 import { LoginHistoryDTO } from 'src/app/models/loginHistory-dto.model';
+import { Param } from 'src/app/models/search-request.model';
+import { MizuColumn } from 'src/app/models/table/mizu-column.model';
+import { UserDTO } from 'src/app/models/user-dto.model';
+import { UserGroups } from 'src/app/models/user-groups.enum';
 import { LoginHistoryService } from 'src/app/services/login-history.service';
 
 @Component({
@@ -7,20 +13,54 @@ import { LoginHistoryService } from 'src/app/services/login-history.service';
   templateUrl: './login-history.component.html',
   styleUrls: ['./login-history.component.scss']
 })
-export class LoginHistoryComponent implements OnInit {
+export class LoginHistoryComponent
+  extends BaseComponent<LoginHistoryDTO>
+  implements OnInit {
 
-  displayedColumns: string[] = ['id', 'email', 'loginDate', 'remoteAddress'];
-  loginHistory!: LoginHistoryDTO[];
 
-  constructor(private loginHistoryService: LoginHistoryService) { }
+  public columns: MizuColumn[] = [];
+
+  public params: Param[] = [
+    
+  ]
+
+  constructor(protected http: HttpClient, private loginHistoryService: LoginHistoryService) {
+    super(http, 'history/login');
+  }
 
   ngOnInit(): void {
-    this.getLoginHistory();
+    this.initData();
+    this.initColumns();
   }
 
-  getLoginHistory() {
-    this.loginHistoryService.getAll().subscribe(data => {
-      this.loginHistory = data;
-    });
+  initColumns() {
+    this.columns = [
+      {
+        fieldName: 'id',
+        columnName: 'id',
+        isHidden: false,
+        cell: (element: LoginHistoryDTO) => `${element.id}`,
+      } as MizuColumn,
+      {
+        fieldName: 'email',
+        columnName: 'email',
+        isHidden: false,
+        cell: (element: LoginHistoryDTO) => `${element.email}`,
+      } as MizuColumn,
+      {
+        fieldName: 'date',
+        columnName: 'date',
+        isHidden: false,
+        cell: (element: LoginHistoryDTO) => `${element.loginDate}`,
+      } as MizuColumn,
+      {
+        fieldName: 'IP',
+        columnName: 'IP',
+        isHidden: false,
+        cell: (element: LoginHistoryDTO) => `${element.remoteAddress}`,
+      } as MizuColumn,
+    ];
   }
+
+
 }
