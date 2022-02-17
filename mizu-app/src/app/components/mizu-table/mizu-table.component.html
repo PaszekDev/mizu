@@ -28,7 +28,7 @@
       </th>
       <td mat-cell *matCellDef="let element">
         <a *ngIf="!column.isInnerHtml">{{ column.cell(element) }}</a>
-        <a *ngIf="column.isInnerHtml" [innerHTML]="column.innerHtml"></a>
+        <a *ngIf="column.isInnerHtml" [innerHTML]="column.innerHtml | noSanitize"></a>
       </td>
     </ng-container>
 

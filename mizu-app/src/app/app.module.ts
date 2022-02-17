@@ -40,6 +40,8 @@ import { UserPreferencesGridComponent } from './components/settingsView/user-pre
 import { HelpGridComponent } from './components/settingsView/help-grid/help-grid.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { SessionInterceptor } from './helpers/interceptors/session-interceptor';
+import { TableRowEditComponent } from './components/table-row-edit/table-row-edit.component';
+import { NoSanitize } from './helpers/no-sanitize';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,9 @@ import { SessionInterceptor } from './helpers/interceptors/session-interceptor';
     ChangeEmailGridComponent,
     ChangePasswordGridComponent,
     UserPreferencesGridComponent,
-    HelpGridComponent
+    HelpGridComponent,
+    TableRowEditComponent,
+    NoSanitize
   ],
   imports: [
     BrowserModule,
@@ -92,6 +96,9 @@ import { SessionInterceptor } from './helpers/interceptors/session-interceptor';
       useClass: SessionInterceptor,
       multi: true
     }
+  ],
+  entryComponents: [
+    TableRowEditComponent
   ],
   // providers: [
   //   {

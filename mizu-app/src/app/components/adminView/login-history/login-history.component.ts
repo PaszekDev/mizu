@@ -4,8 +4,6 @@ import { BaseComponent } from 'src/app/models/abstraction/base-component.service
 import { LoginHistoryDTO } from 'src/app/models/loginHistory-dto.model';
 import { Param } from 'src/app/models/search-request.model';
 import { MizuColumn } from 'src/app/models/table/mizu-column.model';
-import { UserDTO } from 'src/app/models/user-dto.model';
-import { UserGroups } from 'src/app/models/user-groups.enum';
 import { LoginHistoryService } from 'src/app/services/login-history.service';
 
 @Component({
@@ -64,11 +62,9 @@ export class LoginHistoryComponent
         columnName: 'Edit',
         isHidden: false,
         isInnerHtml:true,
-        innerHtml:'<span class="material-icons">mode_edit</span> <span class="material-icons">delete</span>',
+        innerHtml:'<app-table-row-edit></app-table-row-edit>',
         cell: () => ``,
       } as MizuColumn,
     ];
   }
-
-
 }

@@ -1,8 +1,9 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Injector, Input, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CustomizeTableDialogComponent } from 'src/app/dialog/customize-table-dialog/customize-table-dialog.component';
-import { SearchRequest } from 'src/app/models/search-request.model';
+import { createCustomElement } from '@angular/elements'
 import { MizuColumn } from 'src/app/models/table/mizu-column.model';
+import { TableRowEditComponent } from '../table-row-edit/table-row-edit.component';
 
 @Component({
   selector: 'app-mizu-table',
@@ -15,7 +16,10 @@ export class MizuTableComponent {
   private _data: any[] = [];
   private _listLength!: number;
 
-  constructor(private dialog: MatDialog){}
+  constructor(private dialog: MatDialog, injector: Injector){
+    const dynamicComponentTemplate = createCustomElement(TableRowEditComponent, { injector: injector})
+    customElements.define('app-table-row-edit', dynamicComponentTemplate);
+  }
 
   @Output() newSearchRequest = new EventEmitter<string>();
   @Output() changePageEmitter = new EventEmitter<any>();
