@@ -59,6 +59,14 @@ export class LoginHistoryComponent
         isHidden: false,
         cell: (element: LoginHistoryDTO) => `${element.remoteAddress}`,
       } as MizuColumn,
+      {
+        fieldName: 'Edit',
+        columnName: 'Edit',
+        isHidden: false,
+        isInnerHtml:true,
+        innerHtml:'<span class="material-icons">mode_edit</span> <span class="material-icons">delete</span>',
+        cell: () => ``,
+      } as MizuColumn,
     ];
   }
 

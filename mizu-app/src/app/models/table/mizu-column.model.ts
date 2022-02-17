@@ -3,5 +3,7 @@ export interface MizuColumn {
     columnName: string;
     width?: number;
     isHidden?: boolean;
+    isInnerHtml?: boolean;
+    innerHtml?:string;
     cell: any;
 }
