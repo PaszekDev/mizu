@@ -40,6 +40,9 @@ import { UserPreferencesGridComponent } from './components/settingsView/user-pre
 import { HelpGridComponent } from './components/settingsView/help-grid/help-grid.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { SessionInterceptor } from './helpers/interceptors/session-interceptor';
+import { LoginGridComponent } from './components/login/login-grid/login-grid.component';
+import { RegisterGridComponent } from './components/login/register-grid/register-grid.component';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -61,9 +64,12 @@ import { SessionInterceptor } from './helpers/interceptors/session-interceptor';
     ChangeEmailGridComponent,
     ChangePasswordGridComponent,
     UserPreferencesGridComponent,
-    HelpGridComponent
+    HelpGridComponent,
+    LoginGridComponent,
+    RegisterGridComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
     FormsModule,
@@ -84,7 +90,7 @@ import { SessionInterceptor } from './helpers/interceptors/session-interceptor';
     MatDialogModule,
     MatCheckboxModule,
     MatSnackBarModule,
-    MatPaginatorModule
+    MatPaginatorModule,
   ],
   providers: [
     {

@@ -1,0 +1,81 @@
+<div class="global">
+  <section class="background"></section>
+  <div class="main-container">
+    <div class="row">
+      <div class="left-item">
+        <h1>Welcome!</h1>
+        <div class="text">
+          Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem
+          ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem
+          ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem
+          ipsumLorem ipsum
+        </div>
+        <a class="btn btn-primary" href="#" role="button">Read More</a>
+      </div>
+      <div class="right-item">
+        <div class="sign-in">
+          <h1>Sign in</h1>
+          <form [formGroup]="loginForm">
+            <div class="container">
+              <mat-form-field appearance="outline">
+                <mat-label>e-mail</mat-label>
+                <input
+                  matInput
+                  type="email"
+                  name="email"
+                  formControlName="email"
+                  required
+                />
+              </mat-form-field>
+              <mat-form-field appearance="outline">
+                <mat-label>password</mat-label>
+                <input
+                  matInput
+                  type="password"
+                  name="psw"
+                  formControlName="password"
+                  required
+                />
+              </mat-form-field>
+              <div
+                style="
+                  align-self: flex-start;
+                  margin-left: 2vh;
+                  margin-top: 2vh;
+                "
+              >
+                <section>
+                  <mat-checkbox
+                    formControlName="hasDoNotLogout"
+                    id="rember"
+                    name="nlogout"
+                    >Remember login</mat-checkbox
+                  >
+                </section>
+              </div>
+
+              <div style="display: flex; flex-direction: row; margin-top: 2vh">
+                <button
+                  mat-button
+                  [disabled]="!loginForm.valid"
+                  (click)="onSubmit()"
+                  class="submit-button"
+                >
+                  Submit
+                </button>
+                <button
+                  mat-button
+                  style="margin-left: 1vh"
+                  (click)="close()"
+                  class="submit-button"
+                >
+                  Sign up
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators, } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LocalStorageKey } from 'src/app/models/LocalStorageKey.model';
@@ -16,31 +16,17 @@ import { LoginRequest } from '../../models/loginRequest.model';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent implements OnInit {
-  public loginForm!: FormGroup;
-  public registerForm!: FormGroup;
-  public isLoginOpen = true;
-  public groups = [
-    {
-      value: UserGroups.STUDENT,
-    },
-    {
-      value: UserGroups.TEACHER,
-    },
-  ];
+  isLoginOpen = true;
 
   constructor(
     private authService: AuthService,
     private localStorageService: LocalStorageService,
     private router: Router,
-    private fb: FormBuilder,
-    private toastService: ToastService
   ) {
   }
 
   ngOnInit(): void {
     this.checkAuth();
-    this.initFormGroup();
-    this.initRegisterForm();
   }
 
   private checkAuth(): void {
@@ -55,82 +41,9 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  initFormGroup(): void {
-    this.loginForm = new FormGroup({
-      email: new FormControl(null, [
-        Validators.required,
-        Validators.min(5),
-        Validators.max(30),
-      ]),
-      password: new FormControl(null, [
-        Validators.required,
-        Validators.min(5),
-        Validators.max(40),
-      ]),
-      hasDoNotLogout: new FormControl(null),
-    });
-  }
 
-  initRegisterForm(): void {
-    this.registerForm = this.fb.group({
-      firstName: [
-        null,
-        [Validators.required, Validators.min(3), Validators.max(20)],
-      ],
-      lastName: [
-        null,
-        [Validators.required, Validators.min(2), Validators.max(30)],
-      ],
-      birthdate: [null, [Validators.required]],
-      userGroup: [null, [Validators.required]],
-      email: [null, [Validators.required, Validators.email]],
-      confirm_email: [null, [Validators.required, Validators.email]],
-      password: [null, [Validators.min(7), Validators.required]],
-      confirm_password: [null, [Validators.required, Validators.min(7)]],
-    });
-  }
 
-  onSubmit(): void {
-    const loginRequest = {} as LoginRequest;
-    loginRequest.email = this.loginForm.get('email')?.value;
-    loginRequest.password = this.loginForm.get('password')?.value;
-    loginRequest.hasDoNotLogout = this.loginForm.get('logout')?.value;
-    this.authService.login(loginRequest).subscribe(
-      (res: SessionWithUserPermissionDTO) => {
-        this.localStorageService.set(
-          LocalStorageKey.SESSION_KEY,
-          res.sessionKey,
-          localStorage
-        );
-        this.localStorageService.set(
-          LocalStorageKey.USER_PERMISSIONS,
-          JSON.stringify(res.userGroupPermissionDTOS),
-          localStorage
-        )
-        this.router.navigate(['admin']);
-      },
-      err => {
-        this.toastService.showNotification(err.error, "Close", "error");
-      },
-    );
+  close(value: boolean) {
+    this.isLoginOpen = value;
   }
-
-  onSubmitRegister(): void {
-    const user = {} as UserDTO;
-    if (this.registerForm.valid) {
-      user.firstName = this.registerForm.get('firstName')?.value;
-      user.lastName = this.registerForm.get('lastName')?.value;
-      user.password = this.registerForm.get('password')?.value;
-      user.email = this.registerForm.get('email')?.value;
-      user.userGroup = this.registerForm.get('userGroup')?.value;
-      user.birthdate = this.registerForm.get('birthdate')?.value;
-      this.authService.register(user).subscribe((res) => {
-        this.isLoginOpen = true;
-      });
-    }
-  }
-
-  handleRegisterButton = (): void => {
-    this.isLoginOpen = !this.isLoginOpen;
-  };
 }
