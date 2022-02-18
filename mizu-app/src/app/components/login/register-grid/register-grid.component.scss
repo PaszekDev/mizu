@@ -1,0 +1,80 @@
+.btn-primary {
+    margin-top: 4em;
+    color: white;
+    background-color: #19254e;
+    border-color: #19254e;
+  }
+  .btn-primary:hover {
+    background-color: #293868 !important;
+  }
+
+  .global {
+    .background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      //SVG wont load
+      background: url(../../../../assets/images/background.jpg);
+      background-size: cover;
+      filter: brightness(0.7);
+    }
+  }
+  
+.main-container-register {
+    border: 1px;
+    border-style: solid;
+    position: absolute;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 92%;
+    height: 80vh;
+    //SVG wont load
+    background: url(../../../../assets/images/background.jpg);
+    background-size: cover;
+    box-shadow: 0px 4px 4px 20px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    .register-container {
+      width: 50%;
+      height: 80%;
+      background-color: rgba(255, 255, 255, 0.4);
+      background-position: center;
+      display: flex;
+      margin: auto;
+      flex-direction: column;
+    }
+  }
+  
+  .register-form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: auto;
+  }
+  
+  .register-form-left {
+    display: flex;
+    flex-direction: column;
+    margin: 2vh;
+  }
+  
+  .register-form-right {
+    margin: 2vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .register-button-container {
+    margin: auto;
+  
+    button {
+      margin-left: 2vh;
+    }
+  }

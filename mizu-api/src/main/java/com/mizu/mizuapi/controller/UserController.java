@@ -5,7 +5,6 @@ import com.mizu.mizuapi.domain.user.UserEntity;
 import com.mizu.mizuapi.dto.UserDTO;
 import com.mizu.mizuapi.generic.crud.GenericCRUDController;
 import com.mizu.mizuapi.helper.UserProvider;
-import com.mizu.mizuapi.helper.UserProviderImpl;
 import com.mizu.mizuapi.repository.UserRepository;
 import com.mizu.mizuapi.request.EmailRequest;
 import com.mizu.mizuapi.service.email.EmailService;
@@ -14,7 +13,7 @@ import com.mizu.mizuapi.service.user.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import javax.servlet.http.HttpServletRequest;
+
 import javax.persistence.EntityManager;
 import java.util.List;
 

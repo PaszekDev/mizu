@@ -14,10 +14,18 @@ import {StudentGridComponent} from './components/adminView/student-grid/student-
 import { UserInformationGridComponent } from './components/settingsView/user-information-grid/user-information-grid.component';
 import { UserPreferencesGridComponent } from './components/settingsView/user-preferences-grid/user-preferences-grid.component';
 import {AuthenticationGuard} from './helpers/authentication.guard';
+import { RegisterGridComponent } from './components/login/register-grid/register-grid.component';
+import { LoginGridComponent } from './components/login/login-grid/login-grid.component';
 
 const routes: Routes = [
   {
     path: '', pathMatch: 'full', component: HomeComponent
+  },
+  {
+    path: 'login', component: LoginGridComponent
+  },
+  {
+    path: 'register', component: RegisterGridComponent
   },
   {
     path: 'admin',
@@ -43,10 +51,6 @@ const routes: Routes = [
     ]
 
   },
-  {
-    path: 'login', component: LoginComponent
-  }
-  ,
   {
     path: 'settings', component: SettingsComponent,
     canActivate: [AuthenticationGuard],
