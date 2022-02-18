@@ -31,8 +31,8 @@ export class EmployeeGridComponent
   }
 
   public columns: MizuColumn[] = [];
-  
 
+  
   ngOnInit(): void {
     this.initData();
     this.initColumns();
