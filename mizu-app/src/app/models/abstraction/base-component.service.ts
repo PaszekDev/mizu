@@ -1,12 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Param, SearchRequest } from '../search-request.model';
+import { MizuColumn } from '../table/mizu-column.model';
 import { BaseService } from './base-service.service';
 
 @Injectable({ providedIn: 'root' })
 export abstract class BaseComponent<T> extends BaseService<T> {
   public items: T[] = [];
   public abstract params: Param[];
+  public columns: MizuColumn[] = [];
   public searchRequest: SearchRequest = {
     value: '',
     pageSize: 10,

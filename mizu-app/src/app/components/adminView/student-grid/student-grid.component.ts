@@ -69,4 +69,8 @@ export class StudentGridComponent
       } as MizuColumn,
     ];
   }
+
+  public edit(value: any) {
+    console.log(value);
+  }
 }

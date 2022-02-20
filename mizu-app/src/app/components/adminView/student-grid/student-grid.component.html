@@ -5,4 +5,8 @@
     [listLength]="listLength"
     (newSearchRequest)="searchResult($event)"
     (changePageEmitter)="changePage($event)"
-  ></app-mizu-table>
+  >
+  <ng-template #parent let-item="item">
+    <mat-icon (click)="edit(item)">edit</mat-icon>
+</ng-template>
+</app-mizu-table>
