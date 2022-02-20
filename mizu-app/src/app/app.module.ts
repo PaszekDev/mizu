@@ -31,7 +31,7 @@ import { MizuTableComponent } from './components/mizu-table/mizu-table.component
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CustomizeTableDialogComponent } from './dialog/customize-table-dialog/customize-table-dialog.component';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { SettingsComponent } from './components/settingsView/settings/settings.component';
 import { UserInformationGridComponent } from './components/settingsView/user-information-grid/user-information-grid.component';
 import { ChangeEmailGridComponent } from './components/settingsView/change-email-grid/change-email-grid.component';
