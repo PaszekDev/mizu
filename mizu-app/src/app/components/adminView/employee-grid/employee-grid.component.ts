@@ -1,13 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { AfterContentInit, AfterViewInit, Component, ContentChild, ElementRef, EventEmitter, Input, OnInit, Output, QueryList, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { BaseComponent } from 'src/app/models/abstraction/base-component.service';
 import { Param, SearchRequest } from 'src/app/models/search-request.model';
 import { MizuColumn } from 'src/app/models/table/mizu-column.model';
-import { MizuSelector } from 'src/app/models/table/mizu-selector-options';
 import { UserDTO } from 'src/app/models/user-dto.model';
-import { UserGroups } from 'src/app/models/user-groups.enum';
-import { MizuTableComponent } from '../../mizu-table/mizu-table.component';
+import { UserGroups } from 'src/app/models/user-groups.enum';;
 
 @Component({
   selector: 'app-employee-grid',

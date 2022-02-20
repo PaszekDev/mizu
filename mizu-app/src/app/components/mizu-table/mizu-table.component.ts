@@ -1,9 +1,7 @@
-import { AfterViewInit, Component, ContentChild, ElementRef, EventEmitter, Input, OnInit, Output, QueryList, TemplateRef, ViewChild, ViewChildren, ViewContainerRef } from '@angular/core';
+import { Component, ContentChild, EventEmitter, Input, OnInit, Output, TemplateRef,} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CustomizeTableDialogComponent } from 'src/app/dialog/customize-table-dialog/customize-table-dialog.component';
-import { SearchRequest } from 'src/app/models/search-request.model';
 import { MizuColumn } from 'src/app/models/table/mizu-column.model';
-import { MizuSelector } from 'src/app/models/table/mizu-selector-options';
 
 @Component({
   selector: 'app-mizu-table',

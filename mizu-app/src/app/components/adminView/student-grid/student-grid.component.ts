@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { BaseComponent } from 'src/app/models/abstraction/base-component.service';
-import { Param, SearchRequest } from 'src/app/models/search-request.model';
+import { Param} from 'src/app/models/search-request.model';
 import { MizuColumn } from 'src/app/models/table/mizu-column.model';
 import { UserDTO } from 'src/app/models/user-dto.model';
 import { UserGroups } from 'src/app/models/user-groups.enum';
