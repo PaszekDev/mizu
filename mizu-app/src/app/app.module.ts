@@ -43,6 +43,8 @@ import { SessionInterceptor } from './helpers/interceptors/session-interceptor';
 import { LoginGridComponent } from './components/login/login-grid/login-grid.component';
 import { RegisterGridComponent } from './components/login/register-grid/register-grid.component';
 import { CommonModule } from '@angular/common';
+import { FlagSelectorComponent } from './components/flag-selector/flag-selector.component';
+import { TranslatePipe } from './helpers/translate.pipe';
 
 @NgModule({
   declarations: [
@@ -66,7 +68,9 @@ import { CommonModule } from '@angular/common';
     UserPreferencesGridComponent,
     HelpGridComponent,
     LoginGridComponent,
-    RegisterGridComponent
+    RegisterGridComponent,
+    FlagSelectorComponent,
+    TranslatePipe
   ],
   imports: [
     CommonModule,

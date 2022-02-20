@@ -86,3 +86,10 @@ body {
   display: none;
 }
 
+.flag-selector {
+  position: absolute;
+  top:0;
+  right: 1em;
+  z-index: 999;
+}
+

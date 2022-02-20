@@ -1,4 +1,5 @@
 export enum LocalStorageKey {
   SESSION_KEY = 'SESSION_KEY',
   USER_PERMISSIONS = 'USER_PERMISSIONS',
+  LANGUAGE = 'LANGUAGE'
 }
