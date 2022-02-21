@@ -43,7 +43,7 @@ public class GenericCRUDController<T, V extends GenericCRUDEntity<T, V>> {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id) {
         genericCRUDService.delete(id);
-        return ResponseEntity.ok("Ok");
+        return ResponseEntity.status(200).build();
     }
 
     @PostMapping("/search")
