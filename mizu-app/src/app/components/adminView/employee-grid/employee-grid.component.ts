@@ -116,7 +116,7 @@ export class EmployeeGridComponent
     })
   }
 
-  public delete(value: any) {
+  public delete(value: UserDTO) {
     this.dialog.open(DeleteTableRowDialogComponent, {
       height: 'auto',
       width: 'auto',
