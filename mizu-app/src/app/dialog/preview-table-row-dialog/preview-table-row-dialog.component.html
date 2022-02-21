@@ -1,0 +1,10 @@
+<div style="display: flex; flex-direction: column;">
+    <h2>Preview</h2>
+    <div class="columns" *ngFor="let item of row | keyvalue">
+      <div class="container" *ngIf="item.key != 'password'">
+        <label>{{item.key}}</label>
+        <input  disabled value={{item.value}}> 
+      </div>
+    </div>
+    <button style="margin-top: 1vh;" mat-raised-button (click)="onClose()">Close</button>   
+  </div>

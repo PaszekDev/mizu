@@ -43,6 +43,9 @@ import { SessionInterceptor } from './helpers/interceptors/session-interceptor';
 import { LoginGridComponent } from './components/login/login-grid/login-grid.component';
 import { RegisterGridComponent } from './components/login/register-grid/register-grid.component';
 import { CommonModule } from '@angular/common';
+import { EditTableRowDialogComponent } from './dialog/edit-table-row-dialog-component/edit-table-row-dialog-component';
+import { PreviewTableRowDialogComponent } from './dialog/preview-table-row-dialog/preview-table-row-dialog.component';
+import { DeleteTableRowDialogComponent } from './dialog/delete-table-row-dialog/delete-table-row-dialog.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +69,10 @@ import { CommonModule } from '@angular/common';
     UserPreferencesGridComponent,
     HelpGridComponent,
     LoginGridComponent,
-    RegisterGridComponent
+    RegisterGridComponent,
+    EditTableRowDialogComponent,
+    PreviewTableRowDialogComponent,
+    DeleteTableRowDialogComponent
   ],
   imports: [
     CommonModule,

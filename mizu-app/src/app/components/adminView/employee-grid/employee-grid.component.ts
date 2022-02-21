@@ -1,11 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { BaseComponent } from 'src/app/models/abstraction/base-component.service';
-import { Param, SearchRequest } from 'src/app/models/search-request.model';
+import { Param } from 'src/app/models/search-request.model';
 import { MizuColumn } from 'src/app/models/table/mizu-column.model';
 import { UserDTO } from 'src/app/models/user-dto.model';
-import { UserGroups } from 'src/app/models/user-groups.enum';;
+import { UserGroups } from 'src/app/models/user-groups.enum';
+import { EditTableRowDialogComponent } from 'src/app/dialog/edit-table-row-dialog-component/edit-table-row-dialog-component';
+import { PreviewTableRowDialogComponent } from 'src/app/dialog/preview-table-row-dialog/preview-table-row-dialog.component';
+import { ToastService } from 'src/app/services/toast.service';
+import { DeleteTableRowDialogComponent } from 'src/app/dialog/delete-table-row-dialog/delete-table-row-dialog.component';
+;
 
 @Component({
   selector: 'app-employee-grid',
@@ -14,8 +20,7 @@ import { UserGroups } from 'src/app/models/user-groups.enum';;
 })
 export class EmployeeGridComponent
   extends BaseComponent<UserDTO>
-  implements OnInit
-{
+  implements OnInit {
 
   public params: Param[] = [
     {
@@ -28,17 +33,13 @@ export class EmployeeGridComponent
     }
   ]
 
-  constructor(protected http: HttpClient, private router: Router) {
+  constructor(protected http: HttpClient, private dialog: MatDialog, private toastService: ToastService) {
     super(http, 'user');
   }
 
-
-
   ngAfterViewInit() {
-    
-  }
-  
 
+  }
 
   ngOnInit(): void {
     this.initData();
@@ -80,16 +81,63 @@ export class EmployeeGridComponent
       } as MizuColumn,
     ];
   }
-  
-  public edit(value: any) {
-    console.log(value);
+
+  public edit(value: UserDTO) {
+
+    this.dialog.open(EditTableRowDialogComponent, {
+      height: 'auto',
+      width: 'auto',
+      data: JSON.parse(JSON.stringify(value)),
+    }).afterClosed()
+      .subscribe(res => {
+
+        if (res.data != null) {
+          value = res.data
+          let index = this.items.findIndex(item => item.id == value.id)
+          this.items[index] = value
+          this.update(value).subscribe(
+            (res: any) => {
+              this.toastService.showNotification("Updated successfully", "Close", "success")
+              this.refreshTable()
+            },
+            (err: any) => {
+              this.toastService.showNotification(err.error, "Close", "error");
+            }
+          );
+        }
+      })
   }
 
-  public preview(value: any) {
-    console.log(value);
+  public preview(value: UserDTO) {
+    this.dialog.open(PreviewTableRowDialogComponent, {
+      height: 'auto',
+      width: 'auto',
+      data: value,
+    })
   }
 
   public delete(value: any) {
-    console.log(value);
+    this.dialog.open(DeleteTableRowDialogComponent, {
+      height: 'auto',
+      width: 'auto',
+      data: { ID: value.id, First_Name: value.firstName, Last_Name: value.lastName },
+    }).afterClosed()
+      .subscribe(res => {
+        if (res.data != null) {
+          this.deleteById(value.id).subscribe(
+            (res: any) => {
+              this.toastService.showNotification("Deleted successfully", "Close", "success")
+              this.refreshTable()
+            },
+            (err: any) => {
+              this.toastService.showNotification(err.error, "Close", "error");
+            }
+          );
+        }
+      })
+  }
+
+  private refreshTable() {
+    this.ngOnInit();
   }
 }

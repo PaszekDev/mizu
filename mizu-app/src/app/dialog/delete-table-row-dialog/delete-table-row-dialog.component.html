@@ -1,0 +1,11 @@
+<div style="display: flex; flex-direction: column;">
+    <h2>You want to delete entity with:</h2>
+    <div class="columns" *ngFor="let item of row | keyvalue">
+      <div class="container">
+        <label>{{item.key}}</label>
+        <input  disabled value={{item.value}}> 
+      </div>
+    </div>
+    <button style="margin-top: 1vh;" mat-raised-button (click)="onDelete()">Delete</button>   
+    <button style="margin-top: 1vh;" mat-raised-button (click)="onClose()">Close</button>   
+  </div>
