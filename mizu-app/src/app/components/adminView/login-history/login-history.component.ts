@@ -37,19 +37,19 @@ export class LoginHistoryComponent
     this.columns = [
       {
         fieldName: 'id',
-        columnName: 'id',
+        columnName: 'ID',
         isHidden: false,
         cell: (element: LoginHistoryDTO) => `${element.id}`,
       } as MizuColumn,
       {
         fieldName: 'email',
-        columnName: 'email',
+        columnName: 'Email',
         isHidden: false,
         cell: (element: LoginHistoryDTO) => `${element.email}`,
       } as MizuColumn,
       {
         fieldName: 'date',
-        columnName: 'date',
+        columnName: 'Date',
         isHidden: false,
         cell: (element: LoginHistoryDTO) => `${element.loginDate}`,
       } as MizuColumn,

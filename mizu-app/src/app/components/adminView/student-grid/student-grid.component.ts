@@ -43,31 +43,31 @@ export class StudentGridComponent
     this.columns = [
       {
         fieldName: 'id',
-        columnName: 'id',
+        columnName: 'ID',
         isHidden: false,
         cell: (element: UserDTO) => `${element.id}`,
       } as MizuColumn,
       {
         fieldName: 'firstName',
-        columnName: 'firstName',
+        columnName: 'First Name',
         isHidden: false,
         cell: (element: UserDTO) => `${element.firstName}`,
       } as MizuColumn,
       {
         fieldName: 'lastName',
-        columnName: 'lastName',
+        columnName: 'Last Name',
         isHidden: false,
         cell: (element: UserDTO) => `${element.lastName}`,
       } as MizuColumn,
       {
         fieldName: 'email',
-        columnName: 'email',
+        columnName: 'Email',
         isHidden: false,
         cell: (element: UserDTO) => `${element.email}`,
       } as MizuColumn,
       {
         fieldName: 'userGroup',
-        columnName: 'userGroup',
+        columnName: 'Group',
         isHidden: false,
         cell: (element: UserDTO) => `${element.userGroup}`,
       } as MizuColumn,
