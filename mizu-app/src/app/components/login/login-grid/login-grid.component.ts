@@ -76,4 +76,5 @@ export class LoginGridComponent implements OnInit {
   close() {
     this.router.navigate(['register']);
   }
+
 }

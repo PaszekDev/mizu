@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
+import { TranslateService } from './core/translate-service.service';
 import { LocalStorageKey } from './models/LocalStorageKey.model';
 import {LocalStorageService} from './services/local-data-storage.service';
 
@@ -11,7 +12,7 @@ import {LocalStorageService} from './services/local-data-storage.service';
 export class AppComponent implements OnInit {
   title = 'mizu-app';
 
-  constructor(private localStorageService: LocalStorageService, private route: Router) {
+  constructor(private localStorageService: LocalStorageService, private route: Router, private translateService:TranslateService) {
   }
 
   ngOnInit(): void {
