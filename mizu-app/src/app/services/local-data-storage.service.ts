@@ -25,6 +25,19 @@ export class LocalStorageService {
     );
   }
 
+  set Language(lang: string) {
+    localStorage.setItem(LocalStorageKey.LANGUAGE,lang);
+  }
+  
+  getLanguage(): string {
+    const lang = localStorage.getItem(LocalStorageKey.LANGUAGE)
+    if(lang !== null) {
+      return lang;
+    }
+    this.Language = "PL";
+    return "PL";
+  }
+
   getSessionKey(): string {
     const sessionKey = localStorage.getItem(LocalStorageKey.SESSION_KEY);
     if (sessionKey != null) {

@@ -31,7 +31,7 @@ import { MizuTableComponent } from './components/mizu-table/mizu-table.component
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CustomizeTableDialogComponent } from './dialog/customize-table-dialog/customize-table-dialog.component';
-import {MatCheckboxModule} from '@angular/material/checkbox';
+import { MatCheckboxModule} from '@angular/material/checkbox';
 import { SettingsComponent } from './components/settingsView/settings/settings.component';
 import { UserInformationGridComponent } from './components/settingsView/user-information-grid/user-information-grid.component';
 import { ChangeEmailGridComponent } from './components/settingsView/change-email-grid/change-email-grid.component';
@@ -46,6 +46,8 @@ import { CommonModule } from '@angular/common';
 import { EditTableRowDialogComponent } from './dialog/edit-table-row-dialog-component/edit-table-row-dialog-component';
 import { PreviewTableRowDialogComponent } from './dialog/preview-table-row-dialog/preview-table-row-dialog.component';
 import { DeleteTableRowDialogComponent } from './dialog/delete-table-row-dialog/delete-table-row-dialog.component';
+import { FlagSelectorComponent } from './components/flag-selector/flag-selector.component';
+import { TranslatePipe } from './helpers/translate.pipe';
 
 @NgModule({
   declarations: [
@@ -73,6 +75,8 @@ import { DeleteTableRowDialogComponent } from './dialog/delete-table-row-dialog/
     EditTableRowDialogComponent,
     PreviewTableRowDialogComponent,
     DeleteTableRowDialogComponent
+    FlagSelectorComponent,
+    TranslatePipe
   ],
   imports: [
     CommonModule,
