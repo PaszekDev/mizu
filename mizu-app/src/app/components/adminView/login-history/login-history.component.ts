@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { DeleteTableRowDialogComponent } from 'src/app/dialog/delete-table-row-dialog/delete-table-row-dialog.component';
 import { BaseComponent } from 'src/app/models/abstraction/base-component.service';
 import { LoginHistoryDTO } from 'src/app/models/loginHistory-dto.model';
 import { Param } from 'src/app/models/search-request.model';
 import { MizuColumn } from 'src/app/models/table/mizu-column.model';
-import { UserDTO } from 'src/app/models/user-dto.model';
-import { UserGroups } from 'src/app/models/user-groups.enum';
-import { LoginHistoryService } from 'src/app/services/login-history.service';
+import { ToastService } from 'src/app/services/toast.service';
 
 @Component({
   selector: 'app-login-history',
@@ -21,10 +21,10 @@ export class LoginHistoryComponent
   public columns: MizuColumn[] = [];
 
   public params: Param[] = [
-    
+
   ]
 
-  constructor(protected http: HttpClient, private loginHistoryService: LoginHistoryService) {
+  constructor(protected http: HttpClient, private dialog: MatDialog, private toastService: ToastService) {
     super(http, 'history/login');
   }
 
@@ -37,19 +37,19 @@ export class LoginHistoryComponent
     this.columns = [
       {
         fieldName: 'id',
-        columnName: 'id',
+        columnName: 'ID',
         isHidden: false,
         cell: (element: LoginHistoryDTO) => `${element.id}`,
       } as MizuColumn,
       {
         fieldName: 'email',
-        columnName: 'email',
+        columnName: 'Email',
         isHidden: false,
         cell: (element: LoginHistoryDTO) => `${element.email}`,
       } as MizuColumn,
       {
         fieldName: 'date',
-        columnName: 'date',
+        columnName: 'Date',
         isHidden: false,
         cell: (element: LoginHistoryDTO) => `${element.loginDate}`,
       } as MizuColumn,
@@ -60,6 +60,31 @@ export class LoginHistoryComponent
         cell: (element: LoginHistoryDTO) => `${element.remoteAddress}`,
       } as MizuColumn,
     ];
+  }
+
+  public delete(value: LoginHistoryDTO) {
+    this.dialog.open(DeleteTableRowDialogComponent, {
+      height: 'auto',
+      width: 'auto',
+      data: { ID: value.id, Email: value.email},
+    }).afterClosed()
+      .subscribe(res => {
+        if (res.data != null) {
+          this.deleteById(value.id).subscribe(
+            (res: any) => {
+              this.toastService.showNotification("Deleted successfully", "Close", "success")
+              this.refreshTable()
+            },
+            (err: any) => {
+              this.toastService.showNotification(err.error, "Close", "error");
+            }
+          );
+        }
+      })
+  }
+
+  private refreshTable() {
+    this.ngOnInit();
   }
 
 
