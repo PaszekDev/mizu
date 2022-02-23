@@ -74,7 +74,7 @@ import { TranslatePipe } from './helpers/translate.pipe';
     RegisterGridComponent,
     EditTableRowDialogComponent,
     PreviewTableRowDialogComponent,
-    DeleteTableRowDialogComponent
+    DeleteTableRowDialogComponent,
     FlagSelectorComponent,
     TranslatePipe
   ],
