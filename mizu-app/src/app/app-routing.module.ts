@@ -16,6 +16,7 @@ import { UserPreferencesGridComponent } from './components/settingsView/user-pre
 import {AuthenticationGuard} from './helpers/authentication.guard';
 import { RegisterGridComponent } from './components/login/register-grid/register-grid.component';
 import { LoginGridComponent } from './components/login/login-grid/login-grid.component';
+import { SchoolGridComponent } from './components/adminView/school-grid/school-grid.component';
 
 const routes: Routes = [
   {
@@ -39,10 +40,14 @@ const routes: Routes = [
       },
       {
         path: 'students',
-        component: StudentGridComponent,
+        component: StudentGridComponent
       },
       {
-        path: 'employee',
+        path: 'schools',
+        component: SchoolGridComponent
+      },
+      {
+        path: 'employees',
         component: EmployeeGridComponent
       },
       {
