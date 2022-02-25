@@ -11,10 +11,8 @@ import { UserGroups } from 'src/app/models/user-groups.enum';
   templateUrl: './employee-grid.component.html',
   styleUrls: ['./employee-grid.component.scss'],
 })
-export class EmployeeGridComponent
-  extends BaseComponent<UserDTO>
-  implements OnInit
-{
+export class EmployeeGridComponent extends BaseComponent<UserDTO> implements OnInit {
+
   public params: Param[] = [
     {
       value: UserGroups.RECTOR,
