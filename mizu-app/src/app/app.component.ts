@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import { TranslateService } from './core/translate-service.service';
 import { LocalStorageKey } from './models/LocalStorageKey.model';
 import { LocalStorageService } from './services/local-data-storage.service';
 import { Router, Event as RouterEvent, NavigationStart, NavigationEnd, NavigationCancel, NavigationError } from '@angular/router';
@@ -14,7 +15,7 @@ export class AppComponent implements OnInit {
   title = 'mizu-app';
   public isLoading = true;
 
-  constructor(private localStorageService: LocalStorageService, private route: Router) {
+  constructor(private localStorageService: LocalStorageService, private route: Router, private translateService: TranslateService) {
     this.route.events.subscribe((e : RouterEvent) => {
       this.navigationInterceptor(e);
     })
@@ -35,7 +36,7 @@ export class AppComponent implements OnInit {
     if (event instanceof NavigationError) {
       this.isLoading = false;
     }
-  }
+ }
 
   ngOnInit(): void {
     if (!this.localStorageService.get(LocalStorageKey.SESSION_KEY, localStorage)) {

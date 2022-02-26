@@ -1,7 +1,6 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, ContentChild, EventEmitter, Input, OnInit, Output, TemplateRef,} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { CustomizeTableDialogComponent } from 'src/app/dialog/customize-table-dialog/customize-table-dialog.component';
-import { SearchRequest } from 'src/app/models/search-request.model';
 import { MizuColumn } from 'src/app/models/table/mizu-column.model';
 
 @Component({
@@ -9,16 +8,20 @@ import { MizuColumn } from 'src/app/models/table/mizu-column.model';
   templateUrl: './mizu-table.component.html',
   styleUrls: ['./mizu-table.component.scss']
 })
-export class MizuTableComponent {
+export class MizuTableComponent implements OnInit {
 
-  private _columns: MizuColumn[] = []
+  private _columns: MizuColumn[] = [];
   private _data: any[] = [];
   private _listLength!: number;
 
   constructor(private dialog: MatDialog){}
 
+  ngOnInit(): void {
+  }
+
   @Output() newSearchRequest = new EventEmitter<string>();
   @Output() changePageEmitter = new EventEmitter<any>();
+  @ContentChild('parent') parentRef!: TemplateRef<any>;
 
   @Input() set listLength(ll: number) {
     this._listLength = ll;

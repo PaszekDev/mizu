@@ -33,6 +33,11 @@ const routes: Routes = [
     canActivate: [AuthenticationGuard],
     children: [
       {
+        path: '',
+        redirectTo: 'loginHistory',
+        pathMatch: 'full'
+      },
+      {
         path: 'students',
         component: StudentGridComponent,
       },
@@ -55,6 +60,11 @@ const routes: Routes = [
     path: 'settings', component: SettingsComponent,
     canActivate: [AuthenticationGuard],
     children: [
+      {
+        path: '',
+        redirectTo: 'information',
+        pathMatch: 'full'
+      },
       {
         path: 'information',
         component: UserInformationGridComponent

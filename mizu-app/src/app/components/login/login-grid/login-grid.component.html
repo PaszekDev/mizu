@@ -3,18 +3,18 @@
   <div class="main-container">
     <div class="row">
       <div class="left-item">
-        <h1>Welcome!</h1>
+        <h1>{{'welcome' | translate}}</h1>
         <div class="text">
           Lorem ipsum Lorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem
           ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem
           ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem ipsumLorem
           ipsumLorem ipsum
         </div>
-        <a class="btn btn-primary" href="#" role="button">Read More</a>
+        <a class="btn btn-primary" href="#" role="button">{{'read_more' | translate}}</a>
       </div>
       <div class="right-item">
         <div class="sign-in">
-          <h1>Sign in</h1>
+          <h1>{{'login' | translate}}</h1>
           <form [formGroup]="loginForm">
             <div class="container">
               <mat-form-field appearance="outline">
@@ -28,7 +28,7 @@
                 />
               </mat-form-field>
               <mat-form-field appearance="outline">
-                <mat-label>password</mat-label>
+                <mat-label>{{'password' | translate}}</mat-label>
                 <input
                   matInput
                   type="password"
@@ -49,7 +49,7 @@
                     formControlName="hasDoNotLogout"
                     id="rember"
                     name="nlogout"
-                    >Remember login</mat-checkbox
+                    >{{'remember_me' | translate}}</mat-checkbox
                   >
                 </section>
               </div>
@@ -61,7 +61,7 @@
                   (click)="onSubmit()"
                   class="submit-button"
                 >
-                  Submit
+                  {{'login_in' | translate}}
                 </button>
                 <button
                   mat-button
@@ -69,7 +69,7 @@
                   (click)="close()"
                   class="submit-button"
                 >
-                  Sign up
+                  {{'register_in' | translate}}
                 </button>
               </div>
             </div>
@@ -79,3 +79,5 @@
     </div>
   </div>
 </div>
+
+<app-flag-selector></app-flag-selector>

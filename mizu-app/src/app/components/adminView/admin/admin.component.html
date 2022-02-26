@@ -7,11 +7,11 @@
         <h1>Mizu</h1>   
         <ul>
             <input [(ngModel)]="searchText" type="text" placeholder="Search" id="search">
-            <li><a routerLink=""><mat-icon>business</mat-icon>Schools</a></li>
-            <li><a routerLink="students"><mat-icon>school</mat-icon>Students</a></li>
-            <li><a routerLink="employee"><mat-icon>people_alt</mat-icon>Employees</a></li>
-            <li><a routerLink=""><mat-icon>pie_chart</mat-icon>Analyses</a></li>
-            <li><a routerLink="loginHistory"><mat-icon>history</mat-icon>Login History</a></li>
+            <li><a routerLinkActive="active" routerLink="schools"><mat-icon>business</mat-icon>Schools</a></li>
+            <li><a routerLinkActive="active" routerLink="students"><mat-icon>school</mat-icon>Students</a></li>
+            <li><a routerLinkActive="active" routerLink="employee"><mat-icon>people_alt</mat-icon>Employees</a></li>
+            <li><a routerLinkActive="active" routerLink="analyses"><mat-icon>pie_chart</mat-icon>Analyses</a></li>
+            <li><a routerLinkActive="active" routerLink="loginHistory"><mat-icon>history</mat-icon>Login History</a></li>
         </ul>
     </mat-nav-list>
 </mat-sidenav>
