@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { DeleteTableRowDialogComponent } from 'src/app/dialog/delete-table-row-dialog/delete-table-row-dialog.component';
+import { EditTableRowDialogComponent } from 'src/app/dialog/edit-table-row-dialog-component/edit-table-row-dialog-component';
 import { BaseComponent } from 'src/app/models/abstraction/base-component.service';
 import { SchoolDTO } from 'src/app/models/school/school-dto.model';
 import { Param } from 'src/app/models/search-request.model';
@@ -22,14 +23,24 @@ export class SchoolGridComponent
   public params: Param[] = []
   constructor(protected http: HttpClient, private dialog: MatDialog, private toastService: ToastService) {
     super(http, 'school');
-   }
+  }
 
   ngOnInit(): void {
-    //todo implement search in mizu-school
-    //cuz this function maps to /.../school/search and it doesnt exist
     this.initData();
-
     this.initColumns();
+  }
+
+  //todo, implement search in mizu school
+  public initData() {
+    this.getAll().subscribe((res) => {
+      if (res.length > 0) {
+        this.items = res;
+      } else {
+        this.toastService.showNotification("Response is empty", "Close", "error");
+      }
+    },
+      err => this.toastService.showNotification(err.error, "Close", "error"),
+    );
   }
 
   public initColumns(): void {
@@ -101,7 +112,7 @@ export class SchoolGridComponent
     this.dialog.open(DeleteTableRowDialogComponent, {
       height: 'auto',
       width: 'auto',
-      data: { ID: value.id, SchoolName: value.schoolName},
+      data: { ID: value.id, SchoolName: value.schoolName },
     }).afterClosed()
       .subscribe(res => {
         if (res.data != null) {
@@ -119,7 +130,31 @@ export class SchoolGridComponent
   }
 
 
-  //todo add edit selector
+  public edit(value: SchoolDTO) {
+
+    this.dialog.open(EditTableRowDialogComponent, {
+      height: 'auto',
+      width: 'auto',
+      data: JSON.parse(JSON.stringify(value)),
+    }).afterClosed()
+      .subscribe(res => {
+
+        if (res.data != null) {
+          value = res.data
+          let index = this.items.findIndex(item => item.id == value.id)
+          this.items[index] = value
+          this.update(value).subscribe(
+            (res: any) => {
+              this.toastService.showNotification("Updated successfully", "Close", "success")
+              this.refreshTable()
+            },
+            (err: any) => {
+              this.toastService.showNotification(err.error, "Close", "error");
+            }
+          );
+        }
+      })
+  }
 
 
   private refreshTable() {

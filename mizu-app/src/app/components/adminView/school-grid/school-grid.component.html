@@ -6,6 +6,7 @@
   (changePageEmitter)="changePage($event)"
 >
 <ng-template #parent let-item="item">
+  <mat-icon (click)="edit(item)">edit</mat-icon>
   <mat-icon (click)="delete(item)">delete</mat-icon>
 </ng-template>
 </app-mizu-table>

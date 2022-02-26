@@ -5,6 +5,7 @@ import com.mizu.mizuapi.request.search.SearchRequest;
 import com.mizu.mizuapi.response.EntityList;
 import com.mizu.mizuapi.ws.SchoolDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -27,6 +28,11 @@ public class SchoolController {
     @GetMapping
     public EntityList<SchoolDTO> getAll() {
         return (EntityList<SchoolDTO>) this.mizuSchoolConnector.getAll("/school", EntityList.class).block();
+    }
+
+    @PutMapping
+    public SchoolDTO update(@RequestBody SchoolDTO updated) {
+        return (SchoolDTO) this.mizuSchoolConnector.update("/school", SchoolDTO.class, updated).block();
     }
 
     @DeleteMapping("{id}")
