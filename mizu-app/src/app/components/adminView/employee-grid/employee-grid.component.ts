@@ -18,6 +18,7 @@ import { DeleteTableRowDialogComponent } from 'src/app/dialog/delete-table-row-d
   templateUrl: './employee-grid.component.html',
   styleUrls: ['./employee-grid.component.scss'],
 })
+
 export class EmployeeGridComponent
   extends BaseComponent<UserDTO>
   implements OnInit {
@@ -37,10 +38,8 @@ export class EmployeeGridComponent
     super(http, 'user');
   }
 
-  ngAfterViewInit() {
-
-  }
-
+  public columns: MizuColumn[] = [];
+ 
   ngOnInit(): void {
     this.initData();
     this.initColumns();
