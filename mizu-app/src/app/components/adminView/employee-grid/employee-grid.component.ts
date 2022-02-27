@@ -18,6 +18,7 @@ import { TranslateService } from 'src/app/core/translate-service.service';
   templateUrl: './employee-grid.component.html',
   styleUrls: ['./employee-grid.component.scss'],
 })
+
 export class EmployeeGridComponent extends BaseComponent<UserDTO> implements OnInit {
 
   public closeTranslate: any;
@@ -43,6 +44,8 @@ export class EmployeeGridComponent extends BaseComponent<UserDTO> implements OnI
     super(http, 'user');
   }
 
+  public columns: MizuColumn[] = [];
+ 
   ngOnInit(): void {
     this.initData();
     this.initColumns();

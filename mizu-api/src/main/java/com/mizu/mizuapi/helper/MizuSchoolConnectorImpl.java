@@ -46,7 +46,7 @@ public class MizuSchoolConnectorImpl implements MizuSchoolConnector {
     @Override
     public Mono<?> update(String uri, Class<?> clazz, Object obj) {
         connect();
-        return this.client.post().uri(uri).body(obj, obj.getClass()).retrieve().bodyToMono(clazz);
+        return this.client.put().uri(uri).body(obj, obj.getClass()).retrieve().bodyToMono(clazz);
     }
 
     @Override

@@ -43,11 +43,13 @@ import { SessionInterceptor } from './helpers/interceptors/session-interceptor';
 import { LoginGridComponent } from './components/login/login-grid/login-grid.component';
 import { RegisterGridComponent } from './components/login/register-grid/register-grid.component';
 import { CommonModule } from '@angular/common';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { EditTableRowDialogComponent } from './dialog/edit-table-row-dialog-component/edit-table-row-dialog-component';
 import { PreviewTableRowDialogComponent } from './dialog/preview-table-row-dialog/preview-table-row-dialog.component';
 import { DeleteTableRowDialogComponent } from './dialog/delete-table-row-dialog/delete-table-row-dialog.component';
 import { FlagSelectorComponent } from './components/flag-selector/flag-selector.component';
 import { TranslatePipe } from './helpers/translate.pipe';
+import { SchoolGridComponent } from './components/adminView/school-grid/school-grid.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +78,8 @@ import { TranslatePipe } from './helpers/translate.pipe';
     PreviewTableRowDialogComponent,
     DeleteTableRowDialogComponent,
     FlagSelectorComponent,
-    TranslatePipe
+    TranslatePipe,
+    SchoolGridComponent
   ],
   imports: [
     CommonModule,
@@ -101,6 +104,7 @@ import { TranslatePipe } from './helpers/translate.pipe';
     MatCheckboxModule,
     MatSnackBarModule,
     MatPaginatorModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     {
