@@ -1,4 +1,4 @@
-<app-navbar title={{navbarTitle}}></app-navbar>
+<app-navbar style="text-transform: capitalize;" title={{navbarTitle}}></app-navbar>
 
 <mat-sidenav-container>
 <mat-sidenav [(opened)]='sidenav_opened' #sidenav mode="side">
@@ -7,11 +7,11 @@
         <h1>Mizu</h1>   
         <ul>
             <input [(ngModel)]="searchText" type="text" placeholder="Search" id="search">
-            <li><a routerLinkActive="active" routerLink="schools"><mat-icon>business</mat-icon>Schools</a></li>
-            <li><a routerLinkActive="active" routerLink="students"><mat-icon>school</mat-icon>Students</a></li>
-            <li><a routerLinkActive="active" routerLink="employees"><mat-icon>people_alt</mat-icon>Employees</a></li>
-            <li><a routerLinkActive="active" routerLink="analyses"><mat-icon>pie_chart</mat-icon>Analyses</a></li>
-            <li><a routerLinkActive="active" routerLink="loginHistory"><mat-icon>history</mat-icon>Login History</a></li>
+            <li><a routerLinkActive="active" routerLink="schools"><mat-icon>business</mat-icon>{{'schools' | translate}}</a></li>
+            <li><a routerLinkActive="active" routerLink="students"><mat-icon>school</mat-icon>{{'students' | translate}}</a></li>
+            <li><a routerLinkActive="active" routerLink="employee"><mat-icon>people_alt</mat-icon>{{'employees' | translate}}</a></li>
+            <li><a routerLinkActive="active" routerLink="analyses"><mat-icon>pie_chart</mat-icon>{{'analyses' | translate}}</a></li>
+            <li><a routerLinkActive="active" routerLink="loginHistory"><mat-icon>history</mat-icon>{{'login_history' | translate}}</a></li>
         </ul>
     </mat-nav-list>
 </mat-sidenav>

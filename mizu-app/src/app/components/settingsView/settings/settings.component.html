@@ -5,11 +5,11 @@
         <mat-icon (click) = "sidenav_opened = !sidenav_opened" class="hamburger">menu</mat-icon>  
         <mat-nav-list>   
             <ul>
-                <li><a routerLinkActive="active" routerLink="information"><mat-icon>info</mat-icon>User Information</a></li>
-                <li><a routerLinkActive="active" routerLink="preferences"><mat-icon>manage_account</mat-icon>User Preferences</a></li>
-                <li><a routerLinkActive="active" routerLink="email"><mat-icon>email</mat-icon>Email</a></li>
-                <li><a routerLinkActive="active" routerLink="password"><mat-icon>password</mat-icon>Password</a></li>
-                <li><a routerLinkActive="active" routerLink="help"><mat-icon>help</mat-icon>Help</a></li>
+                <li><a routerLinkActive="active" routerLink="information"><mat-icon>info</mat-icon>{{'user_information' | translate}}</a></li>
+                <li><a routerLinkActive="active" routerLink="preferences"><mat-icon>manage_account</mat-icon>{{'user_preferences' | translate}}</a></li>
+                <li><a routerLinkActive="active" routerLink="email"><mat-icon>email</mat-icon>E-mail</a></li>
+                <li><a routerLinkActive="active" routerLink="password"><mat-icon>password</mat-icon>{{'password' | translate}}</a></li>
+                <li><a routerLinkActive="active" routerLink="help"><mat-icon>help</mat-icon>{{'help' | translate}}</a></li>
             </ul>
         </mat-nav-list>
     </mat-sidenav>

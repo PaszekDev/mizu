@@ -4,7 +4,7 @@
     <div class="register-container">
       <form class="register-form" [formGroup]="registerForm">
         <div class="register-form-left">
-          <label class="mizu-label" for="fn">First Name</label>
+          <label class="mizu-label" for="fn">{{'firstName' | translate}}</label>
           <input
             class="mizu-input"
             type="text"
@@ -12,7 +12,7 @@
             required
             formControlName="firstName"
           />
-          <label class="mizu-label" for="sn">Last Name</label>
+          <label class="mizu-label" for="sn">{{'lastName' | translate}}</label>
           <input
             class="mizu-input"
             type="text"
@@ -22,7 +22,7 @@
           />
           <div class="mizu-datepicker">
             <mat-form-field>
-              <mat-label>Birthday Date</mat-label>
+              <mat-label>{{'birthdate' | translate}}</mat-label>
               <input
                 matInput
                 [matDatepicker]="birthdate"
@@ -37,17 +37,17 @@
           </div>
           <div class="mizu-selector">
             <mat-form-field appearance="fill">
-              <mat-label>Group Select</mat-label>
+              <mat-label>{{'group_select' | translate}}</mat-label>
               <mat-select formControlName="userGroup">
-                <mat-option *ngFor="let group of groups" [value]="group.value">
-                  {{ group.value.toLowerCase() }}
+                <mat-option *ngFor="let group of groups" [value]="group.value" style="text-transform: lowercase;">
+                  {{ group.value.toLowerCase() | translate }}
                 </mat-option>
               </mat-select>
             </mat-form-field>
           </div>
         </div>
         <div class="register-form-right">
-          <label class="mizu-label" for="em">email</label>
+          <label class="mizu-label" for="em">E-mail</label>
           <input
             class="mizu-input"
             type="email"
@@ -55,7 +55,7 @@
             required
             formControlName="email"
           />
-          <label class="mizu-label" for="emc">confirm email</label>
+          <label class="mizu-label" for="emc">{{'confirm_email' | translate}}</label>
           <input
             class="mizu-input"
             type="email"
@@ -63,7 +63,7 @@
             required
             formControlName="confirm_email"
           />
-          <label class="mizu-label" for="pass">password</label>
+          <label class="mizu-label" for="pass">{{'password' | translate}}</label>
           <input
             class="mizu-input"
             type="password"
@@ -71,7 +71,7 @@
             required
             formControlName="password"
           />
-          <label class="mizu-label" for="passc">confirm password</label>
+          <label class="mizu-label" for="passc">{{'confirm_password' | translate}}</label>
           <input
             class="mizu-input"
             type="password"
@@ -87,7 +87,7 @@
           type="submit"
           (click)="close()"
         >
-          Cancel
+        {{'cancel' | translate}}
         </button>
         <button
           class="btn btn-primary submit-button"
@@ -95,7 +95,7 @@
           (click)="onSubmitRegister()"
           [disabled]="!registerForm.valid"
         >
-          Register
+        {{'register_in' | translate}}
         </button>
       </div>
     </div>

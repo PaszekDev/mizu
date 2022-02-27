@@ -4,7 +4,7 @@
 
         <div class="main-container">
             <div class="column-subject">
-                <h4 class="title" id="h4-subjects">Subjects</h4>
+                <h4 class="title" id="h4-subjects">{{'subjects' | translate}}</h4>
                 <ul class="tiles tiles-subjects">
                     <li *ngFor="let subject of subjects" class="tile-case">
                         <button>
@@ -29,13 +29,13 @@
 
             <div  class="row-news">
                 <div class="news-title">
-                    <p>News</p>
+                    <p>{{'news' | translate}}</p>
                 </div>
                 <div class="news-news"></div>
             </div>
             
             <div class="column-school">
-                <h4 class="title" id="h4-schools">Schools</h4>
+                <h4 class="title" id="h4-schools">{{'schools' | translate}}</h4>
                 <ul class="tiles tiles-schools">
                     <li *ngFor="let school of schools" class="tile-case">
                         <button>

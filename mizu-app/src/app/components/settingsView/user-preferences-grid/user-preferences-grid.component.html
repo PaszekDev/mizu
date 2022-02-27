@@ -1,9 +1,9 @@
 <div class="container mat-elevation-z24">
     <div class="cardStyle">
         <form [formGroup]="preferencesForm" (ngSubmit)="onSubmit()">
-            <h1>User Preferences</h1>
+            <h1>{{'user_preferences' | translate}}</h1>
             <div class="inputDiv">
-                <label class="inputLabel">Language</label>
+                <label class="inputLabel">{{'language' | translate}}</label>
                 <mat-form-field>
                     <mat-select formControlName="language">
                         <mat-option *ngFor="let language of languages" [value]="language.value">
@@ -13,7 +13,7 @@
                 </mat-form-field>
             </div>
             <div class="inputDiv">
-                <label class="inputLabel">Date Format</label>
+                <label class="inputLabel">{{'date_format' | translate}}</label>
                 <mat-form-field>
                     <mat-select formControlName="dateFormat">
                         <mat-option *ngFor="let format of dateFormats" [value]="format.value">
@@ -23,7 +23,7 @@
                 </mat-form-field>
             </div>
             <div class="flex-box">
-                <button class="btn btn-primary" type="submit">Change</button>
+                <button class="btn btn-primary" type="submit">{{'change' | translate}}</button>
             </div>
         </form>
     </div>

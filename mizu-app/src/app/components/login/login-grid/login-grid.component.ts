@@ -12,6 +12,7 @@ import { SessionWithUserPermissionDTO } from 'src/app/models/session-with-user-p
 import { AuthService } from 'src/app/services/auth.service';
 import { LocalStorageService } from 'src/app/services/local-data-storage.service';
 import { ToastService } from 'src/app/services/toast.service';
+import { TranslateService } from 'src/app/core/translate-service.service';
 
 @Component({
   selector: 'app-login-grid',
@@ -19,13 +20,16 @@ import { ToastService } from 'src/app/services/toast.service';
   styleUrls: ['./login-grid.component.scss'],
 })
 export class LoginGridComponent implements OnInit {
+
   public loginForm!: FormGroup;
+  public closeTranslate: any;
 
   constructor(
     private authService: AuthService,
     private localStorageService: LocalStorageService,
     private toastService: ToastService,
-    private router: Router
+    private router: Router,
+    private translateService: TranslateService
   ) {}
 
   ngOnInit(): void {
@@ -49,10 +53,13 @@ export class LoginGridComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.closeTranslate = this.translateService.getTranslation('close');
+
     const loginRequest = {} as LoginRequest;
     loginRequest.email = this.loginForm.get('email')?.value;
     loginRequest.password = this.loginForm.get('password')?.value;
     loginRequest.hasDoNotLogout = this.loginForm.get('logout')?.value;
+
     this.authService.login(loginRequest).subscribe(
       (res: SessionWithUserPermissionDTO) => {
         this.localStorageService.set(
@@ -68,7 +75,7 @@ export class LoginGridComponent implements OnInit {
         this.router.navigate(['admin']);
       },
       (err) => {
-        this.toastService.showNotification(err.error, 'Close', 'error');
+        this.toastService.showNotification(err.error, this.closeTranslate, 'error');
       }
     );
   }
@@ -76,5 +83,4 @@ export class LoginGridComponent implements OnInit {
   close() {
     this.router.navigate(['register']);
   }
-
 }

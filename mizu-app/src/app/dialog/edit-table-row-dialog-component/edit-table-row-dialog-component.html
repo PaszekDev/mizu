@@ -1,11 +1,11 @@
 <div style="display: flex; flex-direction: column;">
-    <h2>Editable fields</h2>
+    <h2>{{'edit_fields' | translate}}</h2>
     <div class="columns" *ngFor="let item of row | keyvalue ; trackBy: trackItem">
       <div class="container" *ngIf="item.value !=null && item.key != 'id' && item.key != 'password'">
-        <label>{{item.key}}</label>
+        <label>{{item.key | translate}}</label>
         <input [(ngModel)]="data[item.key]"> 
       </div>
     </div>
-    <button style="margin-top: 1vh;" mat-raised-button (click)="onChange()">Confirm changes</button>
-    <button style="margin-top: 1vh;" mat-raised-button (click)="onCancel()">Cancel changes</button>
+    <button style="margin-top: 1vh;" mat-raised-button (click)="onChange()">{{'confirm_changes' | translate}}</button>
+    <button style="margin-top: 1vh;" mat-raised-button (click)="onCancel()">{{'cancel_changes' | translate}}</button>
   </div>

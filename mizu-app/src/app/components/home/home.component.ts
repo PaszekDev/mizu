@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from 'src/app/core/translate-service.service';
 
 @Component({
   selector: 'app-home',
@@ -7,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  navbarTitle:String = "Home Page";
+  public navTitle: any;
+  navbarTitle:String = "";
 
   subjects = [
     { sub: 'IT', srcBc: 'https://www.computerworld.pl/g1/news/thumbnails/3/2/329387_panorama_informatyka_png_80_resize_830x689.webp' },
@@ -23,11 +25,12 @@ export class HomeComponent implements OnInit {
     // { studies: '', city: '', srcImage: '' }
   ]
 
-  constructor() { 
+  constructor(private translateService: TranslateService) { 
   }
 
   ngOnInit(): void {
-
+    this.navTitle = this.translateService.getTranslation("home_page");
+    this.navbarTitle = this.navTitle;
   }
 
   addSubject() {

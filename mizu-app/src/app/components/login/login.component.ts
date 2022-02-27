@@ -22,8 +22,7 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private localStorageService: LocalStorageService,
     private router: Router,
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     this.checkAuth();
@@ -40,8 +39,6 @@ export class LoginComponent implements OnInit {
       });
     }
   }
-
-
 
   close(value: boolean) {
     this.isLoginOpen = value;

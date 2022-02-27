@@ -1,26 +1,25 @@
 <div class="container mat-elevation-z24">
     <div class="cardStyle">
         <form [formGroup]="helpForm" (ngSubmit)="onSubmit()">
-            <h1>Contact Us</h1>
+            <h1>{{'contact_us' | translate}}</h1>
             <div class="inputDiv">
-                <label class="inputLabel">Your Name</label>
+                <label class="inputLabel">{{'your_name' | translate}}</label>
                 <input type="text" disabled placeholder='{{user.firstName}} {{user.lastName}}'>
             </div>
             <div class="inputDiv">
-                <label class="inputLabel">Your Email</label>
+                <label class="inputLabel">{{'your_email' | translate}}</label>
                 <input type="email" disabled placeholder='{{user.email}}' >
             </div>
             <div class="inputDiv">
-                <label class="inputLabel">Subject</label>
-                <input type="text" formControlName="subject" placeholder="Subject">
+                <label class="inputLabel">{{'subject' | translate}}</label>
+                <input type="text" formControlName="subject">
             </div>
             <div class="inputDiv">
-                <label class="inputLabel">Message</label>
-                <textarea formControlName="message" cols="30" rows="3"
-                placeholder="Message"></textarea>
+                <label class="inputLabel">{{'message' | translate}}</label>
+                <textarea formControlName="message" cols="30" rows="3"></textarea>
             </div>
             <div class="flex-box">
-                <button class="btn btn-primary" type="submit">Change</button>
+                <button class="btn btn-primary" type="submit">{{'send' | translate}}</button>
             </div>
         </form>
     </div>

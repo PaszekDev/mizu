@@ -27,7 +27,6 @@ export class DeleteTableRowDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      
   }
 
 }

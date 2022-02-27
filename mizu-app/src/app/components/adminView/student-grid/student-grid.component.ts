@@ -10,18 +10,20 @@ import { MizuColumn } from 'src/app/models/table/mizu-column.model';
 import { UserDTO } from 'src/app/models/user-dto.model';
 import { UserGroups } from 'src/app/models/user-groups.enum';
 import { ToastService } from 'src/app/services/toast.service';
+import { TranslateService } from 'src/app/core/translate-service.service';
 
 @Component({
   selector: 'app-student-list',
   templateUrl: './student-grid.component.html',
   styleUrls: ['./student-grid.component.scss'],
 })
-export class StudentGridComponent
-  extends BaseComponent<UserDTO>
-  implements OnInit {
+export class StudentGridComponent extends BaseComponent<UserDTO> implements OnInit {
+
+  public closeTranslate: any;
+  public updateTranslate: any;
+  public deleteTranslate: any;
 
   public columns: MizuColumn[] = [];
-
   public params: Param[] = [
     {
       value: UserGroups.STUDENT,
@@ -29,10 +31,13 @@ export class StudentGridComponent
     }
   ]
 
-  constructor(protected http: HttpClient, private dialog: MatDialog, private toastService: ToastService) {
+  constructor(protected http: HttpClient, 
+    private dialog: MatDialog, 
+    private toastService: ToastService, 
+    private translateService: TranslateService
+    ) {
     super(http, 'user');
   }
-
 
   ngOnInit(): void {
     this.initData();
@@ -43,31 +48,31 @@ export class StudentGridComponent
     this.columns = [
       {
         fieldName: 'id',
-        columnName: 'ID',
+        columnName: this.translateService.getTranslation('index'),
         isHidden: false,
         cell: (element: UserDTO) => `${element.id}`,
       } as MizuColumn,
       {
         fieldName: 'firstName',
-        columnName: 'First Name',
+        columnName: this.translateService.getTranslation('firstName'),
         isHidden: false,
         cell: (element: UserDTO) => `${element.firstName}`,
       } as MizuColumn,
       {
         fieldName: 'lastName',
-        columnName: 'Last Name',
+        columnName: this.translateService.getTranslation('lastName'),
         isHidden: false,
         cell: (element: UserDTO) => `${element.lastName}`,
       } as MizuColumn,
       {
         fieldName: 'email',
-        columnName: 'Email',
+        columnName: 'E-mail',
         isHidden: false,
         cell: (element: UserDTO) => `${element.email}`,
       } as MizuColumn,
       {
         fieldName: 'userGroup',
-        columnName: 'Group',
+        columnName: this.translateService.getTranslation('group'),
         isHidden: false,
         cell: (element: UserDTO) => `${element.userGroup}`,
       } as MizuColumn,
@@ -75,6 +80,10 @@ export class StudentGridComponent
   }
 
   public edit(value: UserDTO) {
+
+    this.closeTranslate = this.translateService.getTranslation('close');
+    this.updateTranslate = this.translateService.getTranslation('update_success');
+    this.deleteTranslate = this.translateService.getTranslation('delete_success');
 
     this.dialog.open(EditTableRowDialogComponent, {
       height: 'auto',
@@ -89,11 +98,11 @@ export class StudentGridComponent
           this.items[index] = value
           this.update(value).subscribe(
             (res: any) => {
-              this.toastService.showNotification("Updated successfully", "Close", "success")
+              this.toastService.showNotification(this.updateTranslate, this.closeTranslate, "success")
               this.refreshTable()
             },
             (err: any) => {
-              this.toastService.showNotification(err.error, "Close", "error");
+              this.toastService.showNotification(err.error, this.closeTranslate, "error");
             }
           );
         }
@@ -118,11 +127,11 @@ export class StudentGridComponent
         if (res.data != null) {
           this.deleteById(value.id).subscribe(
             (res: any) => {
-              this.toastService.showNotification("Deleted successfully", "Close", "success")
+              this.toastService.showNotification(this.deleteTranslate, this.closeTranslate, "success")
               this.refreshTable()
             },
             (err: any) => {
-              this.toastService.showNotification(err.error, "Close", "error");
+              this.toastService.showNotification(err.error, this.closeTranslate, "error");
             }
           );
         }
@@ -132,5 +141,4 @@ export class StudentGridComponent
   private refreshTable() {
     this.ngOnInit();
   }
-
 }
