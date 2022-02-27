@@ -28,7 +28,7 @@
                 />
               </mat-form-field>
               <mat-form-field appearance="outline">
-                <mat-label>{{'password' | translate}}</mat-label>
+                <mat-label style="text-transform: lowercase;">{{'password' | translate}}</mat-label>
                 <input
                   matInput
                   type="password"
@@ -59,16 +59,14 @@
                   mat-button
                   [disabled]="!loginForm.valid"
                   (click)="onSubmit()"
-                  class="submit-button"
-                >
+                  class="submit-button">
                   {{'login_in' | translate}}
                 </button>
                 <button
                   mat-button
                   style="margin-left: 1vh"
                   (click)="close()"
-                  class="submit-button"
-                >
+                  class="submit-button">
                   {{'register_in' | translate}}
                 </button>
               </div>

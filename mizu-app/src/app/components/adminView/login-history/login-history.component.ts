@@ -7,24 +7,26 @@ import { LoginHistoryDTO } from 'src/app/models/loginHistory-dto.model';
 import { Param } from 'src/app/models/search-request.model';
 import { MizuColumn } from 'src/app/models/table/mizu-column.model';
 import { ToastService } from 'src/app/services/toast.service';
+import { TranslateService } from 'src/app/core/translate-service.service';
 
 @Component({
   selector: 'app-login-history',
   templateUrl: './login-history.component.html',
   styleUrls: ['./login-history.component.scss']
 })
-export class LoginHistoryComponent
-  extends BaseComponent<LoginHistoryDTO>
-  implements OnInit {
+export class LoginHistoryComponent extends BaseComponent<LoginHistoryDTO> implements OnInit {
 
+  public closeTranslate: any;
+  public deleteTranslate: any;
 
   public columns: MizuColumn[] = [];
+  public params: Param[] = [];
 
-  public params: Param[] = [
-
-  ]
-
-  constructor(protected http: HttpClient, private dialog: MatDialog, private toastService: ToastService) {
+  constructor(protected http: HttpClient, 
+    private dialog: MatDialog, 
+    private toastService: ToastService,
+    private translateService: TranslateService
+    ) {
     super(http, 'history/login');
   }
 
@@ -37,25 +39,25 @@ export class LoginHistoryComponent
     this.columns = [
       {
         fieldName: 'id',
-        columnName: 'ID',
+        columnName: this.translateService.getTranslation('id_logHist'),
         isHidden: false,
         cell: (element: LoginHistoryDTO) => `${element.id}`,
       } as MizuColumn,
       {
         fieldName: 'email',
-        columnName: 'Email',
+        columnName: 'E-mail',
         isHidden: false,
         cell: (element: LoginHistoryDTO) => `${element.email}`,
       } as MizuColumn,
       {
         fieldName: 'date',
-        columnName: 'Date',
+        columnName: this.translateService.getTranslation('date'),
         isHidden: false,
         cell: (element: LoginHistoryDTO) => `${element.loginDate}`,
       } as MizuColumn,
       {
         fieldName: 'IP',
-        columnName: 'IP',
+        columnName: this.translateService.getTranslation('ip'),
         isHidden: false,
         cell: (element: LoginHistoryDTO) => `${element.remoteAddress}`,
       } as MizuColumn,
@@ -63,6 +65,10 @@ export class LoginHistoryComponent
   }
 
   public delete(value: LoginHistoryDTO) {
+
+    this.closeTranslate = this.translateService.getTranslation('close');
+    this.deleteTranslate = this.translateService.getTranslation('delete_success');
+    
     this.dialog.open(DeleteTableRowDialogComponent, {
       height: 'auto',
       width: 'auto',
@@ -72,11 +78,11 @@ export class LoginHistoryComponent
         if (res.data != null) {
           this.deleteById(value.id).subscribe(
             (res: any) => {
-              this.toastService.showNotification("Deleted successfully", "Close", "success")
+              this.toastService.showNotification(this.deleteTranslate, this.closeTranslate, "success")
               this.refreshTable()
             },
             (err: any) => {
-              this.toastService.showNotification(err.error, "Close", "error");
+              this.toastService.showNotification(err.error, this.closeTranslate, "error");
             }
           );
         }

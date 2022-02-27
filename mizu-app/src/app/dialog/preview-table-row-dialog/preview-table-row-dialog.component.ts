@@ -23,7 +23,5 @@ export class PreviewTableRowDialogComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      
   }
-
 }

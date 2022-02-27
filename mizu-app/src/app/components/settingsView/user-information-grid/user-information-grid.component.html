@@ -7,30 +7,30 @@
                         <mat-icon>account_circle</mat-icon>
                     </div>
                     <h6 class="f-w-500">{{user.firstName}} {{user.lastName}}</h6>
-                    <p>{{user.userGroup}}</p>
+                    <p>{{user.userGroup | translate}}</p>
                 </div>
             </div>
             <div class="col-sm-8">
                 <div class="card-block">
-                    <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information</h6>
+                    <h6 class="m-b-20 p-b-5 b-b-default f-w-600">{{'information' | translate}}</h6>
                     <div class="row">
                         <div class="col-sm-6">
-                            <p class="m-b-10 f-w-500">Email</p>
+                            <p class="m-b-10 f-w-500">E-mail</p>
                             <h6 class="text-muted f-w-400">{{user.email}}</h6>
                         </div>
                         <div class="col-sm-6">
-                            <p class="m-b-10 f-w-500">Birthdate</p>
+                            <p class="m-b-10 f-w-500">{{'birthdate' | translate}}</p>
                             <h6 class="text-muted f-w-400">{{user.birthdate}}</h6>
                         </div>
                     </div>
-                    <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-500">School</h6>
+                    <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-500">{{'school' | translate}}</h6>
                     <div class="row">
                         <div class="col-sm-6">
                             <p class="m-b-10 f-w-500">University Opole</p>
                             <h6 class="text-muted f-w-400">Mathematic</h6>
                         </div>
                         <div class="col-sm-6">
-                            <p class="m-b-10 f-w-500">Index</p>
+                            <p class="m-b-10 f-w-500">{{'index' | translate}}</p>
                             <h6 class="text-muted f-w-400">{{user.index}}</h6>
                         </div>
                     </div>
