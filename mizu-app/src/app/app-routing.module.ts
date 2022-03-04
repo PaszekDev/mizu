@@ -47,7 +47,7 @@ const routes: Routes = [
         component: SchoolGridComponent
       },
       {
-        path: 'employees',
+        path: 'employee',
         component: EmployeeGridComponent
       },
       {
